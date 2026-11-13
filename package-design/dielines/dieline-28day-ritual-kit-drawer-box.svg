@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" width="100%" height="100%">
+  <defs>
+    <style>
+      .font-header { font-family: 'Bodoni Moda', 'Playfair Display', serif; }
+      .font-sans { font-family: 'Montserrat', 'Helvetica Neue', sans-serif; }
+      .cut-line { stroke: #E6007E; stroke-width: 1.5; fill: none; }
+      .crease-line { stroke: #00A0E9; stroke-width: 1.2; stroke-dasharray: 6 4; fill: none; }
+      .bleed-line { stroke: #00B050; stroke-width: 0.8; stroke-dasharray: 3 3; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="1000" fill="#FAF8F5"/>
+
+  <!-- Production Header -->
+  <g transform="translate(60, 45)">
+    <text class="font-header" font-size="22" fill="#1C140F" font-weight="600">MOFEAZ // 28-DAY SIGNATURE RITUAL KIT - RIGID DRAWER BOX DIELINE</text>
+    <text class="font-sans" font-size="11" fill="#666" y="22" letter-spacing="1">
+      STRUCTURE: 2-PIECE RIGID SLIDE-OUT DRAWER BOX (OUTER SLEEVE + SLIDING TRAY) WITH COMPARTMENT DIVIDER
+    </text>
+    <text class="font-sans" font-size="10" fill="#888" y="38" letter-spacing="0.5">
+      FINISHED SIZE: 230mm (W) × 165mm (H) × 45mm (D) | BOARD: 1200 GSM GREYBOARD WRAPPED WITH 150 GSM NATURAL TEXTURED LINEN | EMBOSS: HOT FOIL LUXOR GOLD DEBOSS
+    </text>
+  </g>
+
+  <!-- Outer Slipcase Sleeve Flat Net Artwork -->
+  <!-- Top Lid: 360w x 260h | Side: 70w | Bottom: 360w | Side: 70w | Glue Tab: 25w -->
+  <g transform="translate(80, 160)">
+    <!-- Sleeve Background: Natural Linen Cream (#F5EFE6) -->
+    <rect x="0" y="0" width="880" height="260" fill="#F4EFEA"/>
+
+    <!-- Left Spine -->
+    <rect x="0" y="0" width="70" height="260" fill="#ECE5DD" stroke="#DED5C8" stroke-width="0.5"/>
+    <g transform="translate(35, 130) rotate(-90)">
+      <text class="font-header" font-size="14" fill="#2C1E16" text-anchor="middle" letter-spacing="3">MOFEAZ</text>
+      <text class="font-sans" font-size="6.5" fill="#9D5C41" text-anchor="middle" y="14" letter-spacing="2">28-DAY SEED CYCLING RITUAL</text>
+    </g>
+
+    <!-- Top Cover Face (Main View, w=360, h=260) -->
+    <g transform="translate(70, 0)">
+      <!-- Gold Foil Border -->
+      <rect x="14" y="14" width="332" height="232" fill="none" stroke="#C99454" stroke-width="1.2" opacity="0.7"/>
+      <rect x="18" y="18" width="324" height="224" fill="none" stroke="#C99454" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.4"/>
+
+      <!-- Brand Header -->
+      <text class="font-header" font-size="34" fill="#2C1E16" text-anchor="middle" x="180" y="65" letter-spacing="4">
+        MOFEAZ
+      </text>
+      <text class="font-sans" font-size="8" fill="#9D5C41" text-anchor="middle" x="180" y="80" letter-spacing="4">
+        moi • fea • z
+      </text>
+
+      <!-- Center 28-Day Cycle Dial Gold Emboss -->
+      <g transform="translate(180, 140) scale(0.38)">
+        <circle cx="0" cy="0" r="100" fill="none" stroke="#C99454" stroke-width="2"/>
+        <circle cx="0" cy="0" r="92" fill="none" stroke="#C99454" stroke-width="1" stroke-dasharray="4 4"/>
+        <!-- Follicular & Luteal Semi arcs -->
+        <path d="M 0 -92 A 92 92 0 0 0 0 92 Z" fill="#223C2B" opacity="0.8" stroke="#C99454" stroke-width="1"/>
+        <path d="M 0 92 A 92 92 0 0 0 0 -92 Z" fill="#8F462A" opacity="0.8" stroke="#C99454" stroke-width="1"/>
+        <circle cx="0" cy="0" r="30" fill="#F4EFEA" stroke="#C99454" stroke-width="1.5"/>
+        <text class="font-sans" font-size="12" fill="#2C1E16" text-anchor="middle" y="4" font-weight="700">28</text>
+      </g>
+
+      <!-- Subtitle -->
+      <text class="font-sans" font-size="9.5" fill="#2C1E16" font-weight="700" text-anchor="middle" x="180" y="205" letter-spacing="3">
+        THE 28-DAY COMPLETE SEED CYCLING RITUAL
+      </text>
+      <text class="font-sans" font-size="7.5" fill="#666" text-anchor="middle" x="180" y="220" letter-spacing="1.5">
+        14 FOLLICULAR CACAO BARS &bull; 14 LUTEAL DARK CHOCOLATE BARS
+      </text>
+      <text class="font-sans" font-size="6.5" fill="#C99454" text-anchor="middle" x="180" y="232" letter-spacing="1.2">
+        CLINICALLY FORMULATED BY DR. SWETTA SHARMA PhD
+      </text>
+    </g>
+
+    <!-- Right Spine -->
+    <rect x="430" y="0" width="70" height="260" fill="#ECE5DD" stroke="#DED5C8" stroke-width="0.5"/>
+    <g transform="translate(465, 130) rotate(90)">
+      <text class="font-sans" font-size="7" fill="#2C1E16" text-anchor="middle" letter-spacing="2">
+        100% WHOLE BIOACTIVE SEEDS &bull; COLD-MILLED &bull; ZERO ADDED SUGAR
+      </text>
+    </g>
+
+    <!-- Bottom Panel (Back of box) -->
+    <g transform="translate(500, 0)">
+      <rect x="14" y="14" width="332" height="232" fill="none" stroke="#DED5C8" stroke-width="0.8"/>
+      <text class="font-sans" font-size="10" font-weight="700" fill="#2C1E16" x="25" y="45" letter-spacing="2">
+        HOW THE 28-DAY RITUAL WORKS
+      </text>
+      <text class="font-sans" font-size="7.5" fill="#555" x="25" y="65">
+        Phase 1: Days 1 to 14 (Pumpkin + Flaxseed) - Follicular Estrogen Building
+      </text>
+      <text class="font-sans" font-size="7.5" fill="#555" x="25" y="80">
+        Phase 2: Days 15 to 28 (Sesame + Sunflower) - Luteal Progesterone Nourishment
+      </text>
+      <text class="font-sans" font-size="7.5" fill="#555" x="25" y="98">
+        Eat 1 delicious functional whole-seed bar daily at breakfast or as an afternoon ritual.
+      </text>
+
+      <!-- FSSAI & Barcode -->
+      <g transform="translate(25, 125)">
+        <text class="font-sans" font-size="8" font-weight="700" fill="#2C1E16">fssai</text>
+        <text class="font-sans" font-size="6.5" fill="#666" y="12">Lic. No. 11523998000412</text>
+        <text class="font-sans" font-size="6.5" fill="#666" y="24">Batch No: MFZ-2026-08K</text>
+        <text class="font-sans" font-size="6.5" fill="#666" y="36">Net Quantity: 28 Bars × 50g = 1,400g e</text>
+        <text class="font-sans" font-size="7" font-weight="700" fill="#9D5C41" y="52">MRP: ₹1,329.00 (Incl. of all taxes)</text>
+      </g>
+      <!-- Kit Barcode -->
+      <g transform="translate(200, 130)">
+        <rect width="130" height="42" fill="#FFFFFF" stroke="#CCC"/>
+        <text class="font-sans" font-size="6.5" fill="#000" x="65" y="36" text-anchor="middle" letter-spacing="2">8 908021 543002</text>
+      </g>
+    </g>
+
+    <!-- Glue Tab (Right, w=30) -->
+    <rect x="850" y="0" width="30" height="260" fill="#DFD7CB"/>
+    <text class="font-sans" font-size="7" fill="#888" transform="translate(868, 130) rotate(90)" text-anchor="middle">
+      GLUE TAB (Apply Cold PVA)
+    </text>
+
+    <!-- Dieline Cut & Crease Overlay -->
+    <rect x="0" y="0" width="880" height="260" class="cut-line"/>
+    <line x1="70" y1="0" x2="70" y2="260" class="crease-line"/>
+    <line x1="430" y1="0" x2="430" y2="260" class="crease-line"/>
+    <line x1="500" y1="0" x2="500" y2="260" class="crease-line"/>
+    <line x1="850" y1="0" x2="850" y2="260" class="crease-line"/>
+  </g>
+
+  <!-- Inner Drawer Sliding Tray Net (Folded Tray with Ribbon Pull) -->
+  <g transform="translate(80, 500)">
+    <text class="font-header" font-size="16" fill="#2C1E16" font-weight="600" y="-15">
+      INNER SLIDING DRAWER TRAY (GREYBOARD CORE WITH EMBOSSED DIVIDERS)
+    </text>
+    
+    <!-- Base Tray Net -->
+    <rect x="70" y="70" width="350" height="250" fill="#1C140F"/>
+    
+    <!-- Left Divider: Phase 1 (14 Bars) -->
+    <rect x="80" y="80" width="160" height="230" fill="#223C2B" opacity="0.6"/>
+    <text class="font-sans" font-size="9" font-weight="700" fill="#E5C378" x="160" y="190" text-anchor="middle" letter-spacing="2">
+      PHASE 01 COMPARTMENT
+    </text>
+    <text class="font-sans" font-size="7.5" fill="#FFFFFF" x="160" y="206" text-anchor="middle">
+      14 × Follicular Cacao Bars (Days 1 - 14)
+    </text>
+
+    <!-- Center Divider Ridge -->
+    <rect x="242" y="80" width="6" height="230" fill="#C99454"/>
+
+    <!-- Right Divider: Phase 2 (14 Bars) -->
+    <rect x="250" y="80" width="160" height="230" fill="#8F462A" opacity="0.6"/>
+    <text class="font-sans" font-size="9" font-weight="700" fill="#F5EFE6" x="330" y="190" text-anchor="middle" letter-spacing="2">
+      PHASE 02 COMPARTMENT
+    </text>
+    <text class="font-sans" font-size="7.5" fill="#FFFFFF" x="330" y="206" text-anchor="middle">
+      14 × Luteal Dark Chocolate Bars (Days 15 - 28)
+    </text>
+
+    <!-- Ribbon Pull Tab Indicator -->
+    <rect x="420" y="175" width="45" height="22" rx="3" fill="#C99454"/>
+    <text class="font-sans" font-size="6.5" font-weight="700" fill="#FFFFFF" x="442" y="189" text-anchor="middle">
+      GROSGRAIN PULL
+    </text>
+
+    <!-- Tray Fold Walls (4 Walls) -->
+    <rect x="70" y="0" width="350" height="70" fill="#2A1E17" class="crease-line"/>
+    <rect x="70" y="320" width="350" height="70" fill="#2A1E17" class="crease-line"/>
+    <rect x="0" y="70" width="70" height="250" fill="#2A1E17" class="crease-line"/>
+    <rect x="420" y="70" width="70" height="250" fill="#2A1E17" class="crease-line"/>
+
+    <!-- Tray Cut Bounds -->
+    <path d="M 70 0 L 420 0 L 420 70 L 490 70 L 490 320 L 420 320 L 420 390 L 70 390 L 70 320 L 0 320 L 0 70 L 70 70 Z" class="cut-line"/>
+  </g>
+</svg>

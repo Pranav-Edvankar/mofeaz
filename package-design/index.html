@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOFEAZ — Package Design Illustrations &amp; Dieline Production Assets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-forest: #182B1E;
+      --color-forest-light: #25432D;
+      --color-terracotta: #8F462A;
+      --color-espresso: #1C140F;
+      --color-gold: #C99454;
+      --color-gold-light: #E5C378;
+      --color-cream: #FAF8F5;
+      --color-linen: #F4EFEA;
+      --font-serif: 'Bodoni Moda', serif;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-cream);
+      color: var(--color-espresso);
+      line-height: 1.6;
+      padding: 40px 24px 80px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid rgba(28, 20, 15, 0.15);
+      padding-bottom: 30px;
+      margin-bottom: 40px;
+    }
+
+    .brand-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--color-terracotta);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--color-espresso);
+      margin-bottom: 12px;
+    }
+
+    .brand-subtitle {
+      font-size: 14px;
+      color: #666;
+      max-width: 750px;
+    }
+
+    /* Section */
+    .section-block {
+      margin-bottom: 60px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(28, 20, 15, 0.1);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--color-espresso);
+    }
+
+    .section-badge {
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: var(--color-gold);
+      text-transform: uppercase;
+    }
+
+    /* Comparison Grid */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #E8E0D5;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(28, 20, 15, 0.08);
+    }
+
+    .card-preview {
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+    }
+
+    .bg-forest { background-color: var(--color-forest); }
+    .bg-terracotta { background-color: var(--color-terracotta); }
+    .bg-espresso { background-color: var(--color-espresso); }
+    .bg-cream { background-color: var(--color-cream); }
+    .bg-white { background-color: #FFFFFF; border-bottom: 1px solid #EEE; }
+
+    .card-preview img, .card-preview svg {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    }
+
+    .card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top: 1px solid #F0EAE1;
+    }
+
+    .card-tag {
+      font-size: 9.5px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--color-terracotta);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-espresso);
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    .card-meta {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 16px;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      background: var(--color-espresso);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+    }
+
+    .btn-download:hover {
+      background: var(--color-gold);
+    }
+
+    /* Substrate Swatches */
+    .specs-callout {
+      background: #FFFFFF;
+      border: 1px solid #E5DCCF;
+      border-left: 4px solid var(--color-gold);
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 40px;
+      font-size: 13px;
+    }
+
+    .specs-callout h4 {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: var(--color-espresso);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="brand-eyebrow">MOFEAZ // Packaging Design System</div>
+      <h1 class="brand-title">Package Illustrations &amp; Dielines</h1>
+      <p class="brand-subtitle">
+        Vector artwork and print-production assets for the <strong>MOFEAZ</strong> hormone-cycling functional foods line. These illustrations are extracted and formatted directly from the physical packaging designs for commercial printing, stamping dies, and embossing.
+      </p>
+    </header>
+
+    <div class="specs-callout">
+      <h4>Production Ready Vector Files (SVG + High-Res PNG)</h4>
+      <p>
+        The botanical illustrations below are available in <strong>Gold Metallic Foil</strong>, <strong>Pure Black (100% K for hot-stamping magnesium/brass dies and silkscreen plates)</strong>, and <strong>Pure White</strong>. All assets are stored in <a href="file:///e:/USER/Downloads/mofeaz/package-design/"><code>package-design/</code></a>.
+      </p>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 1: FOLLICULAR BAR ILLUSTRATION (USER REFERENCE)   -->
+    <!-- ======================================================== -->
+    <section class="section-block">
+      <div class="section-header">
+        <h2 class="section-title">01 // Phase 01 Follicular Package Illustration</h2>
+        <span class="section-badge">Pumpkin + Golden Flaxseed</span>
+      </div>
+
+      <div class="showcase-grid">
+        <!-- Card 1: Package Reference -->
+        <div class="card">
+          <div class="card-preview bg-forest">
+            <img src="mockups/transparent-cutouts/cutout-follicular-bar.png" alt="Follicular Bar Package Reference">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Physical Product Mockup</div>
+              <h3 class="card-title">Follicular Bar Packaging</h3>
+              <p class="card-desc">The completed packaging box showing the central gold line-art botanical illustration on forest green board.</p>
+              <p class="card-meta">Format: Isolated PNG (534 × 760)</p>
+            </div>
+            <a href="mockups/transparent-cutouts/cutout-follicular-bar.png" class="btn-download" target="_blank">View Package</a>
+          </div>
+        </div>
+
+        <!-- Card 2: Isolated Gold Vector SVG -->
+        <div class="card">
+          <div class="card-preview bg-forest">
+            <img src="illustrations/follicular-package-illustration-gold.svg" alt="Gold Vector Follicular Illustration">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Print Stamping Vector (SVG)</div>
+              <h3 class="card-title">Gold Foil Botanical Vector</h3>
+              <p class="card-desc">The exact line-art illustration: ribbed pumpkin, double-contour pepitas, 5-petal flax flowers, and botanical leaves.</p>
+              <p class="card-meta">Format: Scalable Vector Graphics (SVG)</p>
+            </div>
+            <a href="illustrations/follicular-package-illustration-gold.svg" class="btn-download" target="_blank">Open Vector SVG</a>
+          </div>
+        </div>
+
+        <!-- Card 3: Black Stamping Die (1-Color) -->
+        <div class="card">
+          <div class="card-preview bg-white">
+            <img src="illustrations/follicular-package-illustration-black.svg" alt="Black Stamping Die Vector">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Tooling / Stamping Die</div>
+              <h3 class="card-title">Black Production Die Vector</h3>
+              <p class="card-desc">100% black vector for CNC magnesium/brass hot-foil stamping dies, spot-UV plates, and screen printing.</p>
+              <p class="card-meta">Format: 1-Color Vector SVG</p>
+            </div>
+            <a href="illustrations/follicular-package-illustration-black.svg" class="btn-download" target="_blank">Open Die Vector</a>
+          </div>
+        </div>
+
+        <!-- Card 4: Full Packaging Dieline -->
+        <div class="card">
+          <div class="card-preview bg-cream">
+            <img src="dielines/dieline-follicular-cacao-bar-50g.svg" alt="Follicular Bar Carton Dieline">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Commercial Print Net</div>
+              <h3 class="card-title">Follicular Carton Dieline</h3>
+              <p class="card-desc">Complete unfolded 50g Reverse Tuck End box net with cut lines, crease lines, FSSAI nutrition table, and barcode.</p>
+              <p class="card-meta">Finished Size: 75 × 150 × 14 mm</p>
+            </div>
+            <a href="dielines/dieline-follicular-cacao-bar-50g.svg" class="btn-download" target="_blank">Open Full Dieline</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 2: LUTEAL BAR ILLUSTRATION                      -->
+    <!-- ======================================================== -->
+    <section class="section-block">
+      <div class="section-header">
+        <h2 class="section-title">02 // Phase 02 Luteal Package Illustration</h2>
+        <span class="section-badge">Sesame + Sunflower Seed</span>
+      </div>
+
+      <div class="showcase-grid">
+        <div class="card">
+          <div class="card-preview bg-terracotta">
+            <img src="mockups/transparent-cutouts/cutout-luteal-bar.png" alt="Luteal Bar Package Reference">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Physical Product Mockup</div>
+              <h3 class="card-title">Luteal Bar Packaging</h3>
+              <p class="card-desc">The completed packaging box showing the botanical sesame and sunflower line art on terracotta board.</p>
+              <p class="card-meta">Format: Isolated PNG (599 × 786)</p>
+            </div>
+            <a href="mockups/transparent-cutouts/cutout-luteal-bar.png" class="btn-download" target="_blank">View Package</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-preview bg-terracotta">
+            <img src="illustrations/luteal-package-illustration-sand.svg" alt="Sand Foil Vector Luteal Illustration">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Print Stamping Vector (SVG)</div>
+              <h3 class="card-title">Sand Foil Botanical Vector</h3>
+              <p class="card-desc">The exact line-art illustration: radiant sunflower, striped seeds, sesame pods, and botanical stems.</p>
+              <p class="card-meta">Format: Scalable Vector Graphics (SVG)</p>
+            </div>
+            <a href="illustrations/luteal-package-illustration-sand.svg" class="btn-download" target="_blank">Open Vector SVG</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-preview bg-white">
+            <img src="illustrations/luteal-package-illustration-black.svg" alt="Black Stamping Die Vector">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Tooling / Stamping Die</div>
+              <h3 class="card-title">Black Production Die Vector</h3>
+              <p class="card-desc">100% black vector for CNC copper-foil stamping dies, spot-UV, and flexographic packaging printing.</p>
+              <p class="card-meta">Format: 1-Color Vector SVG</p>
+            </div>
+            <a href="illustrations/luteal-package-illustration-black.svg" class="btn-download" target="_blank">Open Die Vector</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-preview bg-cream">
+            <img src="dielines/dieline-luteal-chocolate-bar-50g.svg" alt="Luteal Bar Carton Dieline">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Commercial Print Net</div>
+              <h3 class="card-title">Luteal Carton Dieline</h3>
+              <p class="card-desc">Complete unfolded 50g Reverse Tuck End box net with cut lines, crease lines, PMS relief copy, and barcode.</p>
+              <p class="card-meta">Finished Size: 75 × 150 × 14 mm</p>
+            </div>
+            <a href="dielines/dieline-luteal-chocolate-bar-50g.svg" class="btn-download" target="_blank">Open Full Dieline</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 3: SIGNATURE KIT & APOTHECARY SEALS             -->
+    <!-- ======================================================== -->
+    <section class="section-block">
+      <div class="section-header">
+        <h2 class="section-title">03 // Cycle Dial, Seals &amp; Signature Kit</h2>
+        <span class="section-badge">Astronomical &amp; Clinical</span>
+      </div>
+
+      <div class="showcase-grid">
+        <!-- 28 Day Cycle Dial -->
+        <div class="card">
+          <div class="card-preview bg-espresso">
+            <img src="illustrations/diagram-28day-hormone-cycle-dial.svg" alt="28-Day Hormone Cycle Dial">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Astronomical Vector</div>
+              <h3 class="card-title">28-Day Cycle Calendar Dial</h3>
+              <p class="card-desc">The iconic astronomical dial featuring the 28 days, lunar moon phases, and follicular/luteal hormone balance zones.</p>
+              <p class="card-meta">Application: Rigid Box Cover &amp; Inner Insert</p>
+            </div>
+            <a href="illustrations/diagram-28day-hormone-cycle-dial.svg" class="btn-download" target="_blank">Open Vector Dial</a>
+          </div>
+        </div>
+
+        <!-- Clinical Nutritionist Seal -->
+        <div class="card">
+          <div class="card-preview bg-espresso">
+            <img src="illustrations/seal-clinical-formulation-endorsement.svg" alt="Clinical Nutritionist Seal">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Clinical Certification</div>
+              <h3 class="card-title">Dr. Swetta Sharma Seal</h3>
+              <p class="card-desc">Circular endorsement seal for clinical nutrition formulation, bioactive seed ratios, and cold-milled &lt; 38°C certification.</p>
+              <p class="card-meta">Application: Back-of-Pack Regulatory</p>
+            </div>
+            <a href="illustrations/seal-clinical-formulation-endorsement.svg" class="btn-download" target="_blank">Open Vector Seal</a>
+          </div>
+        </div>
+
+        <!-- 28-Day Kit Rigid Box Dieline -->
+        <div class="card">
+          <div class="card-preview bg-cream">
+            <img src="dielines/dieline-28day-ritual-kit-drawer-box.svg" alt="28-Day Ritual Kit Box Dieline">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Rigid Box Net</div>
+              <h3 class="card-title">28-Day Kit Drawer Box</h3>
+              <p class="card-desc">Outer linen slipcase sleeve and inner drawer tray dieline with 14-bar dual-phase compartment divider.</p>
+              <p class="card-meta">Finished Size: 230 × 165 × 45 mm</p>
+            </div>
+            <a href="dielines/dieline-28day-ritual-kit-drawer-box.svg" class="btn-download" target="_blank">Open Kit Dieline</a>
+          </div>
+        </div>
+
+        <!-- 28-Day Ritual Kit Master Duo Mockup -->
+        <div class="card">
+          <div class="card-preview bg-white">
+            <img src="mockups/transparent-cutouts/cutout-28day-complete-ritual-kit.png" alt="28-Day Complete Ritual Kit Duo Mockup">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Master 28-Day Kit</div>
+              <h3 class="card-title">28-Day Ritual Kit Duo</h3>
+              <p class="card-desc">The complete 28-day cycle reset kit presenting both the 14-bar Follicular box and 14-bar Luteal box in the new luxury style.</p>
+              <p class="card-meta">28 Bars (14 Follicular + 14 Luteal)</p>
+            </div>
+            <a href="mockups/transparent-cutouts/cutout-28day-complete-ritual-kit.png" class="btn-download" target="_blank">Open Master Kit Duo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 4: REDESIGNED 14-BAR BIGGER BOX (CLIENT STYLE)    -->
+    <!-- ======================================================== -->
+    <section class="section-block">
+      <div class="section-header">
+        <h2 class="section-title">04 // Redesigned 14-Bar Dispenser Boxes (Bigger Box)</h2>
+        <span class="section-badge">490g Retail Mailer Redesign</span>
+      </div>
+
+      <div class="showcase-grid">
+        <!-- 14-Bar Follicular 3D Render -->
+        <div class="card">
+          <div class="card-preview bg-white">
+            <img src="mockups/3d-renders/render-14bar-follicular-box.jpg" alt="14-Bar Follicular Box Redesign Render">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">3D Studio Photoshoot</div>
+              <h3 class="card-title">14-Bar Follicular Box (Redesigned)</h3>
+              <p class="card-desc">Redesign of the client's 14-bar retail box in soft-touch Sacred Forest Green, debossed gold foil Bodoni wordmark, botanical line art, and whole-seed dark chocolate bar in front.</p>
+              <p class="card-meta">490g (35g × 14 Bars) | Sacred Forest Green</p>
+            </div>
+            <a href="mockups/3d-renders/render-14bar-follicular-box.jpg" class="btn-download" target="_blank">View 3D Studio Render</a>
+          </div>
+        </div>
+
+        <!-- 14-Bar Luteal 3D Render -->
+        <div class="card">
+          <div class="card-preview bg-white">
+            <img src="mockups/3d-renders/render-14bar-luteal-box.jpg" alt="14-Bar Luteal Box Redesign Render">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">3D Studio Photoshoot</div>
+              <h3 class="card-title">14-Bar Luteal Box (Redesigned)</h3>
+              <p class="card-desc">Phase 02 Luteal counterpart in matte terracotta clay with copper-rose foil debossing, sunflower/sesame botanical engraving, and whole-seed bar in front.</p>
+              <p class="card-meta">490g (35g × 14 Bars) | Terracotta Clay</p>
+            </div>
+            <a href="mockups/3d-renders/render-14bar-luteal-box.jpg" class="btn-download" target="_blank">View 3D Studio Render</a>
+          </div>
+        </div>
+
+        <!-- 14-Bar RETF Mailer Dieline -->
+        <div class="card">
+          <div class="card-preview bg-cream">
+            <img src="dielines/dieline-14bar-ritual-mailer-box.svg" alt="14-Bar Mailer Box Packaging Dieline">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Commercial Print Net</div>
+              <h3 class="card-title">14-Bar RETF Mailer Dieline</h3>
+              <p class="card-desc">Industrial Roll End Tuck Front box dieline with rollover sidewalls, locking tabs, FSSAI nutrition panel, and barcode.</p>
+              <p class="card-meta">Finished Size: 200 × 145 × 65 mm</p>
+            </div>
+            <a href="dielines/dieline-14bar-ritual-mailer-box.svg" class="btn-download" target="_blank">Open Box Dieline</a>
+          </div>
+        </div>
+
+        <!-- Whole-Seed Morning Ritual Editorial -->
+        <div class="card">
+          <div class="card-preview bg-white">
+            <img src="mockups/3d-renders/editorial-morning-seed-ritual.jpg" alt="Wholesome Morning Seed Ritual Editorial">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Editorial Culinary Photography</div>
+              <h3 class="card-title">Morning Whole-Seed Ritual</h3>
+              <p class="card-desc">Kinfolk-style lifestyle photography with whole pumpkin and flaxseeds, broken whole-seed chocolate bar, and coffee. Replaced old dummy dropper bottle.</p>
+              <p class="card-meta">16:9 Landscape Food Editorial</p>
+            </div>
+            <a href="mockups/3d-renders/editorial-morning-seed-ritual.jpg" class="btn-download" target="_blank">View High-Res Photo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 5: COFFEE SEED CYCLING BARS (SMALL BOXES)        -->
+    <!-- ======================================================== -->
+    <section class="section-block">
+      <div class="section-header">
+        <h2 class="section-title">05 // Coffee Functional Seed Bars (Small Boxes)</h2>
+        <span class="section-badge">50g Arabica &amp; Cacao Mocha</span>
+      </div>
+
+      <div class="showcase-grid">
+        <!-- Follicular Coffee Small Box -->
+        <div class="card">
+          <div class="card-preview bg-espresso">
+            <img src="mockups/transparent-cutouts/cutout-follicular-coffee-small-box.png" alt="Follicular Coffee Small Box Mockup">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Small Box (50g)</div>
+              <h3 class="card-title">Follicular Coffee Bar</h3>
+              <p class="card-desc">Deep roasted espresso mocha finish with hot-stamped gold foil Bodoni Moda typography, botanical coffee branch engraving, and dark chocolate square in front.</p>
+              <p class="card-meta">50g (1.76 oz) | Deep Espresso Mocha</p>
+            </div>
+            <a href="mockups/transparent-cutouts/cutout-follicular-coffee-small-box.png" class="btn-download" target="_blank">View Coffee Box</a>
+          </div>
+        </div>
+
+        <!-- Luteal Coffee Small Box -->
+        <div class="card">
+          <div class="card-preview bg-espresso">
+            <img src="mockups/transparent-cutouts/cutout-luteal-coffee-small-box.png" alt="Luteal Coffee Small Box Mockup">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Small Box (50g)</div>
+              <h3 class="card-title">Luteal Coffee Bar</h3>
+              <p class="card-desc">Warm roasted almond cacao mocha finish with debossed warm copper foil typography, coffee/sesame line art, and sesame/almond dark chocolate square in front.</p>
+              <p class="card-meta">50g (1.76 oz) | Roasted Cacao Mocha</p>
+            </div>
+            <a href="mockups/transparent-cutouts/cutout-luteal-coffee-small-box.png" class="btn-download" target="_blank">View Coffee Box</a>
+          </div>
+        </div>
+
+        <!-- Coffee Line Editorial -->
+        <div class="card">
+          <div class="card-preview bg-white">
+            <img src="mockups/3d-renders/render-follicular-coffee-small-box.jpg" alt="Follicular Coffee 3D Studio Render">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">3D Studio Photoshoot</div>
+              <h3 class="card-title">Follicular Coffee Studio Render</h3>
+              <p class="card-desc">Complete studio photoshoot reference depicting the espresso mocha box with whole roasted coffee beans and pumpkin seeds on off-white limestone.</p>
+              <p class="card-meta">Studio Lighting Reference</p>
+            </div>
+            <a href="mockups/3d-renders/render-follicular-coffee-small-box.jpg" class="btn-download" target="_blank">View Studio Render</a>
+          </div>
+        </div>
+
+        <!-- 28-Day Complete Master Kit Duo -->
+        <div class="card">
+          <div class="card-preview bg-white">
+            <img src="mockups/transparent-cutouts/cutout-28day-complete-ritual-kit.png" alt="28-Day Complete Ritual Kit Duo">
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="card-tag">Complete 28-Day Kit</div>
+              <h3 class="card-title">28-Day Master Kit Duo</h3>
+              <p class="card-desc">Both the 14-bar Follicular box and 14-bar Luteal box presented together side-by-side with chocolate seed bars. Zero bottles or jars.</p>
+              <p class="card-meta">28 Bars • Dual Phase Reset</p>
+            </div>
+            <a href="mockups/transparent-cutouts/cutout-28day-complete-ritual-kit.png" class="btn-download" target="_blank">View Master Duo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
+

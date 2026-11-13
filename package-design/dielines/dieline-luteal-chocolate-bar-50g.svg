@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 950" width="100%" height="100%">
+  <defs>
+    <style>
+      .font-header { font-family: 'Bodoni Moda', 'Playfair Display', serif; }
+      .font-sans { font-family: 'Montserrat', 'Helvetica Neue', sans-serif; }
+      .cut-line { stroke: #E6007E; stroke-width: 1.5; fill: none; }
+      .crease-line { stroke: #00A0E9; stroke-width: 1.2; stroke-dasharray: 6 4; fill: none; }
+      .bleed-line { stroke: #00B050; stroke-width: 0.8; stroke-dasharray: 3 3; fill: none; }
+      .guide-text { font-family: 'Montserrat', sans-serif; font-size: 10px; fill: #666; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="950" fill="#FAF8F5"/>
+
+  <!-- Production Header -->
+  <g transform="translate(60, 45)">
+    <text class="font-header" font-size="20" fill="#8F462A" font-weight="600">MOFEAZ // LUXURY PACKAGING PRODUCTION DIELINE</text>
+    <text class="font-sans" font-size="10.5" fill="#666" y="20" letter-spacing="1">
+      PRODUCT: PHASE 02 LUTEAL FUNCTIONAL DARK CHOCOLATE BAR (50g) | STRUCTURE: REVERSE TUCK END (RTE) CARTON
+    </text>
+    <text class="font-sans" font-size="9.5" fill="#888" y="34" letter-spacing="0.5">
+      FINISHED SIZE: 75mm (W) × 150mm (H) × 14mm (D) | BOARD: 350 GSM FSC VIRGIN KRAFT | FINISH: SOFT-TOUCH MATTE TERRACOTTA (PMS 7592C) + MATTE SAND &amp; COPPER FOIL
+    </text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(850, 40)" class="font-sans" font-size="9.5">
+    <rect width="290" height="65" fill="#FFFFFF" stroke="#E0D7CC" rx="4"/>
+    <line x1="15" y1="18" x2="45" y2="18" stroke="#E6007E" stroke-width="2"/>
+    <text x="55" y="21" fill="#333">CUT LINE (100% Solid Magenta)</text>
+    <line x1="15" y1="36" x2="45" y2="36" stroke="#00A0E9" stroke-width="1.8" stroke-dasharray="4 3"/>
+    <text x="55" y="39" fill="#333">CREASE / FOLD (Dashed Cyan)</text>
+    <line x1="15" y1="52" x2="45" y2="52" stroke="#00B050" stroke-width="1.2" stroke-dasharray="2 2"/>
+    <text x="55" y="55" fill="#333">BLEED MARGIN (3mm Safe Green)</text>
+  </g>
+
+  <!-- ARTWORK LAYER: Warm Terracotta Earth (#9D5C41 / #8F462A) -->
+  <g id="artwork-background">
+    <rect x="156" y="216" width="548" height="468" fill="#8F462A"/>
+    <path d="M 426 220 L 440 146 Q 540 138 640 146 L 654 220 Z" fill="#8F462A"/>
+    <path d="M 156 680 L 170 754 Q 270 762 370 754 L 384 680 Z" fill="#8F462A"/>
+    <path d="M 380 220 L 386 175 Q 405 170 424 175 L 430 220 Z" fill="#8F462A"/>
+    <path d="M 650 220 L 656 175 Q 675 170 694 175 L 700 220 Z" fill="#8F462A"/>
+    <path d="M 380 680 L 386 725 Q 405 730 424 725 L 430 680 Z" fill="#8F462A"/>
+    <path d="M 650 680 L 656 725 Q 675 730 694 725 L 700 680 Z" fill="#8F462A"/>
+  </g>
+
+  <!-- Front Panel Graphics -->
+  <g id="front-panel-artwork" transform="translate(430, 220)">
+    <rect x="10" y="12" width="200" height="436" fill="none" stroke="#F5EFE6" stroke-width="0.8" opacity="0.6"/>
+    <rect x="14" y="16" width="192" height="428" fill="none" stroke="#F5EFE6" stroke-width="0.4" stroke-dasharray="2 2" opacity="0.4"/>
+
+    <g transform="translate(110, 38)">
+      <rect x="-65" y="-10" width="130" height="20" rx="10" fill="#6B321C" stroke="#F5EFE6" stroke-width="0.8"/>
+      <text class="font-sans" font-size="7.5" fill="#F5EFE6" font-weight="700" letter-spacing="2" text-anchor="middle" y="3.5">
+        PHASE 02 // DAYS 15 - 28
+      </text>
+    </g>
+
+    <text class="font-header" font-size="28" fill="#FFFFFF" text-anchor="middle" x="110" y="85" letter-spacing="3">
+      MOFEAZ
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#F5EFE6" text-anchor="middle" x="110" y="98" letter-spacing="3.5">
+      moi • fea • z
+    </text>
+
+    <text class="font-sans" font-size="8.5" fill="#FFFFFF" font-weight="600" text-anchor="middle" x="110" y="125" letter-spacing="2.5">
+      LUTEAL RITUAL
+    </text>
+    <text class="font-header" font-size="12" fill="#F5EFE6" font-style="italic" text-anchor="middle" x="110" y="142">
+      Sesame &amp; Roasted Sunflower Seeds
+    </text>
+
+    <!-- Botanical Motif -->
+    <g transform="translate(110, 225) scale(0.48)" stroke="#F5EFE6" fill="none" stroke-linecap="round">
+      <circle cx="0" cy="0" r="110" stroke="#F5EFE6" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5"/>
+      <path d="M -20 -40 C -50 -15 -45 25 -15 50 C 15 25 10 -15 -20 -40 Z" fill="#4A2619" stroke="#F5EFE6" stroke-width="1.8"/>
+      <path d="M 20 -30 C -5 -10 0 30 25 55 C 50 25 45 -10 20 -30 Z" fill="#3D1D12" stroke="#F5EFE6" stroke-width="1.8"/>
+      <!-- Sesame seeds sprinkling -->
+      <circle cx="-35" cy="20" r="4" fill="#F5EFE6"/>
+      <circle cx="35" cy="25" r="4" fill="#F5EFE6"/>
+      <circle cx="-15" cy="-10" r="3" fill="#F5EFE6"/>
+      <circle cx="15" cy="-5" r="3" fill="#F5EFE6"/>
+    </g>
+
+    <text class="font-sans" font-size="7" fill="#F5EFE6" text-anchor="middle" x="110" y="320" letter-spacing="1.5">
+      FUNCTIONAL DARK CHOCOLATE SEED BUTTER BAR
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#E29D80" text-anchor="middle" x="110" y="333" letter-spacing="1.2">
+      PROGESTERONE BOOST &bull; PMS RELIEF &bull; 72% DARK CHOCOLATE
+    </text>
+
+    <g transform="translate(110, 365)">
+      <line x1="-70" y1="0" x2="70" y2="0" stroke="#F5EFE6" stroke-width="0.6" opacity="0.5"/>
+      <text class="font-sans" font-size="6.5" fill="#FFFFFF" font-weight="600" text-anchor="middle" y="-6" letter-spacing="2">
+        PROGESTERONE NOURISHMENT // SELENIUM &amp; VIT E
+      </text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" text-anchor="middle" y="10" letter-spacing="1">
+        SOOTHES CRAMPS &bull; STABILIZES MOOD &bull; COMBATS CRAVINGS
+      </text>
+    </g>
+
+    <g transform="translate(30, 420)">
+      <rect x="0" y="-12" width="14" height="14" fill="none" stroke="#00B050" stroke-width="1.2"/>
+      <circle cx="7" cy="-5" r="4" fill="#00B050"/>
+    </g>
+    <text class="font-sans" font-size="8" fill="#FFFFFF" font-weight="700" x="190" y="422" text-anchor="end" letter-spacing="1">
+      NET WT. 50g (1.76 OZ)
+    </text>
+  </g>
+
+  <!-- Back Panel Graphics -->
+  <g id="back-panel-artwork" transform="translate(160, 220)">
+    <rect x="10" y="12" width="200" height="436" fill="none" stroke="#F5EFE6" stroke-width="0.6" opacity="0.4"/>
+
+    <text class="font-sans" font-size="8" fill="#FFFFFF" font-weight="700" letter-spacing="2" x="16" y="32">
+      THE 28-DAY SEED CYCLING RITUAL
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#F5EFE6" x="16" y="47">
+      During Days 15 to 28 (Luteal Phase), your body shifts to
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#F5EFE6" x="16" y="58">
+      producing Progesterone. Raw sunflower seeds provide
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#F5EFE6" x="16" y="69">
+      Selenium and Vitamin E, while unhulled sesame seeds deliver
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#F5EFE6" x="16" y="80">
+      Calcium and specialized lignans to prevent estrogen spikes.
+    </text>
+
+    <!-- Nutrition Facts Table -->
+    <g transform="translate(16, 96)">
+      <rect width="188" height="152" fill="#6B321C" stroke="#F5EFE6" stroke-width="0.8"/>
+      <text class="font-sans" font-size="9" font-weight="800" fill="#FFFFFF" x="8" y="16">NUTRITION FACTS</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="27">Serving Size: 1 Bar (50g) | Servings Per Pack: 1</text>
+      <line x1="8" y1="32" x2="180" y2="32" stroke="#FFFFFF" stroke-width="1.5"/>
+      <text class="font-sans" font-size="7" font-weight="700" fill="#FFFFFF" x="8" y="44">Calories 248 kcal</text>
+      <line x1="8" y1="48" x2="180" y2="48" stroke="#F5EFE6" stroke-width="0.5"/>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="59">Total Fat 17.8g (23% DV)</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="70">  Saturated Fat 4.5g (23% DV)</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="81">  Vitamin E 4.8mg (32% DV)</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="92">Total Carbohydrates 17g (6% DV)</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="103">  Dietary Fiber 6.8g (24% DV)</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="114">  Total Sugars 7.2g (From Whole Dates)</text>
+      <text class="font-sans" font-size="6" fill="#E29D80" x="8" y="125">  Added Sugars 0.0g (0% DV)</text>
+      <text class="font-sans" font-size="6.5" font-weight="700" fill="#FFFFFF" x="8" y="137">Protein 7.8g (16% DV) | Selenium 18mcg (33% DV)</text>
+      <text class="font-sans" font-size="5.5" fill="#F5EFE6" x="8" y="146">Calcium 145mg (15% DV)</text>
+    </g>
+
+    <!-- Ingredients -->
+    <g transform="translate(16, 260)">
+      <text class="font-sans" font-size="6.5" font-weight="700" fill="#FFFFFF" letter-spacing="1">INGREDIENTS:</text>
+      <text class="font-sans" font-size="5.8" fill="#F5EFE6" y="11">
+        Unhulled Organic Sesame Seeds (34%), Sprouted Sunflower
+      </text>
+      <text class="font-sans" font-size="5.8" fill="#F5EFE6" y="21">
+        Seeds (26%), 72% Single-Origin Dark Cacao Liquor,
+      </text>
+      <text class="font-sans" font-size="5.8" fill="#F5EFE6" y="31">
+        Dates, Pure Vanilla Bean Extract, Ceylon Cinnamon, Sea Salt.
+      </text>
+    </g>
+
+    <!-- Regulatory -->
+    <g transform="translate(16, 330)">
+      <circle cx="25" cy="25" r="22" fill="#6B321C" stroke="#F5EFE6" stroke-width="0.8"/>
+      <text class="font-sans" font-size="4.5" fill="#FFFFFF" text-anchor="middle" x="25" y="18">DR. SWETTA</text>
+      <text class="font-sans" font-size="4.5" fill="#FFFFFF" text-anchor="middle" x="25" y="26">SHARMA PhD</text>
+      <text class="font-sans" font-size="3.8" fill="#F5EFE6" text-anchor="middle" x="25" y="34">FORMULATED</text>
+
+      <g transform="translate(60, 5)">
+        <text class="font-sans" font-size="7" font-weight="700" fill="#FFFFFF">fssai</text>
+        <text class="font-sans" font-size="5.2" fill="#F5EFE6" y="12">Lic. No. 11523998000412</text>
+        <text class="font-sans" font-size="5" fill="#CCC" y="22">Country of Origin: India</text>
+        <text class="font-sans" font-size="5" fill="#CCC" y="32">Mfd By: Mofeaz Functional Foods LLP</text>
+      </g>
+    </g>
+
+    <!-- Barcode -->
+    <g transform="translate(16, 390)">
+      <rect width="188" height="42" fill="#FFFFFF" rx="2"/>
+      <g stroke="#000000" stroke-width="1.6" transform="translate(15, 6)">
+        <line x1="0" y1="0" x2="0" y2="22"/><line x1="4" y1="0" x2="4" y2="22"/>
+        <line x1="9" y1="0" x2="9" y2="22"/><line x1="14" y1="0" x2="14" y2="22"/>
+        <line x1="20" y1="0" x2="20" y2="22"/><line x1="25" y1="0" x2="25" y2="22"/>
+        <line x1="32" y1="0" x2="32" y2="22"/><line x1="40" y1="0" x2="40" y2="22"/>
+        <line x1="48" y1="0" x2="48" y2="22"/><line x1="56" y1="0" x2="56" y2="22"/>
+        <line x1="64" y1="0" x2="64" y2="22"/><line x1="72" y1="0" x2="72" y2="22"/>
+        <line x1="80" y1="0" x2="80" y2="22"/><line x1="88" y1="0" x2="88" y2="22"/>
+        <line x1="96" y1="0" x2="96" y2="22"/><line x1="104" y1="0" x2="104" y2="22"/>
+        <line x1="112" y1="0" x2="112" y2="22"/><line x1="120" y1="0" x2="120" y2="22"/>
+        <line x1="128" y1="0" x2="128" y2="22"/><line x1="136" y1="0" x2="136" y2="22"/>
+        <line x1="144" y1="0" x2="144" y2="22"/><line x1="152" y1="0" x2="152" y2="22"/>
+      </g>
+      <text class="font-sans" font-size="6" fill="#000000" x="94" y="36" text-anchor="middle" letter-spacing="2">
+        8 908021 543026
+      </text>
+    </g>
+  </g>
+
+  <!-- Spines -->
+  <g id="left-spine-artwork" transform="translate(380, 220)">
+    <g transform="translate(25, 230) rotate(-90)">
+      <text class="font-header" font-size="14" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">MOFEAZ</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" text-anchor="middle" y="14" letter-spacing="2">PHASE 02 // LUTEAL RITUAL</text>
+    </g>
+  </g>
+  <g id="right-spine-artwork" transform="translate(650, 220)">
+    <g transform="translate(25, 230) rotate(90)">
+      <text class="font-sans" font-size="6" fill="#FFFFFF" text-anchor="middle" letter-spacing="2.5">
+        PROGESTERONE SUPPORT &bull; 100% WHOLE SEEDS &bull; NET WT. 50g
+      </text>
+    </g>
+  </g>
+
+  <!-- Dieline Lines -->
+  <g id="technical-dieline">
+    <rect x="112" y="132" width="606" height="636" class="bleed-line"/>
+    <path d="M 160 220 L 120 235 L 120 665 L 160 680" class="cut-line"/>
+    <path d="M 160 220 L 380 220" class="cut-line"/>
+    <path d="M 380 220 L 386 175 Q 405 170 424 175 L 430 220" class="cut-line"/>
+    <path d="M 430 220 L 440 146 Q 540 138 640 146 L 650 220" class="cut-line"/>
+    <path d="M 650 220 L 656 175 Q 675 170 694 175 L 700 220" class="cut-line"/>
+    <path d="M 700 220 L 700 680" class="cut-line"/>
+    <path d="M 700 680 L 694 725 Q 675 730 656 725 L 650 680" class="cut-line"/>
+    <path d="M 650 680 L 430 680" class="cut-line"/>
+    <path d="M 430 680 L 424 725 Q 405 730 386 725 L 380 680" class="cut-line"/>
+    <path d="M 380 680 L 370 754 Q 270 762 170 754 L 160 680" class="cut-line"/>
+
+    <line x1="160" y1="220" x2="160" y2="680" class="crease-line"/>
+    <line x1="380" y1="220" x2="380" y2="680" class="crease-line"/>
+    <line x1="430" y1="220" x2="430" y2="680" class="crease-line"/>
+    <line x1="650" y1="220" x2="650" y2="680" class="crease-line"/>
+    <line x1="160" y1="220" x2="700" y2="220" class="crease-line"/>
+    <line x1="160" y1="680" x2="700" y2="680" class="crease-line"/>
+    <line x1="440" y1="165" x2="640" y2="165" class="crease-line"/>
+    <line x1="170" y1="735" x2="370" y2="735" class="crease-line"/>
+  </g>
+</svg>

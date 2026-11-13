@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { background: #000; color: #fff; display: flex; flex-wrap: wrap; gap: 20px; padding: 40px; font-family: sans-serif; }
+    .item { display: flex; flex-direction: column; align-items: center; }
+    canvas { background: transparent; }
+  </style>
+</head>
+<body>
+  <script>
+    const img = new Image();
+    img.src = 'real-bright-full-moon.png';
+    img.onload = () => {
+      const steps = 12;
+      for (let i = 0; i <= steps; i++) {
+        const prog = i / steps;
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `<span>Phase ${(prog * 100).toFixed(0)}%</span>`;
+        const cv = document.createElement('canvas');
+        cv.width = 180;
+        cv.height = 180;
+        div.appendChild(cv);
+        document.body.appendChild(div);
+
+        drawMoon(cv.getContext('2d'), 180, 180, prog, img);
+      }
+    };
+
+    function drawMoon(ctx, width, height, progress, moonImg) {
+      const R = width / 2;
+      const cx = width / 2;
+      const cy = height / 2;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Subtle glow
+      const fullProximity = 1 - Math.min(1, Math.abs(progress - 0.5) * 3);
+      const glowR = R * (1.05 + fullProximity * 0.35);
+      const glow = ctx.createRadialGradient(cx, cy, R * 0.8, cx, cy, glowR);
+      glow.addColorStop(0, `rgba(240, 235, 225, ${0.15 + fullProximity * 0.25})`);
+      glow.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(cx, cy, glowR, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Earthshine (faint unlit body)
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, R - 1, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.globalAlpha = 0.08;
+      ctx.drawImage(moonImg, 0, 0, width, height);
+      ctx.fillStyle = 'rgba(8, 8, 12, 0.9)';
+      ctx.fillRect(0, 0, width, height);
+      ctx.restore();
+
+      // Terminator mask
+      const p = Math.max(0.001, Math.min(0.999, progress));
+      const theta = 2.0 * Math.PI * p;
+      const rx = Math.max(0.1, Math.abs(R * Math.cos(theta)));
+
+      ctx.save();
+      ctx.beginPath();
+
+      if (p <= 0.5) {
+        // Waxing (light on right)
+        ctx.arc(cx, cy, R, -Math.PI / 2, Math.PI / 2, false);
+        if (p < 0.25) {
+          // Crescent: curves right through angle 0
+          ctx.ellipse(cx, cy, rx, R, 0, Math.PI / 2, -Math.PI / 2, true);
+        } else {
+          // Gibbous: curves left through angle PI
+          ctx.ellipse(cx, cy, rx, R, 0, Math.PI / 2, -Math.PI / 2, false);
+        }
+      } else {
+        // Waning (light on left)
+        ctx.arc(cx, cy, R, Math.PI / 2, -Math.PI / 2, false);
+        if (p < 0.75) {
+          // Gibbous: curves right through angle 0
+          ctx.ellipse(cx, cy, rx, R, 0, -Math.PI / 2, Math.PI / 2, false);
+        } else {
+          // Crescent: curves left through angle PI
+          ctx.ellipse(cx, cy, rx, R, 0, -Math.PI / 2, Math.PI / 2, true);
+        }
+      }
+
+      ctx.closePath();
+      ctx.clip();
+
+      ctx.globalAlpha = 1.0;
+      ctx.drawImage(moonImg, 0, 0, width, height);
+      ctx.restore();
+    }
+  </script>
+</body>
+</html>

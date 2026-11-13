@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="espressoGlow" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#F5EFE8"/>
+      <stop offset="100%" stop-color="#E8DFD3" stop-opacity="0.4"/>
+    </radialGradient>
+    <linearGradient id="espressoWrapper" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#543C30"/>
+      <stop offset="50%" stop-color="#6E4D3E"/>
+      <stop offset="100%" stop-color="#3D291F"/>
+    </linearGradient>
+    <filter id="shadowEspresso" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="6" dy="16" stdDeviation="14" flood-color="#21150F" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" fill="#FAF7F2"/>
+  <circle cx="250" cy="250" r="210" fill="url(#espressoGlow)"/>
+  <ellipse cx="250" cy="420" rx="130" ry="16" fill="#21150F" opacity="0.16" filter="blur(8px)"/>
+
+  <!-- Snack Bar Graphic -->
+  <g transform="translate(180, 80) rotate(5 70 170)" filter="url(#shadowEspresso)">
+    <!-- Food Bar portion -->
+    <rect x="15" y="30" width="110" height="130" rx="6" fill="#25160E"/>
+    <!-- Coffee bean crunch & pumpkin bits -->
+    <ellipse cx="50" cy="65" rx="8" ry="5" fill="#422718" transform="rotate(-35 50 65)"/>
+    <line x1="47" y1="63" x2="53" y2="67" stroke="#1A0E08" stroke-width="1.2"/>
+    <ellipse cx="85" cy="80" rx="9" ry="5.5" fill="#5F694F" transform="rotate(25 85 80)"/>
+    <ellipse cx="45" cy="115" rx="4.5" ry="2.5" fill="#BD7F53" transform="rotate(-15 45 115)"/>
+    <ellipse cx="80" cy="125" rx="8" ry="5" fill="#422718" transform="rotate(40 80 125)"/>
+    <line x1="77" y1="123" x2="83" y2="127" stroke="#1A0E08" stroke-width="1.2"/>
+    <!-- Cardamom pod speckles -->
+    <circle cx="65" cy="95" r="2" fill="#88966B"/>
+    <circle cx="95" cy="55" r="1.8" fill="#88966B"/>
+    <rect x="35" y="85" width="2.5" height="2.5" fill="#FFFFFF" opacity="0.75" transform="rotate(20 35 85)"/>
+
+    <!-- Matte Deep Coffee Pouch Wrap -->
+    <path d="M 10 135 L 130 125 L 135 310 L 5 310 Z" fill="url(#espressoWrapper)"/>
+    <path d="M 10 135 Q 70 145 130 125 L 128 140 Q 70 155 12 145 Z" fill="#291810" opacity="0.4"/>
+    
+    <!-- Minimalist Label -->
+    <rect x="22" y="165" width="96" height="120" rx="2" fill="#FAF6F0"/>
+    <rect x="25" y="168" width="90" height="114" fill="none" stroke="#E6DED3" stroke-width="0.8"/>
+    <text x="70" y="190" font-family="'Cormorant Garamond', serif" font-size="12" font-weight="600" letter-spacing="2" fill="#231C18" text-anchor="middle">MOFEAZ</text>
+    <text x="70" y="204" font-family="'Plus Jakarta Sans', sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="#8F5338" text-anchor="middle">PHASE 01 // FOLLICULAR</text>
+    <text x="70" y="215" font-family="'Plus Jakarta Sans', sans-serif" font-size="5" letter-spacing="0.5" fill="#6B5F55" text-anchor="middle">DAYS 1 — 14</text>
+    <line x1="35" y1="220" x2="105" y2="220" stroke="#E2D7CC" stroke-width="0.6"/>
+    <text x="70" y="233" font-family="'Plus Jakarta Sans', sans-serif" font-size="6" font-weight="600" fill="#261A13" text-anchor="middle">FOLLICULAR COFFEE</text>
+    <text x="70" y="243" font-family="'Plus Jakarta Sans', sans-serif" font-size="4.5" fill="#8C7A6D" text-anchor="middle">ROASTED PUMPKIN &amp; FLAX</text>
+    <text x="70" y="258" font-family="'Plus Jakarta Sans', sans-serif" font-size="5" font-weight="600" fill="#8F5338" text-anchor="middle">NATURAL MORNING VITALITY</text>
+    <text x="70" y="270" font-family="'Plus Jakarta Sans', sans-serif" font-size="4.5" fill="#B0A093" text-anchor="middle">45G • NO SUGAR CRASH</text>
+  </g>
+
+  <!-- Roasted Coffee Beans & Seeds -->
+  <g>
+    <ellipse cx="145" cy="405" rx="8" ry="5.5" fill="#382115" transform="rotate(-30 145 405)"/>
+    <line x1="142" y1="403" x2="148" y2="407" stroke="#1F110A" stroke-width="1.2"/>
+    <ellipse cx="360" cy="408" rx="12" ry="6" fill="#667254" transform="rotate(20 360 408)"/>
+  </g>
+</svg>
+

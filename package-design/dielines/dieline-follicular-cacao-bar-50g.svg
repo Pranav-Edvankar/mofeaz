@@ -1,0 +1,334 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 950" width="100%" height="100%">
+  <defs>
+    <style>
+      .font-header { font-family: 'Bodoni Moda', 'Playfair Display', serif; }
+      .font-sans { font-family: 'Montserrat', 'Helvetica Neue', sans-serif; }
+      .cut-line { stroke: #E6007E; stroke-width: 1.5; fill: none; }
+      .crease-line { stroke: #00A0E9; stroke-width: 1.2; stroke-dasharray: 6 4; fill: none; }
+      .bleed-line { stroke: #00B050; stroke-width: 0.8; stroke-dasharray: 3 3; fill: none; }
+      .guide-text { font-family: 'Montserrat', sans-serif; font-size: 10px; fill: #666; }
+    </style>
+    <linearGradient id="goldFoil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2DC9D"/>
+      <stop offset="50%" stop-color="#C99454"/>
+      <stop offset="100%" stop-color="#9C6B2F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas: Clean Technical Drawing Sheet -->
+  <rect width="1200" height="950" fill="#FAF8F5"/>
+
+  <!-- Production Header & Specifications Header -->
+  <g transform="translate(60, 45)">
+    <text class="font-header" font-size="20" fill="#1C3323" font-weight="600">MOFEAZ // LUXURY PACKAGING PRODUCTION DIELINE</text>
+    <text class="font-sans" font-size="10.5" fill="#666" y="20" letter-spacing="1">
+      PRODUCT: PHASE 01 FOLLICULAR SEED BUTTER BAR (50g) | STRUCTURE: REVERSE TUCK END (RTE) CARTON
+    </text>
+    <text class="font-sans" font-size="9.5" fill="#888" y="34" letter-spacing="0.5">
+      FINISHED SIZE: 75mm (W) × 150mm (H) × 14mm (D) | BOARD: 350 GSM FSC VIRGIN KRAFT / ART CARD | FINISH: SOFT-TOUCH MATTE + LUXOR GOLD FOIL (PMS 871C)
+    </text>
+  </g>
+
+  <!-- Legend for Dieline Layers -->
+  <g transform="translate(850, 40)" class="font-sans" font-size="9.5">
+    <rect width="290" height="65" fill="#FFFFFF" stroke="#E0D7CC" rx="4"/>
+    <line x1="15" y1="18" x2="45" y2="18" stroke="#E6007E" stroke-width="2"/>
+    <text x="55" y="21" fill="#333">CUT LINE (100% Solid Magenta)</text>
+    <line x1="15" y1="36" x2="45" y2="36" stroke="#00A0E9" stroke-width="1.8" stroke-dasharray="4 3"/>
+    <text x="55" y="39" fill="#333">CREASE / FOLD (Dashed Cyan)</text>
+    <line x1="15" y1="52" x2="45" y2="52" stroke="#00B050" stroke-width="1.2" stroke-dasharray="2 2"/>
+    <text x="55" y="55" fill="#333">BLEED MARGIN (3mm Safe Green)</text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- DIELINE NET (Unfolded Box Geometry)                         -->
+  <!-- Panels:                                                      -->
+  <!-- Glue Tab: x=120, w=40                                        -->
+  <!-- Back Panel: x=160, w=220                                     -->
+  <!-- Left Spine: x=380, w=50                                      -->
+  <!-- Front Panel: x=430, w=220                                    -->
+  <!-- Right Spine: x=650, w=50                                     -->
+  <!-- Top Tuck Flap: y=160 to 220                                  -->
+  <!-- Main Body: y=220 to 680 (Height = 460)                       -->
+  <!-- Bottom Tuck Flap: y=680 to 740                               -->
+  <!-- ============================================================ -->
+
+  <!-- ARTWORK LAYER: Forest Green Background Fill across entire printable dieline -->
+  <g id="artwork-background">
+    <!-- Main Body Background -->
+    <rect x="156" y="216" width="548" height="468" fill="#182E1E"/>
+    <!-- Top Flaps Background -->
+    <path d="M 426 220 L 440 146 Q 540 138 640 146 L 654 220 Z" fill="#182E1E"/>
+    <!-- Bottom Flaps Background -->
+    <path d="M 156 680 L 170 754 Q 270 762 370 754 L 384 680 Z" fill="#182E1E"/>
+    <!-- Dust Flaps -->
+    <path d="M 380 220 L 386 175 Q 405 170 424 175 L 430 220 Z" fill="#182E1E"/>
+    <path d="M 650 220 L 656 175 Q 675 170 694 175 L 700 220 Z" fill="#182E1E"/>
+    <path d="M 380 680 L 386 725 Q 405 730 424 725 L 430 680 Z" fill="#182E1E"/>
+    <path d="M 650 680 L 656 725 Q 675 730 694 725 L 700 680 Z" fill="#182E1E"/>
+  </g>
+
+  <!-- ARTWORK LAYER: Front Panel Graphics (x=430, w=220, y=220, h=460) -->
+  <g id="front-panel-artwork" transform="translate(430, 220)">
+    <!-- Elegant Gold Border Inset -->
+    <rect x="10" y="12" width="200" height="436" fill="none" stroke="#C99454" stroke-width="0.8" opacity="0.6"/>
+    <rect x="14" y="16" width="192" height="428" fill="none" stroke="#C99454" stroke-width="0.4" stroke-dasharray="2 2" opacity="0.4"/>
+
+    <!-- Phase Pill Tag -->
+    <g transform="translate(110, 38)">
+      <rect x="-65" y="-10" width="130" height="20" rx="10" fill="#25432D" stroke="#C99454" stroke-width="0.8"/>
+      <text class="font-sans" font-size="7.5" fill="#E5C378" font-weight="700" letter-spacing="2" text-anchor="middle" y="3.5">
+        PHASE 01 // DAYS 1 - 14
+      </text>
+    </g>
+
+    <!-- Brand Typography Header -->
+    <text class="font-header" font-size="28" fill="#FFFFFF" text-anchor="middle" x="110" y="85" letter-spacing="3">
+      MOFEAZ
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#C99454" text-anchor="middle" x="110" y="98" letter-spacing="3.5">
+      moi • fea • z
+    </text>
+
+    <!-- Product Statement -->
+    <text class="font-sans" font-size="8.5" fill="#FFFFFF" font-weight="600" text-anchor="middle" x="110" y="125" letter-spacing="2.5">
+      FOLLICULAR RITUAL
+    </text>
+    <text class="font-header" font-size="12" fill="#E5C378" font-style="italic" text-anchor="middle" x="110" y="142">
+      Organic Pumpkin &amp; Golden Flaxseed
+    </text>
+
+    <!-- Botanical Seed Illustration Motif (Miniature Vector Engraving) -->
+    <g transform="translate(110, 225) scale(0.48)" stroke="#E5C378" fill="none" stroke-linecap="round">
+      <circle cx="0" cy="0" r="110" stroke="#C99454" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5"/>
+      <!-- Pepita & Flax graphic -->
+      <path d="M -15 -45 C -45 -20 -48 25 -15 50 C 15 25 15 -20 -15 -45 Z" fill="#203825" stroke="#E5C378" stroke-width="1.8"/>
+      <path d="M 15 -35 C -5 -15 -5 30 20 55 C 48 25 45 -15 15 -35 Z" fill="#29482F" stroke="#E5C378" stroke-width="1.8"/>
+      <path d="M -35 25 C -50 10 -45 -15 -30 -25 C -15 -10 -20 15 -35 25 Z" fill="#C99454" stroke="#E5C378" stroke-width="1.4"/>
+      <path d="M 35 30 C 20 15 25 -10 40 -20 C 55 -5 50 20 35 30 Z" fill="#C99454" stroke="#E5C378" stroke-width="1.4"/>
+    </g>
+
+    <!-- Functional Product Subtitle -->
+    <text class="font-sans" font-size="7" fill="#F5EFE6" text-anchor="middle" x="110" y="320" letter-spacing="1.5">
+      FUNCTIONAL DARK CHOCOLATE SEED BUTTER BAR
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#C99454" text-anchor="middle" x="110" y="333" letter-spacing="1.2">
+      COLD-MILLED &bull; ZERO ADDED SUGAR &bull; 70% RAW CACAO
+    </text>
+
+    <!-- Key Functional Benefit Callout -->
+    <g transform="translate(110, 365)">
+      <line x1="-70" y1="0" x2="70" y2="0" stroke="#C99454" stroke-width="0.6" opacity="0.5"/>
+      <text class="font-sans" font-size="6.5" fill="#E5C378" font-weight="600" text-anchor="middle" y="-6" letter-spacing="2">
+        ESTROGEN HARMONY // ZINC &amp; LIGNANS
+      </text>
+      <text class="font-sans" font-size="6" fill="#A8D5B5" text-anchor="middle" y="10" letter-spacing="1">
+        CLINICALLY FORMULATED FOR HORMONAL RHYTHM
+      </text>
+    </g>
+
+    <!-- Bottom Metadata: Veg Symbol & Net Wt -->
+    <g transform="translate(30, 420)">
+      <!-- Indian Green Veg Symbol -->
+      <rect x="0" y="-12" width="14" height="14" fill="none" stroke="#00B050" stroke-width="1.2"/>
+      <circle cx="7" cy="-5" r="4" fill="#00B050"/>
+    </g>
+    <text class="font-sans" font-size="8" fill="#FFFFFF" font-weight="700" x="190" y="422" text-anchor="end" letter-spacing="1">
+      NET WT. 50g (1.76 OZ)
+    </text>
+  </g>
+
+  <!-- ARTWORK LAYER: Back Panel (x=160, w=220, y=220, h=460) -->
+  <g id="back-panel-artwork" transform="translate(160, 220)">
+    <rect x="10" y="12" width="200" height="436" fill="none" stroke="#C99454" stroke-width="0.6" opacity="0.4"/>
+
+    <!-- Story & Mechanism -->
+    <text class="font-sans" font-size="8" fill="#E5C378" font-weight="700" letter-spacing="2" x="16" y="32">
+      THE 28-DAY SEED CYCLING RITUAL
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#F5EFE6" x="16" y="47" width="188">
+      During Days 1 to 14 (Follicular Phase), your body builds
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#F5EFE6" x="16" y="58">
+      estrogen to mature an egg. Raw pumpkin seeds supply
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#F5EFE6" x="16" y="69">
+      bioavailable Zinc, while golden flax provides plant lignans
+    </text>
+    <text class="font-sans" font-size="6.5" fill="#F5EFE6" x="16" y="80">
+      that gently metabolize and balance estrogen levels.
+    </text>
+
+    <!-- Nutrition Facts Table (Print Compliant Format) -->
+    <g transform="translate(16, 96)">
+      <rect width="188" height="152" fill="#142619" stroke="#C99454" stroke-width="0.8"/>
+      <text class="font-sans" font-size="9" font-weight="800" fill="#FFFFFF" x="8" y="16">NUTRITION FACTS</text>
+      <text class="font-sans" font-size="6" fill="#C99454" x="8" y="27">Serving Size: 1 Bar (50g) | Servings Per Pack: 1</text>
+      <line x1="8" y1="32" x2="180" y2="32" stroke="#FFFFFF" stroke-width="1.5"/>
+      <text class="font-sans" font-size="7" font-weight="700" fill="#FFFFFF" x="8" y="44">Calories 242 kcal</text>
+      <line x1="8" y1="48" x2="180" y2="48" stroke="#C99454" stroke-width="0.5"/>
+      <!-- Rows -->
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="59">Total Fat 16.5g (21% DV)</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="70">  Saturated Fat 4.2g (21% DV)</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="81">  Omega-3 Fatty Acids (ALA) 1,850mg</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="92">Total Carbohydrates 18g (6% DV)</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="103">  Dietary Fiber 7.2g (26% DV)</text>
+      <text class="font-sans" font-size="6" fill="#F5EFE6" x="8" y="114">  Total Sugars 7.8g (From Whole Dates)</text>
+      <text class="font-sans" font-size="6" fill="#A8D5B5" x="8" y="125">  Added Sugars 0.0g (0% DV)</text>
+      <text class="font-sans" font-size="6.5" font-weight="700" fill="#FFFFFF" x="8" y="137">Protein 8.4g (17% DV) | Zinc 3.2mg (29% DV)</text>
+      <text class="font-sans" font-size="5.5" fill="#E5C378" x="8" y="146">Magnesium 112mg (28% DV)</text>
+    </g>
+
+    <!-- Ingredients List -->
+    <g transform="translate(16, 260)">
+      <text class="font-sans" font-size="6.5" font-weight="700" fill="#E5C378" letter-spacing="1">INGREDIENTS:</text>
+      <text class="font-sans" font-size="5.8" fill="#F5EFE6" y="11">
+        Sprouted Organic Pumpkin Seeds (36%), Cold-Milled
+      </text>
+      <text class="font-sans" font-size="5.8" fill="#F5EFE6" y="21">
+        Golden Flaxseed (24%), Raw Single-Origin Cacao Paste (70%),
+      </text>
+      <text class="font-sans" font-size="5.8" fill="#F5EFE6" y="31">
+        Medjool Date Puree, Pink Himalayan Salt, Madagascar Vanilla.
+      </text>
+      <text class="font-sans" font-size="5.5" fill="#C99454" y="42" font-style="italic">
+        ALLERGEN ADVICE: Processed in a dedicated gluten-free &amp; peanut-free facility.
+      </text>
+    </g>
+
+    <!-- Clinical Seal & Regulatory (FSSAI + Barcode) -->
+    <g transform="translate(16, 330)">
+      <!-- Clinical Endorsement -->
+      <circle cx="25" cy="25" r="22" fill="#142619" stroke="#C99454" stroke-width="0.8"/>
+      <text class="font-sans" font-size="4.5" fill="#E5C378" text-anchor="middle" x="25" y="18">DR. SWETTA</text>
+      <text class="font-sans" font-size="4.5" fill="#E5C378" text-anchor="middle" x="25" y="26">SHARMA PhD</text>
+      <text class="font-sans" font-size="3.8" fill="#F5EFE6" text-anchor="middle" x="25" y="34">FORMULATED</text>
+
+      <!-- FSSAI License Number Box -->
+      <g transform="translate(60, 5)">
+        <text class="font-sans" font-size="7" font-weight="700" fill="#FFFFFF">fssai</text>
+        <text class="font-sans" font-size="5.2" fill="#C99454" y="12">Lic. No. 11523998000412</text>
+        <text class="font-sans" font-size="5" fill="#888" y="22">Country of Origin: India</text>
+        <text class="font-sans" font-size="5" fill="#888" y="32">Mfd By: Mofeaz Functional Foods LLP</text>
+      </g>
+    </g>
+
+    <!-- Standard Barcode Box -->
+    <g transform="translate(16, 390)">
+      <rect width="188" height="42" fill="#FFFFFF" rx="2"/>
+      <!-- Simulated EAN-13 Barcode Lines -->
+      <g stroke="#000000" stroke-width="1.6" transform="translate(15, 6)">
+        <line x1="0" y1="0" x2="0" y2="22"/>
+        <line x1="3" y1="0" x2="3" y2="22"/>
+        <line x1="8" y1="0" x2="8" y2="22"/>
+        <line x1="12" y1="0" x2="12" y2="22"/>
+        <line x1="18" y1="0" x2="18" y2="22"/>
+        <line x1="22" y1="0" x2="22" y2="22"/>
+        <line x1="28" y1="0" x2="28" y2="22"/>
+        <line x1="35" y1="0" x2="35" y2="22"/>
+        <line x1="42" y1="0" x2="42" y2="22"/>
+        <line x1="48" y1="0" x2="48" y2="22"/>
+        <line x1="55" y1="0" x2="55" y2="22"/>
+        <line x1="62" y1="0" x2="62" y2="22"/>
+        <line x1="70" y1="0" x2="70" y2="22"/>
+        <line x1="78" y1="0" x2="78" y2="22"/>
+        <line x1="85" y1="0" x2="85" y2="22"/>
+        <line x1="92" y1="0" x2="92" y2="22"/>
+        <line x1="100" y1="0" x2="100" y2="22"/>
+        <line x1="108" y1="0" x2="108" y2="22"/>
+        <line x1="115" y1="0" x2="115" y2="22"/>
+        <line x1="122" y1="0" x2="122" y2="22"/>
+        <line x1="130" y1="0" x2="130" y2="22"/>
+        <line x1="138" y1="0" x2="138" y2="22"/>
+        <line x1="145" y1="0" x2="145" y2="22"/>
+        <line x1="152" y1="0" x2="152" y2="22"/>
+      </g>
+      <text class="font-sans" font-size="6" fill="#000000" x="94" y="36" text-anchor="middle" letter-spacing="2">
+        8 908021 543019
+      </text>
+    </g>
+  </g>
+
+  <!-- ARTWORK LAYER: Side Spines -->
+  <!-- Left Spine (x=380, w=50, y=220, h=460) -->
+  <g id="left-spine-artwork" transform="translate(380, 220)">
+    <!-- Rotated Spine Branding -->
+    <g transform="translate(25, 230) rotate(-90)">
+      <text class="font-header" font-size="14" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">MOFEAZ</text>
+      <text class="font-sans" font-size="6" fill="#C99454" text-anchor="middle" y="14" letter-spacing="2">PHASE 01 // FOLLICULAR RITUAL</text>
+    </g>
+  </g>
+
+  <!-- Right Spine (x=650, w=50, y=220, h=460) -->
+  <g id="right-spine-artwork" transform="translate(650, 220)">
+    <g transform="translate(25, 230) rotate(90)">
+      <text class="font-sans" font-size="6" fill="#E5C378" text-anchor="middle" letter-spacing="2.5">
+        ESTROGEN HARMONY &bull; 100% WHOLE SEEDS &bull; NET WT. 50g
+      </text>
+    </g>
+  </g>
+
+  <!-- ARTWORK LAYER: Top & Bottom Tuck Flaps -->
+  <g id="top-flap-artwork" transform="translate(430, 140)">
+    <text class="font-sans" font-size="7" fill="#C99454" text-anchor="middle" x="110" y="50" letter-spacing="2">
+      MOI • FEA • Z // ME FEAST FROM A TO Z
+    </text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- TECHNICAL DIELINE LINES (CUT, CREASE, BLEED) OVERLAY         -->
+  <!-- ============================================================ -->
+  <g id="technical-dieline">
+    <!-- Bleed Margin Boundary (3mm outside cut line) -->
+    <rect x="112" y="132" width="606" height="636" class="bleed-line"/>
+
+    <!-- Cut Lines (Outer perimeter of folded carton) -->
+    <!-- Glue Tab (Left) -->
+    <path d="M 160 220 L 120 235 L 120 665 L 160 680" class="cut-line"/>
+    <!-- Top Flaps Cut Line -->
+    <path d="M 160 220 L 380 220" class="cut-line"/>
+    <path d="M 380 220 L 386 175 Q 405 170 424 175 L 430 220" class="cut-line"/>
+    <path d="M 430 220 L 440 146 Q 540 138 640 146 L 650 220" class="cut-line"/>
+    <path d="M 650 220 L 656 175 Q 675 170 694 175 L 700 220" class="cut-line"/>
+    <!-- Right Outer Edge Cut Line -->
+    <path d="M 700 220 L 700 680" class="cut-line"/>
+    <!-- Bottom Flaps Cut Line -->
+    <path d="M 700 680 L 694 725 Q 675 730 656 725 L 650 680" class="cut-line"/>
+    <path d="M 650 680 L 430 680" class="cut-line"/>
+    <path d="M 430 680 L 424 725 Q 405 730 386 725 L 380 680" class="cut-line"/>
+    <path d="M 380 680 L 370 754 Q 270 762 170 754 L 160 680" class="cut-line"/>
+
+    <!-- Crease / Score Lines (Internal Folds) -->
+    <!-- Vertical Fold Lines between panels -->
+    <line x1="160" y1="220" x2="160" y2="680" class="crease-line"/>
+    <line x1="380" y1="220" x2="380" y2="680" class="crease-line"/>
+    <line x1="430" y1="220" x2="430" y2="680" class="crease-line"/>
+    <line x1="650" y1="220" x2="650" y2="680" class="crease-line"/>
+    <!-- Horizontal Fold Lines for Top and Bottom Flaps -->
+    <line x1="160" y1="220" x2="700" y2="220" class="crease-line"/>
+    <line x1="160" y1="680" x2="700" y2="680" class="crease-line"/>
+    <!-- Tuck Flap Score -->
+    <line x1="440" y1="165" x2="640" y2="165" class="crease-line"/>
+    <line x1="170" y1="735" x2="370" y2="735" class="crease-line"/>
+  </g>
+
+  <!-- Dimension Callout Annotations -->
+  <g class="guide-text" font-size="9">
+    <!-- Width Dimension Callout -->
+    <line x1="430" y1="785" x2="650" y2="785" stroke="#999" stroke-width="1"/>
+    <line x1="430" y1="780" x2="430" y2="790" stroke="#999" stroke-width="1"/>
+    <line x1="650" y1="780" x2="650" y2="790" stroke="#999" stroke-width="1"/>
+    <text x="540" y="800" text-anchor="middle" fill="#555">Front Width: 75.0 mm</text>
+
+    <!-- Spine Dimension Callout -->
+    <line x1="650" y1="785" x2="700" y2="785" stroke="#999" stroke-width="1"/>
+    <line x1="700" y1="780" x2="700" y2="790" stroke="#999" stroke-width="1"/>
+    <text x="675" y="800" text-anchor="middle" fill="#555">14 mm</text>
+
+    <!-- Height Dimension Callout -->
+    <line x1="735" y1="220" x2="735" y2="680" stroke="#999" stroke-width="1"/>
+    <line x1="730" y1="220" x2="740" y2="220" stroke="#999" stroke-width="1"/>
+    <line x1="730" y1="680" x2="740" y2="680" stroke="#999" stroke-width="1"/>
+    <text x="750" y="455" fill="#555" transform="rotate(90, 750, 455)" text-anchor="middle">Body Height: 150.0 mm</text>
+  </g>
+</svg>

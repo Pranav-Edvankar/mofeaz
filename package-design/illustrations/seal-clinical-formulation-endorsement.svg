@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldSeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2DFB3"/>
+      <stop offset="50%" stop-color="#C99454"/>
+      <stop offset="100%" stop-color="#9C6B2F"/>
+    </linearGradient>
+    <path id="circleTextUpper" d="M 60 200 A 140 140 0 1 1 340 200" fill="none"/>
+    <path id="circleTextLower" d="M 340 200 A 140 140 0 1 1 60 200" fill="none"/>
+  </defs>
+
+  <g id="clinical-seal" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Starburst scalloped edge / luxury gold wax seal border -->
+    <circle cx="200" cy="200" r="185" fill="#1C140F" stroke="#C99454" stroke-width="2"/>
+    <circle cx="200" cy="200" r="172" fill="none" stroke="#C99454" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <circle cx="200" cy="200" r="125" fill="#241912" stroke="#C99454" stroke-width="1.5"/>
+
+    <!-- Circular Curved Text -->
+    <text font-family="'Montserrat', sans-serif" font-size="10.5" font-weight="700" letter-spacing="3.2" fill="#E5C378">
+      <textPath href="#circleTextUpper" startOffset="50%" text-anchor="middle">
+        • CLINICALLY FORMULATED • DR. SWETTA SHARMA
+      </textPath>
+    </text>
+
+    <text font-family="'Montserrat', sans-serif" font-size="9" font-weight="600" letter-spacing="2.8" fill="#F5EFE6">
+      <textPath href="#circleTextLower" startOffset="50%" text-anchor="middle">
+        PHD CLINICAL NUTRITION • 15+ YRS ENDOCRINE RESEARCH
+      </textPath>
+    </text>
+
+    <!-- Center Caduceus / Botanical Seed Hybrid Emblem -->
+    <g transform="translate(200, 200)">
+      <!-- Central Sprout / Life Stem -->
+      <path d="M 0 55 L 0 -45" stroke="#C99454" stroke-width="2.2"/>
+      
+      <!-- Symmetrical Seed Leaves -->
+      <path d="M 0 20 C -25 15 -35 -10 -15 -25 C 0 -15 0 5 0 20 Z" fill="#C99454" opacity="0.9"/>
+      <path d="M 0 20 C 25 15 35 -10 15 -25 C 0 -15 0 5 0 20 Z" fill="#C99454" opacity="0.9"/>
+      
+      <!-- Top Sun / Molecule Sparkle -->
+      <circle cx="0" cy="-45" r="4.5" fill="#F2DFB3"/>
+      <line x1="0" y1="-56" x2="0" y2="-51" stroke="#F2DFB3" stroke-width="1.5"/>
+      <line x1="-8" y1="-45" x2="-5" y2="-45" stroke="#F2DFB3" stroke-width="1.5"/>
+      <line x1="5" y1="-45" x2="8" y2="-45" stroke="#F2DFB3" stroke-width="1.5"/>
+
+      <!-- Seal Core Text -->
+      <text y="70" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="7.5" fill="#E5C378" font-weight="700" letter-spacing="2.5">
+        BIOACTIVE RATIO
+      </text>
+      <text y="82" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="6.5" fill="#F5EFE6" letter-spacing="1.5">
+        COLD-MILLED &lt; 38°C
+      </text>
+    </g>
+  </g>
+</svg>

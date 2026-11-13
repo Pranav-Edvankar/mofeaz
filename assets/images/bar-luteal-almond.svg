@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="almondGlow" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#F9F4EB"/>
+      <stop offset="100%" stop-color="#ECE3D4" stop-opacity="0.4"/>
+    </radialGradient>
+    <linearGradient id="almondWrapper" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#845E44"/>
+      <stop offset="50%" stop-color="#9C7254"/>
+      <stop offset="100%" stop-color="#69462F"/>
+    </linearGradient>
+    <filter id="shadowAlmond" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="6" dy="16" stdDeviation="14" flood-color="#241912" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" fill="#FAF7F2"/>
+  <circle cx="250" cy="250" r="210" fill="url(#almondGlow)"/>
+  <ellipse cx="250" cy="420" rx="130" ry="16" fill="#241912" opacity="0.16" filter="blur(8px)"/>
+
+  <!-- Snack Bar Graphic -->
+  <g transform="translate(180, 80) rotate(-4 70 170)" filter="url(#shadowAlmond)">
+    <!-- Food Bar portion -->
+    <rect x="15" y="30" width="110" height="130" rx="6" fill="#2E1C12"/>
+    <!-- Almond slivers, sunflower seeds, sesame & sea salt -->
+    <ellipse cx="50" cy="65" rx="12" ry="5.5" fill="#CBB194" transform="rotate(-40 50 65)"/>
+    <ellipse cx="85" cy="85" rx="13" ry="6" fill="#C5AA8B" transform="rotate(20 85 85)"/>
+    <ellipse cx="50" cy="115" rx="11" ry="5" fill="#BFA382" transform="rotate(-10 50 115)"/>
+    <!-- Sunflower & Sesame seeds -->
+    <ellipse cx="80" cy="55" rx="3.5" ry="2" fill="#E8C79E" transform="rotate(30 80 55)"/>
+    <ellipse cx="38" cy="90" rx="3.2" ry="1.9" fill="#1C140F" transform="rotate(-25 38 90)"/>
+    <path d="M 90 115 C 96 117 100 125 94 130 C 88 128 86 119 90 115 Z" fill="#6B5B4E"/>
+    <rect x="68" y="75" width="2.8" height="2.8" fill="#FFFFFF" opacity="0.85" transform="rotate(45 68 75)"/>
+
+    <!-- Matte Warm Sand Pouch Wrap -->
+    <path d="M 10 135 L 130 125 L 135 310 L 5 310 Z" fill="url(#almondWrapper)"/>
+    <path d="M 10 135 Q 70 145 130 125 L 128 140 Q 70 155 12 145 Z" fill="#4A2F1E" opacity="0.4"/>
+    
+    <!-- Minimalist Label -->
+    <rect x="22" y="165" width="96" height="120" rx="2" fill="#FAF6F0"/>
+    <rect x="25" y="168" width="90" height="114" fill="none" stroke="#E6DED3" stroke-width="0.8"/>
+    <text x="70" y="190" font-family="'Cormorant Garamond', serif" font-size="12" font-weight="600" letter-spacing="2" fill="#231C18" text-anchor="middle">MOFEAZ</text>
+    <text x="70" y="204" font-family="'Plus Jakarta Sans', sans-serif" font-size="6" font-weight="700" letter-spacing="1" fill="#C28B4E" text-anchor="middle">PHASE 02 // LUTEAL</text>
+    <text x="70" y="215" font-family="'Plus Jakarta Sans', sans-serif" font-size="5" letter-spacing="0.5" fill="#6B5F55" text-anchor="middle">DAYS 15 — 28</text>
+    <line x1="35" y1="220" x2="105" y2="220" stroke="#E2D7CC" stroke-width="0.6"/>
+    <text x="70" y="233" font-family="'Plus Jakarta Sans', sans-serif" font-size="6" font-weight="600" fill="#261A13" text-anchor="middle">LUTEAL COFFEE</text>
+    <text x="70" y="243" font-family="'Plus Jakarta Sans', sans-serif" font-size="4.5" fill="#8C7A6D" text-anchor="middle">SESAME, SUNFLOWER &amp; MAGNESIUM</text>
+    <text x="70" y="258" font-family="'Plus Jakarta Sans', sans-serif" font-size="5" font-weight="600" fill="#C28B4E" text-anchor="middle">PMS &amp; CRAMP DEFENSE</text>
+    <text x="70" y="270" font-family="'Plus Jakarta Sans', sans-serif" font-size="4.5" fill="#B0A093" text-anchor="middle">45G • KETO FRIENDLY</text>
+  </g>
+
+  <!-- Ambient Almonds & Sunflower Seeds -->
+  <g>
+    <ellipse cx="140" cy="405" rx="14" ry="7" fill="#CBB194" transform="rotate(-25 140 405)"/>
+    <path d="M 360 405 C 368 407 372 415 366 419 C 360 418 356 410 360 405 Z" fill="#6B5B4E"/>
+  </g>
+</svg>
+

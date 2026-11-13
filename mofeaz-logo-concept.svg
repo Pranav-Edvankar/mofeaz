@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&amp;family=Plus+Jakarta+Sans:wght@500;600&amp;display=swap');
+      .maude-logo-text {
+        font-family: 'Tenor Sans', 'Cormorant Garamond', 'Cinzel Decorative', serif;
+        font-size: 52px;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        fill: #231C18;
+      }
+      .maude-subline {
+        font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.32em;
+        fill: #9D5C41;
+      }
+      .maude-desc {
+        font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        font-size: 8.5px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        fill: #827871;
+      }
+    </style>
+  </defs>
+
+  <rect width="520" height="120" fill="transparent"/>
+
+  <!-- Logo Group: Inspired directly by the MAŨDE reference -->
+  <g transform="translate(20, 25)">
+    <!-- Bespoke Wordmark: MOFEAZ -->
+    <text x="0" y="48" class="maude-logo-text">MOF<tspan dx="1">E</tspan><tspan dx="1">A</tspan><tspan dx="1">Z</tspan></text>
+    
+    <!-- Organic Wave Accent above the E (symbolizing the 28-day menstrual cycle rhythm, matching the tilde over U in MAŨDE) -->
+    <path d="M 125 10 C 128 7.5 131 7.5 134 10 C 136 11.5 138 12 141 10.5 L 141.5 12 C 138.5 14 135.5 13.5 133 11.5 C 131 10 129 10 126.5 11.5 Z" fill="#9D5C41"/>
+
+    <!-- Subtitle: moi • fea • z & category descriptor -->
+    <text x="4" y="74" class="maude-subline">MOI • FEA • Z</text>
+    <text x="135" y="74" class="maude-desc">— CYCLE-SYNCED SEED NUTRITION</text>
+
+    <!-- Hairline elegance divider line -->
+    <line x1="4" y1="84" x2="360" y2="84" stroke="#E5DDD2" stroke-width="0.8"/>
+  </g>
+</svg>

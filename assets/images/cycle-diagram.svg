@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="cycleBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="70%" stop-color="#FBF8F3"/>
+      <stop offset="100%" stop-color="#F0E8DC"/>
+    </radialGradient>
+    <linearGradient id="follicularArc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B26C4E"/>
+      <stop offset="100%" stop-color="#84472B"/>
+    </linearGradient>
+    <linearGradient id="lutealArc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D9A464"/>
+      <stop offset="100%" stop-color="#9C6B30"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="600" rx="12" fill="url(#cycleBg)"/>
+
+  <!-- Outer Hairline Circle -->
+  <circle cx="300" cy="300" r="230" fill="none" stroke="#E3DACF" stroke-width="1.2"/>
+  <circle cx="300" cy="300" r="215" fill="none" stroke="#EAE3DA" stroke-width="0.8" stroke-dasharray="3 4"/>
+
+  <!-- Phase 1: Follicular Arc (Days 1 to 14, Top Half & Left) -->
+  <path d="M 300 85 A 215 215 0 0 0 300 515" fill="none" stroke="url(#follicularArc)" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Phase 2: Luteal Arc (Days 15 to 28, Right Half) -->
+  <path d="M 300 515 A 215 215 0 0 0 300 85" fill="none" stroke="url(#lutealArc)" stroke-width="8" stroke-linecap="round" stroke-dasharray="7 5"/>
+
+  <!-- Center Circular Hub -->
+  <circle cx="300" cy="300" r="130" fill="#FAF7F2" stroke="#E8E0D5" stroke-width="1.5"/>
+  <circle cx="300" cy="300" r="118" fill="none" stroke="#DFD5C8" stroke-width="0.6"/>
+
+  <!-- Central Wordmark & Tagline -->
+  <text x="300" y="278" font-family="'Cormorant Garamond', serif" font-size="28" font-weight="400" letter-spacing="6" fill="#231C18" text-anchor="middle">MOFEAZ</text>
+  <text x="300" y="298" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" letter-spacing="3" fill="#84472B" text-anchor="middle">THE 28-DAY RHYTHM</text>
+  <line x1="240" y1="308" x2="360" y2="308" stroke="#E0D7CC" stroke-width="0.8"/>
+  <text x="300" y="324" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#6B5F55" text-anchor="middle">MOI • FEA • Z</text>
+  <text x="300" y="338" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" fill="#8F8379" text-anchor="middle">ME FEAST FROM A TO Z</text>
+
+  <!-- Markers: Day 1 (Start of Period) -->
+  <g transform="translate(300, 70)">
+    <circle cx="0" cy="0" r="14" fill="#84472B"/>
+    <text x="0" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">D1</text>
+    <text x="0" y="-18" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="600" letter-spacing="1.5" fill="#84472B" text-anchor="middle">MENSTRUATION</text>
+  </g>
+
+  <!-- Markers: Day 14 (Ovulation) -->
+  <g transform="translate(300, 530)">
+    <circle cx="0" cy="0" r="14" fill="#D9A464"/>
+    <text x="0" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">D14</text>
+    <text x="0" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="600" letter-spacing="1.5" fill="#9C6B30" text-anchor="middle">OVULATION</text>
+  </g>
+
+  <!-- Left Side Label: Phase 1 Follicular -->
+  <g transform="translate(140, 260)">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" letter-spacing="1.5" fill="#84472B" text-anchor="middle">PHASE 01</text>
+    <text x="0" y="16" font-family="'Cormorant Garamond', serif" font-size="18" font-style="italic" fill="#231C18" text-anchor="middle">Follicular</text>
+    <text x="0" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="600" fill="#58604B" text-anchor="middle">PUMPKIN + FLAX</text>
+    <text x="0" y="46" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" fill="#75675A" text-anchor="middle">Estrogen Support &amp; Zinc</text>
+  </g>
+
+  <!-- Right Side Label: Phase 2 Luteal -->
+  <g transform="translate(460, 260)">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" letter-spacing="1.5" fill="#9C6B30" text-anchor="middle">PHASE 02</text>
+    <text x="0" y="16" font-family="'Cormorant Garamond', serif" font-size="18" font-style="italic" fill="#231C18" text-anchor="middle">Luteal</text>
+    <text x="0" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="600" fill="#9C6B30" text-anchor="middle">SESAME + SUNFLOWER</text>
+    <text x="0" y="46" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" fill="#75675A" text-anchor="middle">Progesterone &amp; Selenium</text>
+  </g>
+</svg>
+

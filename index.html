@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MOFEAZ — Cycle-Synced Seed Nutrition | moi • fea • z</title>
+  <meta name="description" content="Artisanal, nutritionist-crafted seed cycling snacks for urban Indian women. Naturally balance hormones, ease PMS, and sync your monthly rhythm from A to Z.">
+
+  <!-- Google Fonts: Bodoni Moda (Header/Display) + Montserrat (Sub-headers & Buttons) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Montserrat:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="loading-locked">
+
+  <!-- ======================================================== -->
+  <!-- 1. SPLASH SCREEN (CENTERED LOGO + SPLIT REVEAL)         -->
+  <!-- ======================================================== -->
+  <div id="splashScreen" class="suit-splash-screen" role="dialog" aria-label="Brand introduction">
+    
+    <!-- Left Curtain Panel (Splits to Left) -->
+    <div class="splash-curtain curtain-left" id="curtainLeft">
+      <div class="curtain-content curtain-content-left">
+        <h1 class="suit-masked-wordmark wordmark-clone-left">MOFEAZ</h1>
+      </div>
+    </div>
+
+    <!-- Right Curtain Panel (Splits to Right) -->
+    <div class="splash-curtain curtain-right" id="curtainRight">
+      <div class="curtain-content curtain-content-right">
+        <h1 class="suit-masked-wordmark wordmark-clone-right">MOFEAZ</h1>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 2. ANNOUNCEMENT & TOP TICKER                             -->
+  <!-- ======================================================== -->
+  <aside class="announcement-bar" aria-label="Special announcements">
+    <div class="announcement-track">
+      <div class="announcement-item">
+        <span>COMPLIMENTARY SHIPPING ACROSS INDIA ON 28-DAY RITUAL KITS</span>
+        <span class="ticker-divider">&bull;</span>
+        <span>FORMULATED BY CLINICAL NUTRITIONISTS FOR PCOS &amp; PMS HARMONY</span>
+        <span class="ticker-divider">&bull;</span>
+        <span>100% WHOLE SEEDS • ZERO ADDED SUGAR • NATURAL MEDJOOL DATE SWEETENED</span>
+        <span class="ticker-divider">&bull;</span>
+        <span>BANGALORE • MUMBAI • DELHI-NCR • HYDERABAD • PUNE</span>
+        <span class="ticker-divider">&bull;</span>
+      </div>
+      <div class="announcement-item" aria-hidden="true">
+        <span>COMPLIMENTARY SHIPPING ACROSS INDIA ON 28-DAY RITUAL KITS</span>
+        <span class="ticker-divider">&bull;</span>
+        <span>FORMULATED BY CLINICAL NUTRITIONISTS FOR PCOS &amp; PMS HARMONY</span>
+        <span class="ticker-divider">&bull;</span>
+        <span>100% WHOLE SEEDS • ZERO ADDED SUGAR • NATURAL MEDJOOL DATE SWEETENED</span>
+        <span class="ticker-divider">&bull;</span>
+        <span>BANGALORE • MUMBAI • DELHI-NCR • HYDERABAD • PUNE</span>
+        <span class="ticker-divider">&bull;</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ======================================================== -->
+  <!-- 3. MAIN NAVIGATION BAR (EXACT REFERENCE: MAUDE-STYLE)    -->
+  <!-- ======================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      
+      <!-- Left: Simple Typographic Brand Wordmark (Bodoni Moda) -->
+      <div class="header-col-left">
+        <a href="#" class="header-logo-link" aria-label="MOFEAZ Home">
+          <span class="header-brand-logo">MOFEAZ</span>
+        </a>
+      </div>
+
+      <!-- Center: Clean Minimal Uppercase Links -->
+      <nav class="header-col-center" aria-label="Primary navigation">
+        <a href="#bentoGrid" class="header-nav-link">SHOP</a>
+        <a href="#philosophy" class="header-nav-link">ABOUT</a>
+        <a href="#conciergeModal" class="header-nav-link" id="contactNavTrigger">CONTACT</a>
+      </nav>
+
+      <!-- Right: Minimalist Text Action Links -->
+      <div class="header-col-right">
+        <button id="favoritesBtn" class="header-action-link" aria-label="View Saved Favorites">
+          <span>MY FAVORITES</span>
+          <span class="fav-counter" id="favCountBadge">( 0 )</span>
+        </button>
+
+        <button id="cartToggleBtn" class="header-action-link" aria-label="View Shopping Cart">
+          <span>CART</span>
+          <span class="cart-counter" id="cartCountBadge">( 0 )</span>
+        </button>
+
+        <!-- Mobile Menu Trigger -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <span class="drawer-title">MOFEAZ</span>
+      <button class="mobile-close-btn" id="mobileCloseBtn">&times;</button>
+    </div>
+    <nav class="mobile-nav-links">
+      <a href="#bentoGrid" class="mobile-link">Shop Essentials</a>
+      <a href="#howItWorks" class="mobile-link">The 28-Day Ritual</a>
+      <a href="#howItWorks" class="mobile-link">The 4-Step Ritual</a>
+      <a href="#philosophy" class="mobile-link">Our Philosophy</a>
+      <a href="#reviews" class="mobile-link">Women’s Stories</a>
+      <button class="mobile-phase-btn" id="mobilePhaseBtn">
+        <i data-lucide="sparkles"></i>
+        <span>Check Your Current Phase</span>
+      </button>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <p class="meaning-reminder"><strong>moi • fea • z</strong> : me feast from A to Z</p>
+      <p class="footer-note">Handcrafted in small batches • Lab tested</p>
+    </div>
+  </div>
+
+  <main id="mainContent">
+
+    <!-- ======================================================== -->
+    <!-- 4. HERO SECTION (RUSTICO CONCEPT: BOLD STATEMENT & CUTOUTS)-->
+    <!-- Reference: pin.it/62ZPsAufk (Rustico Webflow Template)   -->
+    <!-- ======================================================== -->
+    <section class="hero-rustico-section" id="hero" aria-label="Brand statement">
+      <div class="hero-rustico-container">
+        <div class="hero-rustico-block">
+          <h1 class="hero-rustico-heading-block" aria-label="RITUAL">
+            <!-- First syllable -->
+            <span class="hero-rustico-letter letter-part-1" aria-hidden="true">RI</span>
+
+            <!-- Cutout Product 1: Follicular Seed Butter Bar (Transparent PNG, No Background) -->
+            <div class="hero-product-cutout cutout-follicular" id="heroCutout1">
+              <img 
+                src="assets/images/mockup-follicular-bar-transparent.png" 
+                alt="Mofeaz Follicular Phase Cacao Seed Butter Bar" 
+                class="hero-cutout-img"
+                loading="eager"
+              >
+              <div class="cutout-ground-shadow"></div>
+            </div>
+
+            <!-- Middle syllable -->
+            <span class="hero-rustico-letter letter-part-2" aria-hidden="true">TU</span>
+
+            <!-- Cutout Product 2: Luteal Seed Butter Bar (Transparent PNG, No Background) -->
+            <div class="hero-product-cutout cutout-luteal" id="heroCutout2">
+              <img 
+                src="assets/images/mockup-luteal-bar-transparent.png" 
+                alt="Mofeaz Luteal Phase Chocolate Seed Butter Bar" 
+                class="hero-cutout-img"
+                loading="eager"
+              >
+              <div class="cutout-ground-shadow"></div>
+            </div>
+
+            <!-- Final syllable -->
+            <span class="hero-rustico-letter letter-part-3" aria-hidden="true">AL</span>
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 4B. KINETIC SCROLL PARALLAX EDITORIAL (Reference: pin.it/2UhDXgPwD) -->
+    <!-- Multi-directional horizontal text drift, velocity blur,  -->
+    <!-- and central travertine still-life ritual composition     -->
+    <!-- ======================================================== -->
+    <section class="section-editorial-parallax" id="editorialParallax">
+      <div class="parallax-editorial-container">
+        
+        <!-- Micro Editorial Accents (Top corners) -->
+        <div class="parallax-corner-meta corner-top-left">
+          <span class="meta-dot"></span>
+          <span>MOI • FEA • Z // ARCHITECTURAL RHYTHM</span>
+        </div>
+        <div class="parallax-corner-meta corner-top-right">
+          <span>01 / 02 CYCLE EQUILIBRIUM</span>
+          <span class="meta-dot"></span>
+        </div>
+
+        <!-- Staggered Kinetic Parallax Text Rows -->
+        <div class="parallax-text-canvas">
+          
+          <!-- Row 1: Drift Right on Scroll Down -->
+          <div class="parallax-text-row row-1" data-speed="0.45">
+            <span class="parallax-word serif-display">THE CYCLE</span>
+            <span class="parallax-badge">PHASE 01 // FOLLICULAR</span>
+            <span class="parallax-word serif-display italic-accent">OF NATURE</span>
+          </div>
+
+          <!-- Central Still Life Composition Card (Travertine stone + 14-bar dispenser) -->
+          <div class="parallax-editorial-card" data-cursor-text="EXPLORE">
+            <div class="editorial-card-inner">
+              <img 
+                src="assets/images/render-14bar-follicular-box.jpg" 
+                alt="Mofeaz 14-Bar Seed Cycling Ritual Dispenser on Travertine Stone" 
+                class="editorial-card-img"
+                loading="lazy"
+              >
+              <div class="editorial-card-overlay">
+                <span class="card-caption-tag">BATCH NO. 048 // 14-BAR DISPENSER</span>
+                <span class="card-caption-title">Sacred Green &amp; Terracotta</span>
+              </div>
+            </div>
+            <div class="editorial-card-shadow"></div>
+          </div>
+
+          <!-- Row 2: Drift Left on Scroll Down -->
+          <div class="parallax-text-row row-2" data-speed="-0.58">
+            <span class="parallax-word serif-display">RAW CACAO</span>
+            <span class="parallax-word serif-display italic-accent">&amp;</span>
+            <span class="parallax-word serif-display">COLD-MILLED SEEDS</span>
+          </div>
+
+          <!-- Row 3: Drift Right on Scroll Down -->
+          <div class="parallax-text-row row-3" data-speed="0.52">
+            <span class="parallax-word serif-display italic-accent">HARMONY</span>
+            <span class="parallax-badge">28-DAY NUTRITIONAL REVOLUTION</span>
+            <span class="parallax-word serif-display">RESTORED</span>
+          </div>
+
+        </div>
+
+        <!-- Micro Editorial Accents (Bottom corners) -->
+        <div class="parallax-corner-meta corner-bottom-left">
+          <span>DAILY 2-MINUTE BOUNDARY FOR MODERN INDIAN WOMEN</span>
+        </div>
+        <div class="parallax-corner-meta corner-bottom-right">
+          <span class="scroll-cue-text">SCROLL TO DISCOVER</span>
+          <i data-lucide="arrow-down" class="scroll-cue-arrow"></i>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 5. THE ARCHITECTURAL BENTO GRID (SHOP ALL COLLECTION)     -->
+    <!-- EXACT REFERENCE: MAUDE CANDLE SHOP BENTO LAYOUT          -->
+    <!-- ======================================================== -->
+    <section class="section-bento" id="bentoGrid">
+      
+      <!-- Big Centered SHOP ALL Headline (Bodoni Moda) -->
+      <div class="shop-all-header">
+        <h1 class="shop-all-title" data-scroll-parallax="0.08">SHOP ALL</h1>
+      </div>
+
+      <!-- Hairline Sub-filter Bar (1px top & bottom border) -->
+      <div class="sub-filter-bar">
+        <div class="sub-filter-inner">
+          <div class="sub-filter-left">
+            <span class="sub-filter-label">shop all</span>
+            <button class="sub-filter-dropdown-btn" id="subFilterDropdownBtn" type="button" aria-expanded="false">
+              <span>filter +</span>
+            </button>
+          </div>
+          <div class="sub-filter-right">
+            <button class="sub-filter-tab active" data-bento-filter="bestsellers" type="button">bestsellers</button>
+            <button class="sub-filter-tab" data-bento-filter="our-choice" type="button">our choice</button>
+          </div>
+        </div>
+
+        <!-- Filter Dropdown Drawer (Smooth Toggle) -->
+        <div class="sub-filter-dropdown-menu" id="subFilterDropdownMenu">
+          <div class="filter-dropdown-row">
+            <button class="filter-chip active" data-filter="all">All Essentials</button>
+            <button class="filter-chip" data-filter="phase1">Follicular (Phase 1: Days 1–14)</button>
+            <button class="filter-chip" data-filter="phase2">Luteal (Phase 2: Days 15–28)</button>
+            <button class="filter-chip" data-filter="starter">Ritual Kits &amp; 14-Bar Boxes</button>
+            <button class="filter-chip" data-filter="coffee">Functional Coffee Line</button>
+            <button class="filter-chip" data-filter="sub">Subscriptions</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE MASTER ARCHITECTURAL BENTO GRID -->
+      <div class="bento-master-grid">
+
+        <!-- ==================================================== -->
+        <!-- ROW 1: 2 EQUAL COLUMNS (50% / 50%)                   -->
+        <!-- ==================================================== -->
+        <div class="bento-row bento-row-two-col">
+          
+          <!-- Card 1: Follicular Chocolate -->
+          <article class="bento-card" data-category="phase1" data-product-id="prod-foll-cacao">
+            <div class="bento-card-header">
+              <span class="bento-card-cat">PHASE 01 // DAYS 1–14</span>
+              <h3 class="bento-card-title">FOLLICULAR CHOCOLATE</h3>
+              <div class="bento-card-pricing">
+                <span class="price-val">₹1,329</span>
+                <span class="price-strikethrough">₹1,661</span>
+              </div>
+            </div>
+            <div class="bento-card-media">
+              <img src="assets/images/mockup-follicular-bar-transparent.png" alt="Follicular Chocolate Bar" class="bento-card-img fit-mockup" loading="lazy">
+            </div>
+            <div class="bento-card-actions">
+              <button class="btn-add-ritual" data-add-id="prod-foll-cacao" type="button">
+                <span>ADD TO RITUAL</span>
+                <i data-lucide="plus"></i>
+              </button>
+              <button class="btn-quick-view" data-quick-id="prod-foll-cacao" type="button">
+                <span>SPECS</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 2: Luteal Chocolate -->
+          <article class="bento-card" data-category="phase2" data-product-id="prod-lute-sesame">
+            <div class="bento-card-header">
+              <span class="bento-card-cat">PHASE 02 // DAYS 15–28</span>
+              <h3 class="bento-card-title">LUTEAL CHOCOLATE</h3>
+              <div class="bento-card-pricing">
+                <span class="price-val">₹1,329</span>
+                <span class="price-strikethrough">₹1,661</span>
+              </div>
+            </div>
+            <div class="bento-card-media">
+              <img src="assets/images/mockup-luteal-bar-transparent.png" alt="Luteal Chocolate Bar" class="bento-card-img fit-mockup" loading="lazy">
+            </div>
+            <div class="bento-card-actions">
+              <button class="btn-add-ritual" data-add-id="prod-lute-sesame" type="button">
+                <span>ADD TO RITUAL</span>
+                <i data-lucide="plus"></i>
+              </button>
+              <button class="btn-quick-view" data-quick-id="prod-lute-sesame" type="button">
+                <span>SPECS</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- ==================================================== -->
+        <!-- ROW 2: 2 COLUMNS (WIDE LANDSCAPE + SIGNATURE KIT)    -->
+        <!-- ==================================================== -->
+        <div class="bento-row bento-row-landscape-portrait">
+          
+          <!-- Card 3: WIDE Landscape Dual Phase Ritual Duo -->
+          <article class="bento-card bento-card-editorial-wide" data-category="starter" data-product-id="prod-cycle-duo">
+            <div class="bento-card-header">
+              <span class="bento-card-cat">2-PHASE FOUNDATIONAL COMPANION // 2X 50G</span>
+              <h3 class="bento-card-title">THE 28-DAY CYCLE RITUAL DUO</h3>
+              <div class="bento-card-pricing">
+                <span class="price-val">₹398</span>
+                <span class="price-strikethrough">₹498</span>
+              </div>
+            </div>
+            <div class="bento-card-media" style="display: flex; align-items: center; justify-content: center; padding: 20px 10px;">
+              <img src="assets/images/mockup-cycle-duo-bars.png" alt="Mofeaz Follicular and Luteal 50g Functional Dark Chocolate Seed Cycling Bars Duo" class="bento-card-img fit-mockup" loading="lazy" style="max-height: 250px; object-fit: contain;">
+            </div>
+            <div class="bento-card-actions">
+              <button class="btn-add-ritual" data-add-id="prod-cycle-duo" type="button">
+                <span>ADD TO RITUAL</span>
+                <i data-lucide="plus"></i>
+              </button>
+              <button class="btn-quick-view" data-quick-id="prod-cycle-duo" type="button">
+                <span>SPECS</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 4: Signature 28-Day Kit Box -->
+          <article class="bento-card bento-card-portrait-kit" data-category="starter" data-product-id="prod-kit-28">
+            <div class="bento-card-header">
+              <span class="bento-card-cat">28-DAY SIGNATURE RITUAL</span>
+              <h3 class="bento-card-title">COMPLETE SEED CYCLING KIT</h3>
+              <div class="bento-card-pricing">
+                <span class="price-val">₹1,329</span>
+                <span class="price-strikethrough">₹1,661</span>
+              </div>
+            </div>
+            <div class="bento-card-media">
+              <img src="assets/images/mockup-ritual-kit-box-transparent.png" alt="Mofeaz Complete 28-Day Seed Cycling Ritual Kit Box" class="bento-card-img fit-mockup" loading="lazy">
+            </div>
+            <div class="bento-card-actions">
+              <button class="btn-add-ritual" data-add-id="prod-kit-28" type="button">
+                <span>ADD TO RITUAL</span>
+                <i data-lucide="plus"></i>
+              </button>
+              <button class="btn-quick-view" data-quick-id="prod-kit-28" type="button">
+                <span>SPECS</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- ==================================================== -->
+        <!-- ROW 3: 3 EQUAL COLUMNS (33.3% / 33.3% / 33.3%)       -->
+        <!-- ==================================================== -->
+        <div class="bento-row bento-row-three-col">
+          
+          <!-- Card 5: Follicular Coffee -->
+          <article class="bento-card" data-category="phase1" data-product-id="prod-foll-espresso">
+            <div class="bento-card-header">
+              <span class="bento-card-cat">PHASE 01 // MORNING VITALITY</span>
+              <h3 class="bento-card-title">FOLLICULAR COFFEE</h3>
+              <div class="bento-card-pricing">
+                <span class="price-val">₹1,329</span>
+                <span class="price-strikethrough">₹1,661</span>
+              </div>
+            </div>
+            <div class="bento-card-media">
+              <img src="assets/images/mockup-follicular-coffee.png" alt="Follicular Coffee Bar" class="bento-card-img fit-mockup" loading="lazy">
+            </div>
+            <div class="bento-card-actions">
+              <button class="btn-add-ritual" data-add-id="prod-foll-espresso" type="button">
+                <span>ADD TO RITUAL</span>
+                <i data-lucide="plus"></i>
+              </button>
+              <button class="btn-quick-view" data-quick-id="prod-foll-espresso" type="button">
+                <span>SPECS</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 6: Luteal Coffee -->
+          <article class="bento-card" data-category="phase2" data-product-id="prod-lute-almond">
+            <div class="bento-card-header">
+              <span class="bento-card-cat">PHASE 02 // PMS SOOTHER</span>
+              <h3 class="bento-card-title">LUTEAL COFFEE</h3>
+              <div class="bento-card-pricing">
+                <span class="price-val">₹1,329</span>
+                <span class="price-strikethrough">₹1,661</span>
+              </div>
+            </div>
+            <div class="bento-card-media">
+              <img src="assets/images/mockup-luteal-coffee.png" alt="Luteal Coffee Bar" class="bento-card-img fit-mockup" loading="lazy">
+            </div>
+            <div class="bento-card-actions">
+              <button class="btn-add-ritual" data-add-id="prod-lute-almond" type="button">
+                <span>ADD TO RITUAL</span>
+                <i data-lucide="plus"></i>
+              </button>
+              <button class="btn-quick-view" data-quick-id="prod-lute-almond" type="button">
+                <span>SPECS</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 7: Functional Coffee Companion Duo -->
+          <article class="bento-card" data-category="coffee" data-product-id="prod-coffee-duo">
+            <div class="bento-card-header">
+              <span class="bento-card-cat">COFFEE LINE // 2X 50G</span>
+              <h3 class="bento-card-title">FUNCTIONAL COFFEE RITUAL DUO</h3>
+              <div class="bento-card-pricing">
+                <span class="price-val">₹398</span>
+                <span class="price-strikethrough">₹498</span>
+              </div>
+            </div>
+            <div class="bento-card-media">
+              <img src="assets/images/mockup-coffee-duo.png" alt="Mofeaz Follicular Espresso and Luteal Roasted Coffee Bars Duo" class="bento-card-img fit-mockup" loading="lazy">
+            </div>
+            <div class="bento-card-actions">
+              <button class="btn-add-ritual" data-add-id="prod-coffee-duo" type="button">
+                <span>ADD TO RITUAL</span>
+                <i data-lucide="plus"></i>
+              </button>
+              <button class="btn-quick-view" data-quick-id="prod-coffee-duo" type="button">
+                <span>SPECS</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- ==================================================== -->
+        <!-- ROWS 4 & 5: 2 COLUMNS                                -->
+        <!-- LEFT: 2 STACKED CARDS | RIGHT: TALL MOODY SMOKE CELL -->
+        <!-- ==================================================== -->
+        <div class="bento-row bento-row-split-tall">
+          
+          <!-- Left Column (Stacked Cards) -->
+          <div class="bento-stacked-col">
+            
+            <!-- Card 8: Redesigned 14-Bar Follicular Box -->
+            <article class="bento-card bento-card-stacked" data-category="phase1" data-product-id="prod-box-14-foll">
+              <div class="bento-card-header">
+                <span class="bento-card-cat">PHASE 01 DISPENSER // 14 BARS</span>
+                <h3 class="bento-card-title">14-BAR FOLLICULAR RITUAL BOX</h3>
+                <div class="bento-card-pricing">
+                  <span class="price-val">₹1,329</span>
+                  <span class="price-strikethrough">₹1,661</span>
+                </div>
+              </div>
+              <div class="bento-card-media">
+                <img src="assets/images/mockup-14bar-follicular-box.png" alt="Mofeaz Redesigned 14-Bar Follicular Box" class="bento-card-img fit-mockup" loading="lazy">
+              </div>
+              <div class="bento-card-actions">
+                <button class="btn-add-ritual" data-add-id="prod-box-14-foll" type="button">
+                  <span>ADD TO RITUAL</span>
+                  <i data-lucide="plus"></i>
+                </button>
+                <button class="btn-quick-view" data-quick-id="prod-box-14-foll" type="button">
+                  <span>SPECS</span>
+                </button>
+              </div>
+            </article>
+
+            <!-- Card 9: Redesigned 14-Bar Luteal Box -->
+            <article class="bento-card bento-card-stacked" data-category="phase2" data-product-id="prod-box-14-lute">
+              <div class="bento-card-header">
+                <span class="bento-card-cat">PHASE 02 DISPENSER // 14 BARS</span>
+                <h3 class="bento-card-title">14-BAR LUTEAL RITUAL BOX</h3>
+                <div class="bento-card-pricing">
+                  <span class="price-val">₹1,329</span>
+                  <span class="price-strikethrough">₹1,661</span>
+                </div>
+              </div>
+              <div class="bento-card-media">
+                <img src="assets/images/mockup-14bar-luteal-box.png" alt="Mofeaz Redesigned 14-Bar Luteal Box" class="bento-card-img fit-mockup" loading="lazy">
+              </div>
+              <div class="bento-card-actions">
+                <button class="btn-add-ritual" data-add-id="prod-box-14-lute" type="button">
+                  <span>ADD TO RITUAL</span>
+                  <i data-lucide="plus"></i>
+                </button>
+                <button class="btn-quick-view" data-quick-id="prod-box-14-lute" type="button">
+                  <span>SPECS</span>
+                </button>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Right Column: Tall 2-Row Portrait Cell with 14-Bar Ritual Dispenser -->
+          <div class="bento-card bento-card-tall-smoke">
+            <div class="bento-card-header bento-editorial-header text-light">
+              <span class="bento-card-cat text-light">TACTILE RITUAL DISPENSER</span>
+              <h3 class="bento-card-title text-light">THE 14-BAR BOX</h3>
+              <p class="editorial-smoke-desc">Zero heat oxidation. 14 individual daily seed cycling bars in our tactile front-tuck dispenser mailer box.</p>
+            </div>
+            <div class="bento-card-media full-bleed-media">
+              <img src="assets/images/render-14bar-follicular-box.jpg" alt="Mofeaz 14-Bar Seed Cycling Dispenser Box" class="bento-card-img fit-cover tall-smoke-img" loading="lazy">
+            </div>
+            <div class="tall-smoke-action">
+              <a href="#howItWorks" class="editorial-smoke-link">
+                <span>DISCOVER CLINICAL RESEARCH</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 6. TESTIMONIALS FROM URBAN INDIAN WOMEN (REVIEWS)                  -->
+    <!-- ======================================================== -->
+        <!-- ======================================================== -->
+    <!-- 4. CUSTOMER REVIEWS & VIDEO TRANSFORMATION STORIES       -->
+    <!-- ======================================================== -->
+        <!-- ======================================================== -->
+    <!-- 4. AUTHENTIC CUSTOMER VIDEO STORIES (NO AI GENERATED)     -->
+    <!-- Design & Animation: Kinetic Spatial Stream (pin.it/THpXwdmzm) -->
+    <!-- ======================================================== -->
+        <!-- ======================================================== -->
+    <!-- 4. AUTHENTIC CUSTOMER VIDEO STORIES (NO AI GENERATED)     -->
+    <!-- Design & Motion: Kinetic Diagonal Stream (pin.it/THpXwdmzm) -->
+    <!-- Scroll-Driven Diagonal Progression + Video Auto-Switch   -->
+    <!-- ======================================================== -->
+    <section class="section-reviews" id="reviews">
+      
+      <!-- Sticky Scroll Track: 320vh tall for scroll-driven progression -->
+      <div class="reviews-scroll-track" id="reviewsScrollTrack">
+        
+        <!-- Pinned 100vh Stage -->
+        <div class="reviews-sticky-stage" id="reviewsStickyStage">
+          
+          <!-- Kinetic Typographic Backdrop (Opposite Parallax Drift) -->
+          <div class="reviews-parallax-bg" id="reviewsParallaxBg" aria-hidden="true">
+            <div class="reviews-bg-row row-1">
+              <span class="reviews-bg-text">REAL STORIES &bull; UNFILTERED VOICES &bull; 4,200+ WOMEN &bull; ZERO AI ACTORS &bull; CLINICAL RESULTS &bull; </span>
+              <span class="reviews-bg-text">REAL STORIES &bull; UNFILTERED VOICES &bull; 4,200+ WOMEN &bull; ZERO AI ACTORS &bull; CLINICAL RESULTS &bull; </span>
+            </div>
+            <div class="reviews-bg-row row-2">
+              <span class="reviews-bg-text">CYCLE HARMONY &bull; 1 BAR A DAY &bull; PMS FREEDOM &bull; SUSTAINED ENERGY &bull; 100% WHOLE SEEDS &bull; </span>
+              <span class="reviews-bg-text">CYCLE HARMONY &bull; 1 BAR A DAY &bull; PMS FREEDOM &bull; SUSTAINED ENERGY &bull; 100% WHOLE SEEDS &bull; </span>
+            </div>
+          </div>
+
+          <!-- Minimalist Stage Header -->
+          <div class="reviews-stage-header">
+            <div class="stage-header-meta">
+              <span class="section-subtitle">AUTHENTIC COMMUNITY // 100% REAL WOMEN</span>
+              <button class="reviews-audio-toggle-btn" id="reviewsAudioToggle" type="button" aria-label="Toggle voice audio" data-cursor-text="AUDIO">
+                <span class="audio-wave-icon">
+                  <span></span><span></span><span></span><span></span>
+                </span>
+                <span class="audio-label" id="audioToggleLabel">Sound: Muted</span>
+              </button>
+            </div>
+            <h2 class="stage-header-title">Loved by 4,200+ Women Across India</h2>
+          </div>
+
+          
+
+          <!-- DIAGONAL CARDS STREAM STAGE (pin.it/THpXwdmzm) -->
+          <div class="reviews-diagonal-stream" id="reviewsDiagonalStream">
+            <div class="reviews-diagonal-origin" id="reviewsDiagonalOrigin">
+              
+              <!-- Card 0: Meenakshi K. -->
+              <div class="review-diagonal-card" data-index="0" data-category="regularity" data-cursor-text="WATCH REEL">
+                <div class="card-inner">
+                  <img src="assets/images/reviews/review_thumb_318008.jpg" alt="Meenakshi K. - Authentic Mofeaz Customer Review" class="card-poster" loading="lazy">
+                  <video class="card-video" loop muted playsinline preload="metadata" src="assets/videos/review_full_318008.mp4"></video>
+                  <div class="card-scrim"></div>
+<button class="card-play-btn" aria-label="Play video review of Meenakshi K." type="button">
+                    <div class="play-btn-circle">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="play-ripple"></span>
+                  </button>
+                  
+                  <div class="card-info-bottom">
+                    <div class="card-stars">★★★★★</div>
+                    <p class="card-quote-preview">“My cycle normalized to 28 days without morning mess”</p>
+                    <div class="card-reviewer-meta">
+                      <span class="reviewer-name">Meenakshi K. <svg class="verified-check" width="13" height="13" viewBox="0 0 24 24" fill="#C99454"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+                      <span class="reviewer-location">Verified Customer • Bengaluru</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 1: Ritu Sharma -->
+              <div class="review-diagonal-card" data-index="1" data-category="pcos" data-cursor-text="WATCH REEL">
+                <div class="card-inner">
+                  <img src="assets/images/reviews/review_thumb_318007.jpg" alt="Ritu Sharma - Authentic Mofeaz Customer Review" class="card-poster" loading="lazy">
+                  <video class="card-video" loop muted playsinline preload="metadata" src="assets/videos/review_full_318007.mp4"></video>
+                  <div class="card-scrim"></div>
+<button class="card-play-btn" aria-label="Play video review of Ritu Sharma" type="button">
+                    <div class="play-btn-circle">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="play-ripple"></span>
+                  </button>
+                  
+                  <div class="card-info-bottom">
+                    <div class="card-stars">★★★★★</div>
+                    <p class="card-quote-preview">“Sustained energy with zero caffeine crashes”</p>
+                    <div class="card-reviewer-meta">
+                      <span class="reviewer-name">Ritu Sharma <svg class="verified-check" width="13" height="13" viewBox="0 0 24 24" fill="#C99454"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+                      <span class="reviewer-location">Verified Customer • Delhi-NCR</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2: Kavita Joshi -->
+              <div class="review-diagonal-card" data-index="2" data-category="pms" data-cursor-text="WATCH REEL">
+                <div class="card-inner">
+                  <img src="assets/images/reviews/review_thumb_318009.jpg" alt="Kavita Joshi - Authentic Mofeaz Customer Review" class="card-poster" loading="lazy">
+                  <video class="card-video" loop muted playsinline preload="metadata" src="assets/videos/review_full_318009.mp4"></video>
+                  <div class="card-scrim"></div>
+<button class="card-play-btn" aria-label="Play video review of Kavita Joshi" type="button">
+                    <div class="play-btn-circle">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="play-ripple"></span>
+                  </button>
+                  
+                  <div class="card-info-bottom">
+                    <div class="card-stars">★★★★★</div>
+                    <p class="card-quote-preview">“No more relying on painkillers each month”</p>
+                    <div class="card-reviewer-meta">
+                      <span class="reviewer-name">Kavita Joshi <svg class="verified-check" width="13" height="13" viewBox="0 0 24 24" fill="#C99454"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+                      <span class="reviewer-location">Verified Customer • Pune</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3: Sunita Verma -->
+              <div class="review-diagonal-card" data-index="3" data-category="regularity" data-cursor-text="WATCH REEL">
+                <div class="card-inner">
+                  <img src="assets/images/reviews/review_thumb_315907.jpg" alt="Sunita Verma - Authentic Mofeaz Customer Review" class="card-poster" loading="lazy">
+                  <video class="card-video" loop muted playsinline preload="metadata" src="assets/videos/review_full_315907.mp4"></video>
+                  <div class="card-scrim"></div>
+<button class="card-play-btn" aria-label="Play video review of Sunita Verma" type="button">
+                    <div class="play-btn-circle">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="play-ripple"></span>
+                  </button>
+                  
+                  <div class="card-info-bottom">
+                    <div class="card-stars">★★★★★</div>
+                    <p class="card-quote-preview">“Earthy, deeply satisfying &amp; gentle on gut”</p>
+                    <div class="card-reviewer-meta">
+                      <span class="reviewer-name">Sunita Verma <svg class="verified-check" width="13" height="13" viewBox="0 0 24 24" fill="#C99454"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+                      <span class="reviewer-location">Verified Customer • Mumbai</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 4: Neelam Kapoor -->
+              <div class="review-diagonal-card" data-index="4" data-category="perimenopause" data-cursor-text="WATCH REEL">
+                <div class="card-inner">
+                  <img src="assets/images/reviews/review_thumb_315908.jpg" alt="Neelam Kapoor - Authentic Mofeaz Customer Review" class="card-poster" loading="lazy">
+                  <video class="card-video" loop muted playsinline preload="metadata" src="assets/videos/review_full_315908.mp4"></video>
+                  <div class="card-scrim"></div>
+<button class="card-play-btn" aria-label="Play video review of Neelam Kapoor" type="button">
+                    <div class="play-btn-circle">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="play-ripple"></span>
+                  </button>
+                  
+                  <div class="card-info-bottom">
+                    <div class="card-stars">★★★★★</div>
+                    <p class="card-quote-preview">“Essential hormone grounding in my late 40s”</p>
+                    <div class="card-reviewer-meta">
+                      <span class="reviewer-name">Neelam Kapoor <svg class="verified-check" width="13" height="13" viewBox="0 0 24 24" fill="#C99454"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+                      <span class="reviewer-location">Verified Customer • Hyderabad</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Dynamic Live Editorial HUD (Bottom Left) -->
+          <div class="reviews-live-hud" id="reviewsLiveHud">
+            <div class="hud-top-row">
+              <span class="hud-step-count" id="hudStepCount">STORY 01 // 05</span>
+              <span class="hud-benefit-tag" id="hudBenefitTag">Cycle Regularity</span>
+            </div>
+            <h3 class="hud-reviewer-title" id="hudReviewerTitle">
+              Meenakshi K. <span class="hud-city">Bengaluru</span>
+            </h3>
+            <blockquote class="hud-quote" id="hudQuote">
+              “Taking 1 bar daily brought my cycle back to an exact 28-day rhythm without morning mess.”
+            </blockquote>
+            <div class="hud-product-pill" id="hudProductPill">
+              <span class="hud-product-name" id="hudProductName">28-Day Complete Cycle Kit</span>
+              <span class="hud-product-price" id="hudProductPrice">₹1,999</span>
+              <button class="hud-product-cta" id="hudProductAddBtn" type="button">Add to Bag</button>
+            </div>
+          </div>
+
+          <!-- Stage Progress Stepper & Scroll Cue (Bottom Right) -->
+          <div class="reviews-stage-progress">
+            <div class="progress-bar-rail">
+              <div class="progress-bar-fill" id="reviewsProgressFill"></div>
+            </div>
+            <div class="progress-pips" id="reviewsProgressPips">
+              <button class="pip active" data-target="0" type="button" aria-label="Go to story 1">1</button>
+              <button class="pip" data-target="1" type="button" aria-label="Go to story 2">2</button>
+              <button class="pip" data-target="2" type="button" aria-label="Go to story 3">3</button>
+              <button class="pip" data-target="3" type="button" aria-label="Go to story 4">4</button>
+              <button class="pip" data-target="4" type="button" aria-label="Go to story 5">5</button>
+            </div>
+            <div class="scroll-instruction-cue">
+              <span class="cue-arrow-down">&darr;</span>
+              <span class="cue-text">Scroll to glide along diagonal stream</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 7. BRAND PHILOSOPHY / THE "MOI • FEA • Z" REVOLUTION     -->
+    <!-- ======================================================== -->
+    <section class="section-philosophy" id="philosophy">
+      <div class="container-standard">
+        
+                <div class="philosophy-header text-center">
+          <span class="section-subtitle">THE ESSENCE OF MOFEAZ</span>
+          <h2 class="section-title">Why "mofeaz"?</h2>
+          <p class="philosophy-manifesto">
+            Pronounced <strong class="text-terracotta">moi • fea • z</strong>, our name is our sacred promise: <br>
+            <span class="highlight-phrase">“A Feast for Me, from A to Z.”</span>
+          </p>
+        </div>
+
+        <div class="philosophy-grid">
+          <!-- Pillar 1: Moi -->
+          <div class="philosophy-card">
+            <div class="pillar-marker">01 // MOI</div>
+            <h3 class="pillar-title">For You (Me)</h3>
+            <p class="pillar-text">
+              Derived from the French word for <em>"Me"</em>. Urban Indian women carry intense mental loads, career ambitions, and family responsibilities. <em>Moi</em> is a daily boundary to nourish yourself first.
+            </p>
+            <div class="pillar-detail">
+              <span>Self-care transformed into an effortless 2-minute daily ritual.</span>
+            </div>
+          </div>
+
+          <!-- Pillar 2: Fea -->
+          <div class="philosophy-card active-pillar">
+            <div class="pillar-marker">02 // FEA</div>
+            <h3 class="pillar-title">A Wholesome Feast</h3>
+            <p class="pillar-text">
+              A joyful abbreviation of <em>"Feast"</em>. No dry, bitter powders or horse pills. We turned raw cold-milled seeds into a rich, fudgy, decadent snack you genuinely look forward to eating every day.
+            </p>
+            <div class="pillar-detail">
+              <span>Real whole seeds • Natural Medjool date sweetness • Zero chemicals.</span>
+            </div>
+          </div>
+
+          <!-- Pillar 3: Z -->
+          <div class="philosophy-card">
+            <div class="pillar-marker">03 // Z</div>
+            <h3 class="pillar-title">A to Z Balance</h3>
+            <p class="pillar-text">
+              Complete cyclical equilibrium. From Day 1 (menstruation) through Day 14 (ovulation) and all the way through Day 28, syncing your micronutrients from A to Z.
+            </p>
+            <div class="pillar-detail">
+              <span>Total hormonal equilibrium for skin, energy, mood &amp; period predictability.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- ======================================================== -->
+    <!-- 8. MOON CYCLE MAP // 28-DAY BIOLOGICAL RHYTHM            -->
+    <!-- Pitch Black Space, Photorealistic Bright Moon & Pin Motion -->
+    <!-- ======================================================== -->
+    <section class="section-moon-cycle" id="howItWorks" aria-label="Seed Cycling Cycle Map & 28-Day Moon Rhythm">
+      <div class="moon-scroll-track" id="moonScrollTrack">
+        <div class="moon-sticky-viewport" id="moonStickyViewport">
+          
+          <!-- Minimalist Editorial Top Bar (Pitch Black Space Theme) -->
+          <div class="moon-minimal-topbar">
+            <span class="topbar-logo">m.</span>
+            <div class="topbar-center">
+              <span class="topbar-sub">MOFEAZ &bull; CLINICAL CYCLE MAP</span>
+              <span class="topbar-day-pill" id="moonCycleDayCounter">DAY 01 OF 28 &bull; NEW MOON</span>
+            </div>
+            <div class="topbar-nav">
+              <span>EST. 2026</span>
+              <span>CHRONOBIOLOGY</span>
+            </div>
+          </div>
+
+          <!-- Pure Full-Screen Pitch-Black Stage: Centered Bright Moon & Animated Typography -->
+          <div class="moon-stage-canvas" id="moonStageCanvas">
+            
+            <!-- Floating Animated Editorial Words (Style: pin.it/59D8NXaLg) -->
+            <div class="editorial-float-word word-top-right" id="wordTopRight">
+              <span class="word-text">Rhythm</span>
+            </div>
+            <div class="editorial-float-word word-mid-left" id="wordMidLeft">
+              <span class="word-text">Release &amp;</span>
+            </div>
+            <div class="editorial-float-word word-bottom-left" id="wordBottomLeft">
+              <span class="word-text">Renew</span>
+            </div>
+            <div class="editorial-float-word word-bottom-right" id="wordBottomRight">
+              <span class="word-text">With Zinc &amp; Lignans</span>
+            </div>
+
+            <!-- Centered Photorealistic Bright Moon Canvas -->
+            <div class="centered-moon-frame" id="centeredMoonFrame">
+              <div class="moon-ambient-glow" id="moonAmbientGlow"></div>
+              <canvas id="moonCanvas" width="640" height="640" class="moon-photorealistic-canvas"></canvas>
+            </div>
+
+          </div>
+
+          <!-- Minimalist Space Footer -->
+          <footer class="moon-minimal-footer">
+            <span class="footer-meta">DAILYMINIMAL &bull; NO. 322</span>
+            <span class="footer-scroll-hint">SCROLL TO CYCLE THROUGH LUNAR PHASES &darr;</span>
+            <span class="footer-meta">&copy; MOFEAZ CHRONOBIOLOGY</span>
+          </footer>
+
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ======================================================== -->
+    <!-- 10. FREQUENTLY ASKED QUESTIONS                           -->
+    <!-- ======================================================== -->
+    <section class="section-faq" id="faq">
+      <div class="container-standard faq-container">
+        <div class="faq-intro">
+          <span class="section-subtitle">COMMONLY ASKED QUESTIONS</span>
+          <h2 class="faq-heading">Everything you need to know about seed cycling.</h2>
+          <p class="faq-lead">
+            Have questions about PCOS, irregular periods, or starting during your luteal phase? We have answers.
+          </p>
+          <button id="faqReplayIntroBtn" class="btn-text-link">
+            <i data-lucide="play-circle"></i>
+            <span>Replay Brand Intro Animation</span>
+          </button>
+        </div>
+
+        <div class="faq-accordion">
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What if my periods are completely irregular or missing (amenorrhea)?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>
+                If your cycle is unpredictable, you can cycle with the <strong>lunar phases</strong> (which naturally aligns with the 28-day human rhythm). Start Phase 1 (Flax + Pumpkin) on the New Moon for 14 days, and switch to Phase 2 (Sesame + Sunflower) on the Full Moon for 14 days. This gently re-trains your endocrine system.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Is Mofeaz safe for women with PCOS and thyroid conditions?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes, absolutely! The pumpkin seeds provide zinc which helps reduce excess androgens (common in PCOS, which causes facial hair and hormonal acne). Flaxseeds provide lignans which bind to excess bad estrogens. We use zero cane sugar or refined carbohydrates, making it 100% insulin-friendly.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How soon can I expect to notice changes in my cycle?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Because follicles take roughly 90 to 100 days to mature inside the ovaries, most women report reduced PMS, lighter cramps, and better energy by their second cycle (around day 60), with optimal hormonal regularity achieved at 3 months.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What does the brand name "mofeaz" mean again?</span>
+              <i data-lucide="chevron-down" class="faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>
+                "mofeaz" is phonetically structured as <strong>moi - fea - z</strong>: "Moi" (French for "Me" / self-care), "Fea" (a nutritious feast of whole seeds), and "Z" (from A to Z, providing complete cyclical harmony for the entire 28 days).
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 11. NEWSLETTER & CYCLE CLUB SUBSCRIPTION                 -->
+        <!-- ======================================================== -->
+    <!-- 10B. A NOTE FROM OUR FOUNDER // CLOSING PITCH & ADVICE   -->
+    <!-- Reference: pin.it/5IluAuAKC (Kinfolk Typo Parallax)     -->
+        <!-- ======================================================== -->
+    <!-- 10B. THE FOUNDER'S LAST WORD // CLOSING PITCH & ADVICE   -->
+    <!-- Reference: pin.it/5IluAuAKC (Kinfolk Typo Parallax)     -->
+    <!-- Real Context: Swetta Sharma, Clinical Nutritionist & PhD  -->
+        <!-- ======================================================== -->
+    <!-- 10B. THE FOUNDER SECTION (Reference: pin.it/5IluAuAKC)    -->
+    <!-- Full-Screen Interactive Stage & Founder Image Cursor       -->
+    <!-- Real Context: Swetta Sharma, Clinical Nutritionist (15+Yrs)-->
+    <!-- ======================================================== -->
+    <section class="section-founder" id="founder" aria-label="A Note From Our Founder">
+      <div class="founder-fullscreen-stage" id="founderMotionStage">
+        
+        <!-- Four Editorial Corner Labels (Matching Reference pin.it/5IluAuAKC) -->
+        <span class="stage-corner-tag top-left">SWETTA SHARMA</span>
+        <span class="stage-corner-tag top-right">CLINICAL NUTRITIONIST &bull; 15+ YRS</span>
+        <span class="stage-corner-tag bottom-left">THE BARRIER WAS THE LUNCHBOX</span>
+        <span class="stage-corner-tag bottom-right">MOFEAZ &bull; BENGALURU 2026</span>
+
+        <!-- Small, Centered "Behind" Text Stack (Matching Reference Pin) -->
+        <div class="founder-typo-canvas" id="founderTypoCanvas">
+          <div class="typo-line">The Barrier</div>
+          <div class="typo-line">
+            Was Never The Science <span class="typo-year">2026</span>
+          </div>
+          <div class="typo-line typo-italic">The Barrier Was</div>
+          <div class="typo-line">The Lunchbox</div>
+          <div class="typo-line typo-sub">and Seed Cycling</div>
+          <div class="typo-line typo-italic">Every Day</div>
+        </div>
+
+        <!-- The Founder Image Cursor (Tracks cursor inside section) -->
+        <div class="founder-cursor-image" id="founderCursorImage" aria-hidden="true">
+          <div class="card-inner-frame">
+            <img 
+              src="assets/images/mofeaz-founder-portrait.jpg" 
+              alt="Swetta Sharma - Clinical Nutritionist, PhD Researcher and Founder of MOFEAZ" 
+              class="founder-portrait-img" 
+              id="founderPortraitImg"
+              loading="eager"
+            >
+            <div class="founder-card-tag">
+              <span class="founder-tag-name">SWETTA SHARMA</span>
+              <span class="founder-tag-role">FOUNDER // NUTRITIONIST</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+<!-- ======================================================== -->
+    <section class="section-newsletter">
+      <div class="container-standard text-center">
+        <span class="section-subtitle">THE CYCLE CLUB</span>
+        <h2 class="newsletter-heading">Receive 15% off your first 28-day ritual.</h2>
+        <p class="newsletter-sub">
+          Weekly hormone health insights, Ayurvedic seed wisdom, and private access to micro-batch drops.
+        </p>
+
+        <form class="newsletter-form" id="newsletterForm" onsubmit="event.preventDefault(); window.handleNewsletter();">
+          <input type="email" placeholder="Enter your email address" class="newsletter-input" required id="newsletterEmail">
+          <button type="submit" class="btn-primary">
+            <span>JOIN THE CLUB</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </form>
+        <p class="privacy-note">Zero spam. You can unsubscribe with one click at any time.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- 12. FOOTER (EXACT REFERENCE: MAUDE-STYLE MINIMALISM)     -->
+  <!-- ======================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      
+      <!-- Centered Simple Typographic Brand Logo (Bodoni Moda) -->
+      <div class="footer-logo-center">
+        <a href="#" class="footer-logo-link" aria-label="MOFEAZ Home">
+          <span class="footer-brand-logo">MOFEAZ</span>
+        </a>
+      </div>
+
+      <!-- 4 Columns matching reference -->
+      <div class="footer-reference-grid">
+        <div class="footer-ref-col">
+          <h4 class="footer-ref-heading">SHOP</h4>
+          <ul class="footer-ref-links">
+            <li><a href="#bentoGrid">RITUAL BARS</a></li>
+            <li><a href="#bentoGrid">NEW COLLECTION</a></li>
+            <li><a href="#bentoGrid">14-BAR DISPENSER BOXES</a></li>
+            <li><a href="#bentoGrid">SHOP ALL</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-ref-col">
+          <h4 class="footer-ref-heading">ABOUT</h4>
+          <ul class="footer-ref-links">
+            <li><a href="#founder">FOUNDER'S NOTE</a></li>
+            <li><a href="#philosophy">ABOUT US</a></li>
+            <li><a href="#philosophy">OUR PHILOSOPHY</a></li>
+            <li><a href="#howItWorks">HOW TO USE</a></li>
+            <li><a href="#howItWorks">THE RITUAL</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-ref-col">
+          <h4 class="footer-ref-heading">FOR CLIENTS</h4>
+          <ul class="footer-ref-links">
+            <li><a href="#conciergeModal" class="concierge-nav-trigger">CONTACTS</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#bentoGrid">CYCLE GUIDELINES</a></li>
+            <li><a href="#conciergeModal" class="concierge-nav-trigger">CONCIERGE</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-ref-col footer-sub-col">
+          <h4 class="footer-ref-heading">SUBSCRIBE &amp; SAVE</h4>
+          <p class="footer-sub-note">SUBSCRIBE TO OUR SECRET NEWSLETTER AND RECEIVE FIRST-ORDER OFFERS AND CYCLE TIPS.</p>
+          <form class="footer-ref-form" id="footerSubscribeForm" onsubmit="event.preventDefault(); window.handleNewsletterSubmit(this);">
+            <div class="footer-ref-input-wrap">
+              <input type="email" placeholder="Email" required class="footer-ref-input" aria-label="Your email">
+              <button type="submit" class="footer-ref-submit-btn">SUBSCRIBE</button>
+            </div>
+          </form>
+          <div class="footer-ref-social">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="ref-social-link">IG</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="ref-social-link">FB</a>
+            <a href="https://pinterest.com" target="_blank" rel="noopener" class="ref-social-link">PI</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Centered Copyright -->
+      <div class="footer-center-copyright">
+        <p>&copy; 2026, MOFEAZ. ALL RIGHTS RESERVED.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ======================================================== -->
+  <!-- 13. INTERACTIVE SLIDE-OUT CART DRAWER                    -->
+  <!-- ======================================================== -->
+  <div class="cart-drawer-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping bag drawer">
+    <div class="cart-drawer-header">
+      <div class="cart-title-wrap">
+        <h3 class="cart-heading">YOUR RITUAL BAG</h3>
+        <span class="cart-badge-items" id="cartItemsCountText">0 items</span>
+      </div>
+      <button class="cart-close-btn" id="cartCloseBtn" aria-label="Close cart">&times;</button>
+    </div>
+
+    <!-- Free Shipping Progress -->
+    <div class="cart-shipping-meter">
+      <div class="meter-text" id="shippingMeterText">
+        Add ₹499 more for complimentary shipping!
+      </div>
+      <div class="meter-bar-track">
+        <div class="meter-bar-fill" id="shippingMeterFill" style="width: 40%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Item List -->
+    <div class="cart-items-container" id="cartItemsList">
+      <!-- Items dynamically populated via JavaScript -->
+      <div class="empty-cart-state" id="emptyCartState">
+        <i data-lucide="shopping-bag" class="empty-icon"></i>
+        <p class="empty-title">Your ritual bag is empty</p>
+        <p class="empty-sub">Select your 28-day kit or functional bars to start your cycle harmony.</p>
+        <button class="btn-primary" onclick="window.closeCart(); window.location.hash='#bentoGrid';">
+          <span>EXPLORE ESSENTIALS</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Cart Footer & Checkout -->
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <div class="cart-subtotal-row">
+        <span>Subtotal</span>
+        <span class="cart-subtotal-val" id="cartSubtotalVal">₹0</span>
+      </div>
+      <p class="cart-tax-note">Shipping &amp; taxes calculated at checkout. Lab-tested fresh batches.</p>
+      
+      <button class="btn-primary btn-checkout" id="checkoutBtn" onclick="alert('Thank you for exploring MOFEAZ! Checkout is ready to integrate with Shopify/Razorpay/Stripe.');">
+        <span>PROCEED TO SECURE CHECKOUT</span>
+        <i data-lucide="lock"></i>
+      </button>
+
+      <div class="cart-perks-row">
+        <span><i data-lucide="shield-check"></i> 100% Secure Checkout</span>
+        <span><i data-lucide="truck"></i> Delivered in 48-72h</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ======================================================== -->
+  <!-- 14. QUICK-VIEW PRODUCT MODAL                             -->
+  <!-- ======================================================== -->
+  <div class="modal-overlay" id="quickViewOverlay"></div>
+  <div class="quick-view-modal" id="quickViewModal" role="dialog" aria-modal="true">
+    <button class="modal-close-btn" id="quickViewCloseBtn">&times;</button>
+    <div class="modal-grid" id="quickViewContent">
+      <!-- Content populated by JavaScript -->
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 15. INTERACTIVE CYCLE PHASE FINDER MODAL                 -->
+  <!-- ======================================================== -->
+  <div class="modal-overlay" id="cycleFinderOverlay"></div>
+  <div class="cycle-finder-modal" id="cycleFinderModal" role="dialog" aria-modal="true">
+    <button class="modal-close-btn" id="cycleFinderCloseBtn">&times;</button>
+    
+    <div class="finder-header">
+      <span class="sku-category">URBAN WOMEN'S HORMONE ADVISOR</span>
+      <h3 class="finder-title">Find Your Current Cycle Phase</h3>
+      <p class="finder-desc">
+        Calculate whether your body is currently in the Follicular or Luteal phase and receive your personalized seed prescription.
+      </p>
+    </div>
+
+    <form class="finder-form" id="cycleFinderForm" onsubmit="event.preventDefault(); window.calculateCyclePhase();">
+      <div class="form-row">
+        <label for="lastPeriodDate">First day of your last period:</label>
+        <input type="date" id="lastPeriodDate" required class="form-input">
+      </div>
+
+      <div class="form-row">
+        <label for="cycleLengthInput">Average cycle length (standard is 28 days):</label>
+        <select id="cycleLengthInput" class="form-select">
+          <option value="26">26 Days (Shorter)</option>
+          <option value="28" selected>28 Days (Standard)</option>
+          <option value="30">30 Days</option>
+          <option value="32">32 Days</option>
+          <option value="35">35 Days (PCOS / Longer)</option>
+          <option value="irregular">Irregular / Missing (Cycle with the Moon)</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-primary btn-full">
+        <span>CALCULATE MY PHASE</span>
+        <i data-lucide="sparkles"></i>
+      </button>
+    </form>
+
+    <div class="finder-result" id="finderResult" style="display: none;">
+      <div class="result-card">
+        <div class="result-phase-title" id="resPhaseTitle">Phase 1: Follicular</div>
+        <div class="result-day-count" id="resDayCount">You are on Day 7 of your cycle</div>
+        <div class="result-hormone" id="resHormone">Dominant Hormone: Estrogen (Building)</div>
+        <p class="result-explanation" id="resExplanation">
+          Your body needs cold-milled pumpkin seeds and flaxseeds. The zinc and lignans help balance estrogen and support optimal egg follicle health.
+        </p>
+        <div class="result-recommended-product" id="resProductRecommendation">
+          <!-- Recommended product card injected here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 16. CONTACT CONCIERGE MODAL                              -->
+  <!-- ======================================================== -->
+  <div class="modal-overlay" id="conciergeOverlay"></div>
+  <div class="concierge-modal" id="conciergeModal" role="dialog" aria-modal="true">
+    <button class="modal-close-btn" id="conciergeCloseBtn">&times;</button>
+    <div class="finder-header">
+      <span class="sku-category">CLIENT CONCIERGE // MOFEAZ</span>
+      <h3 class="finder-title">Connect with Us</h3>
+      <p class="finder-desc">
+        Have questions about seed cycling, subscription deliveries, or custom dietary guidance? Our nutritionist-led team in Bengaluru is here to help.
+      </p>
+    </div>
+    <div class="concierge-channels">
+      <a href="mailto:care@mofeaz.com" class="concierge-channel-card">
+        <i data-lucide="mail"></i>
+        <div>
+          <strong>Email Our Nutritionists</strong>
+          <span>care@mofeaz.com &bull; Responses within 4 hours</span>
+        </div>
+      </a>
+      <a href="https://wa.me/919876543210" target="_blank" class="concierge-channel-card">
+        <i data-lucide="message-circle"></i>
+        <div>
+          <strong>Direct WhatsApp Concierge</strong>
+          <span>Mon–Sat 9am–7pm IST &bull; Instant chat</span>
+        </div>
+      </a>
+      <div class="concierge-channel-card">
+        <i data-lucide="map-pin"></i>
+        <div>
+          <strong>Headquarters &amp; Micro-Kitchen</strong>
+          <span>Mofeaz Wellness Pvt. Ltd., Bengaluru, Karnataka, India</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 17. MY FAVORITES MODAL / DRAWER                          -->
+  <!-- ======================================================== -->
+  <div class="modal-overlay" id="favoritesOverlay"></div>
+  <div class="favorites-modal" id="favoritesModal" role="dialog" aria-modal="true">
+    <button class="modal-close-btn" id="favoritesCloseBtn">&times;</button>
+    <div class="finder-header">
+      <span class="sku-category">SAVED FOR YOUR RHYTHM</span>
+      <h3 class="finder-title">My Favorites</h3>
+      <p class="finder-desc">Your curated cycle essentials and functional snacks.</p>
+    </div>
+    <div id="favoritesList" class="favorites-list-container">
+      <!-- Injected by JavaScript -->
+    </div>
+  </div>
+
+    <!-- ======================================================== -->
+  <!-- 18. AUTHENTIC VIDEO REVIEW REEL PLAYER MODAL            -->
+  <!-- ======================================================== -->
+  <div class="review-modal-overlay" id="reviewModalOverlay" aria-hidden="true"></div>
+  <div class="review-video-modal" id="reviewVideoModal" role="dialog" aria-modal="true" aria-label="Customer Video Review Player">
+    <button class="review-modal-close" id="reviewModalClose" aria-label="Close review player" type="button">&times;</button>
+    
+    <div class="review-modal-layout">
+      <!-- Video Player Column -->
+      <div class="review-modal-video-col">
+        <div class="modal-video-wrapper">
+          <video id="modalVideoPlayer" class="modal-video-element" playsinline controls preload="metadata"></video>
+          <div class="modal-video-overlay-loader" id="modalVideoLoader">
+            <div class="loader-spinner"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Editorial Info Column -->
+      <div class="review-modal-info-col">
+        <div class="modal-info-scroll">
+          
+          <div class="modal-verified-header">
+            <span class="modal-verified-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#C99454"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              VERIFIED CUSTOMER STORY
+            </span>
+            <span class="modal-stars">★★★★★</span>
+          </div>
+
+          <h3 class="modal-reviewer-name" id="modalReviewerName">Meenakshi K.</h3>
+          <span class="modal-reviewer-city" id="modalReviewerCity">Verified Customer • Bengaluru</span>
+          <span class="modal-benefit-badge" id="modalBenefitBadge">Cycle Regularity &amp; PMS Support</span>
+
+          <blockquote class="modal-quote" id="modalQuoteText">
+            “I used to experience irregular 45+ day cycles and extreme fatigue. Having the Phase 1 &amp; 2 bars every day completely regulated my cycle without the morning mess of seed grinding.”
+          </blockquote>
+
+          <!-- Featured Product in Reel Card -->
+          <div class="modal-product-card" id="modalProductCard">
+            <div class="modal-product-thumb">
+              <img id="modalProductImg" src="assets/images/mockup-28day-master-kit.png" alt="Featured Product">
+            </div>
+            <div class="modal-product-details">
+              <span class="modal-product-phase" id="modalProductPhase">PHASE 01 + 02 RITUAL</span>
+              <h4 class="modal-product-title" id="modalProductTitle">28-Day Complete Cycle Kit</h4>
+              <div class="modal-product-pricing">
+                <span class="modal-price" id="modalProductPrice">₹1,999</span>
+                <span class="modal-compare-price" id="modalProductCompare">₹2,499</span>
+              </div>
+            </div>
+            <button class="modal-product-btn" id="modalProductAddBtn" type="button">Add to Bag</button>
+          </div>
+
+          <!-- Reel Playlist Switcher Controls -->
+          <div class="modal-playlist-nav">
+            <button class="modal-nav-btn prev-reel" id="modalPrevReelBtn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+              <span>Previous Story</span>
+            </button>
+            <span class="modal-reel-counter" id="modalReelCounter">1 of 5</span>
+            <button class="modal-nav-btn next-reel" id="modalNextReelBtn" type="button">
+              <span>Next Story</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<!-- Toast Notification for Add to Cart -->
+  <div class="toast-notification" id="toastNotification">
+    <div class="toast-content">
+      <i data-lucide="check" class="toast-check"></i>
+      <span id="toastMessage">Added to your ritual bag</span>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 17. STICKY VERTICAL WHATSAPP CONTACT TAB & CONCIERGE POPUP-->
+  <!-- Reference: Right side vertical tab, slightly above bottom-->
+  <!-- Theme: Mofeaz Terracotta & Warm Luxury Palette           -->
+  <!-- ======================================================== -->
+  <aside class="whatsapp-sticky-widget" id="whatsappStickyWidget" aria-label="WhatsApp Client Support">
+    <!-- Floating Vertical Tab Trigger -->
+    <button class="whatsapp-sticky-tab" id="whatsappStickyTab" type="button" aria-label="Chat on WhatsApp" aria-expanded="false" aria-controls="whatsappStickyPopup" data-cursor="WHATSAPP">
+      <span class="whatsapp-tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+      </span>
+      <span class="whatsapp-tab-text">CHAT ON WHATSAPP</span>
+      <span class="whatsapp-tab-pulse" aria-hidden="true"></span>
+    </button>
+
+    <!-- Floating Luxury WhatsApp Concierge Popup Card -->
+    <div class="whatsapp-sticky-popup" id="whatsappStickyPopup" role="dialog" aria-modal="false" aria-label="WhatsApp Concierge Chat">
+      <div class="whatsapp-popup-header">
+        <div class="whatsapp-popup-badge">
+          <span class="popup-brand-tag">MOFEAZ // CLINICAL CONCIERGE</span>
+          <span class="popup-status-pill"><span class="status-dot"></span> Online Now</span>
+        </div>
+        <button class="whatsapp-popup-close" id="whatsappPopupClose" type="button" aria-label="Close WhatsApp Concierge Popup">&times;</button>
+      </div>
+
+      <div class="whatsapp-popup-body">
+        <div class="whatsapp-nutritionist-intro">
+          <div class="intro-avatar">
+            <img src="assets/images/mofeaz-founder-portrait.jpg" alt="Swetta Sharma, Clinical Nutritionist" width="40" height="40">
+            <span class="avatar-verified-check">✓</span>
+          </div>
+          <div class="intro-text">
+            <strong>Nutrition Concierge</strong>
+            <p>Swetta Sharma &bull; Clinical Team</p>
+          </div>
+        </div>
+
+        <p class="whatsapp-popup-message">
+          Hello! Need guidance on which seed cycling phase fits your cycle? Chat directly with our clinical team on WhatsApp.
+        </p>
+
+        <!-- Quick Consult Topic Chips -->
+        <div class="whatsapp-quick-chips">
+          <button type="button" class="whatsapp-chip" data-msg="Hi Mofeaz, I need help choosing the right seed cycling phase for my cycle.">
+            <span>🌱 Which phase fits my cycle?</span>
+          </button>
+          <button type="button" class="whatsapp-chip" data-msg="Hi Mofeaz, does seed cycling help with PCOS/PCOD and irregular periods?">
+            <span>🌸 PCOS & Irregular Cycles</span>
+          </button>
+          <button type="button" class="whatsapp-chip" data-msg="Hi Mofeaz, I would like to check on my order and delivery status.">
+            <span>📦 Order & Delivery Query</span>
+          </button>
+        </div>
+
+        <!-- Primary WhatsApp Direct Action -->
+        <a href="https://wa.me/919876543210?text=Hello%20Mofeaz%20Team%2C%20I%20would%20like%20guidance%20on%20cycle-synced%20seed%20nutrition." target="_blank" rel="noopener noreferrer" class="whatsapp-popup-btn" id="whatsappDirectLink">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <span>Start WhatsApp Chat</span>
+        </a>
+
+        <div class="whatsapp-popup-footer-note">
+          <span>+91 98765 43210 &bull; Mon–Sat, 9am–8pm IST</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ======================================================== -->
+  <!-- 18. CUBERTO-STYLE CUSTOM CURSOR MICRO-INTERACTION        -->
+  <!-- Reference: pin.it/2lxuNHozE                              -->
+  <!-- ======================================================== -->
+  <div class="custom-cursor cursor-hidden" id="customCursor" aria-hidden="true">
+    <div class="custom-cursor-follower" id="cursorFollower">
+      <span class="custom-cursor-text" id="cursorText"></span>
+      <span class="custom-cursor-arrow" id="cursorArrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </span>
+    </div>
+    <div class="custom-cursor-dot" id="cursorDot"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

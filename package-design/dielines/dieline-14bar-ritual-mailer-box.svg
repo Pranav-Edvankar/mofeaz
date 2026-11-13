@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1100" width="100%" height="100%">
+  <defs>
+    <style>
+      .font-header { font-family: 'Bodoni Moda', 'Playfair Display', serif; }
+      .font-sans { font-family: 'Montserrat', 'Helvetica Neue', sans-serif; }
+      .cut-line { stroke: #E6007E; stroke-width: 1.5; fill: none; }
+      .crease-line { stroke: #00A0E9; stroke-width: 1.2; stroke-dasharray: 6 4; fill: none; }
+      .bleed-line { stroke: #00B050; stroke-width: 0.8; stroke-dasharray: 3 3; fill: none; }
+    </style>
+    <linearGradient id="goldMailerFoil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2DC9D"/>
+      <stop offset="50%" stop-color="#C99454"/>
+      <stop offset="100%" stop-color="#9C6B2F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sheet Background -->
+  <rect width="1400" height="1100" fill="#FAF8F5"/>
+
+  <!-- Production Header -->
+  <g transform="translate(60, 45)">
+    <text class="font-header" font-size="22" fill="#1C3323" font-weight="600">MOFEAZ // 14-BAR RITUAL BOX - PACKAGING PRODUCTION DIELINE (REDESIGN)</text>
+    <text class="font-sans" font-size="11" fill="#666" y="22" letter-spacing="1">
+      PRODUCT: 14-BAR SEED CYCLING DISPENSER BOX (490g) | STRUCTURE: ROLL END TUCK FRONT (RETF) MAILER BOX WITH DUST FLAPS
+    </text>
+    <text class="font-sans" font-size="10" fill="#888" y="38" letter-spacing="0.5">
+      FINISHED INSIDE SIZE: 200mm (W) × 145mm (D) × 65mm (H) | BOARD: E-FLUTE (1.5mm) + 350 GSM FSC VIRGIN KRAFT | FINISH: SOFT-TOUCH MATTE FOREST GREEN + LUXOR GOLD FOIL (PMS 871C)
+    </text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(1040, 35)" class="font-sans" font-size="9.5">
+    <rect width="290" height="65" fill="#FFFFFF" stroke="#E0D7CC" rx="4"/>
+    <line x1="15" y1="18" x2="45" y2="18" stroke="#E6007E" stroke-width="2"/>
+    <text x="55" y="21" fill="#333">CUT LINE (Solid Magenta)</text>
+    <line x1="15" y1="36" x2="45" y2="36" stroke="#00A0E9" stroke-width="1.8" stroke-dasharray="4 3"/>
+    <text x="55" y="39" fill="#333">CREASE / SCORE (Dashed Cyan)</text>
+    <line x1="15" y1="52" x2="45" y2="52" stroke="#00B050" stroke-width="1.2" stroke-dasharray="2 2"/>
+    <text x="55" y="55" fill="#333">BLEED MARGIN (3mm Green)</text>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- RETF MAILER BOX DIELINE NET                                  -->
+  <!-- Base Dimensions: Width = 400, Depth = 290, Height = 130       -->
+  <!-- ============================================================ -->
+  <g transform="translate(120, 130)">
+    <!-- Bleed Margin Boundary -->
+    <rect x="90" y="20" width="980" height="880" class="bleed-line"/>
+
+    <!-- ARTWORK BACKGROUND: Deep Forest Green (#182B1E) across all exterior panels -->
+    <!-- Lid Exterior (y=40 to 330, x=380 to 780) -->
+    <rect x="376" y="36" width="408" height="298" fill="#182B1E"/>
+    <!-- Lid Front Tuck Flap (y=330 to 450, x=380 to 780) -->
+    <path d="M 380 330 L 390 440 L 770 440 L 780 330 Z" fill="#182B1E"/>
+    <!-- Back Wall (y=330 to 460, x=380 to 780) - when inverted -->
+    <!-- Base Bottom (y=460 to 750, x=380 to 780) -->
+    <rect x="376" y="456" width="408" height="298" fill="#182B1E"/>
+    <!-- Front Roll-over Wall (y=750 to 880, x=380 to 780) -->
+    <rect x="376" y="750" width="408" height="130" fill="#182B1E"/>
+    <!-- Left & Right Rollover Sidewalls -->
+    <rect x="120" y="460" width="260" height="290" fill="#182B1E"/>
+    <rect x="780" y="460" width="260" height="290" fill="#182B1E"/>
+
+    <!-- ============================================== -->
+    <!-- TOP LID FACE ARTWORK (Main Customer Facing Lid) -->
+    <!-- x=380, y=40, w=400, h=290                      -->
+    <!-- ============================================== -->
+    <g transform="translate(380, 40)">
+      <!-- Outer Inset Gold Border -->
+      <rect x="15" y="15" width="370" height="260" fill="none" stroke="#C99454" stroke-width="1" opacity="0.6"/>
+      <rect x="20" y="20" width="360" height="250" fill="none" stroke="#C99454" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.4"/>
+
+      <!-- Phase Eyebrow Tag -->
+      <g transform="translate(200, 48)">
+        <rect x="-80" y="-11" width="160" height="22" rx="11" fill="#25432D" stroke="#C99454" stroke-width="0.8"/>
+        <text class="font-sans" font-size="8" fill="#E5C378" font-weight="700" letter-spacing="2.5" text-anchor="middle" y="4">
+          PHASE 01 // FOLLICULAR RITUAL
+        </text>
+      </g>
+
+      <!-- Brand Header in Bodoni Moda -->
+      <text class="font-header" font-size="38" fill="#FFFFFF" text-anchor="middle" x="200" y="105" letter-spacing="4">
+        MOFEAZ
+      </text>
+      <text class="font-sans" font-size="8" fill="#C99454" text-anchor="middle" x="200" y="120" letter-spacing="4">
+        moi • fea • z
+      </text>
+
+      <!-- Central Gold Botanical Line Art (Recreating the uploaded reference artwork) -->
+      <g transform="translate(200, 168) scale(0.48)" stroke="#E5C378" fill="none" stroke-linecap="round">
+        <!-- Ribbed Pumpkin in center -->
+        <g stroke-width="1.8">
+          <ellipse cx="0" cy="10" rx="38" ry="28" fill="#182B1E"/>
+          <path d="M 0 -18 C -20 -15 -25 5 0 38 C 25 5 20 -15 0 -18 Z"/>
+          <path d="M 0 -18 C -10 -15 -12 5 0 38 C 12 5 10 -15 0 -18 Z"/>
+          <path d="M 0 -18 Q 4 -28 10 -30" stroke-width="2"/>
+        </g>
+        <!-- Pepitas surrounding -->
+        <g stroke-width="1.5">
+          <path d="M -50 -15 C -65 0 -60 25 -45 35 C -30 25 -35 0 -50 -15 Z"/>
+          <path d="M -50 -8 C -60 3 -56 20 -46 27 C -36 20 -40 3 -50 -8 Z" stroke-width="1"/>
+          <path d="M 50 5 C 35 20 40 45 55 55 C 70 45 65 20 50 5 Z"/>
+          <path d="M 50 12 C 40 23 44 40 54 47 C 64 40 60 23 50 12 Z" stroke-width="1"/>
+        </g>
+        <!-- Flaxseed blossoms & branches -->
+        <g stroke-width="1.4">
+          <path d="M 30 -30 Q 60 -10 50 20"/>
+          <circle cx="65" cy="-15" r="4" fill="#E5C378"/>
+          <path d="M 65 -15 C 60 -25 70 -25 65 -15"/>
+          <path d="M 65 -15 C 75 -20 80 -10 65 -15"/>
+          <path d="M 65 -15 C 70 -5 60 0 65 -15"/>
+        </g>
+      </g>
+
+      <!-- Sub-headers & Specs -->
+      <text class="font-sans" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle" x="200" y="232" letter-spacing="2.5">
+        14 FUNCTIONAL SEED CYCLING BARS
+      </text>
+      <text class="font-sans" font-size="7.5" fill="#E5C378" text-anchor="middle" x="200" y="246" letter-spacing="1.5">
+        ORGANIC PUMPKIN + GOLDEN FLAXSEED // 70% RAW CACAO
+      </text>
+      <text class="font-sans" font-size="6.5" fill="#A8D5B5" text-anchor="middle" x="200" y="258" letter-spacing="1">
+        HORMONE CARE, ELEVATED &bull; NET WT. 490g (35g × 14 BARS)
+      </text>
+    </g>
+
+    <!-- Front Tuck Flap Branding -->
+    <g transform="translate(380, 330)">
+      <text class="font-sans" font-size="7.5" fill="#C99454" font-weight="600" text-anchor="middle" x="200" y="55" letter-spacing="3">
+        CLINICALLY FORMULATED BY DR. SWETTA SHARMA PhD &bull; 100% WHOLE SEEDS
+      </text>
+    </g>
+
+    <!-- Left & Right Spines -->
+    <g transform="translate(250, 605) rotate(-90)">
+      <text class="font-header" font-size="16" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">MOFEAZ</text>
+      <text class="font-sans" font-size="7" fill="#C99454" text-anchor="middle" y="16" letter-spacing="2">PHASE 01 // 14 BARS</text>
+    </g>
+    <g transform="translate(910, 605) rotate(90)">
+      <text class="font-sans" font-size="7" fill="#E5C378" text-anchor="middle" letter-spacing="2">
+        COLD-MILLED &lt; 38°C &bull; ZERO ADDED SUGAR &bull; NET WT. 490g
+      </text>
+    </g>
+
+    <!-- Bottom Panel (Back of Box with Nutrition Facts & FSSAI) -->
+    <g transform="translate(380, 460)">
+      <rect x="15" y="15" width="370" height="260" fill="none" stroke="#C99454" stroke-width="0.5" opacity="0.4"/>
+      
+      <!-- FSSAI, Nutrition & Veg Logo -->
+      <g transform="translate(30, 40)">
+        <text class="font-sans" font-size="8.5" font-weight="700" fill="#E5C378" letter-spacing="1.5">NUTRITIONAL HIGHLIGHTS // PER 100g</text>
+        <text class="font-sans" font-size="7" fill="#F5EFE6" y="16">Protein: 19.2g | Dietary Fibre: 25.4g | Omega-3 (ALA): 4,800mg</text>
+        <text class="font-sans" font-size="7" fill="#F5EFE6" y="28">Zinc: 6.8mg | Magnesium: 245mg | Iron: 4.2mg</text>
+        <text class="font-sans" font-size="7" fill="#A8D5B5" y="40">Zero Added Cane Sugar | 100% Plant-Based Bioactive Seeds</text>
+      </g>
+
+      <g transform="translate(30, 115)">
+        <text class="font-sans" font-size="7" font-weight="700" fill="#E5C378">INGREDIENTS:</text>
+        <text class="font-sans" font-size="6.5" fill="#F5EFE6" y="12">Sprouted Pumpkin Seeds (38%), Cold-Milled Golden Flaxseeds (26%),</text>
+        <text class="font-sans" font-size="6.5" fill="#F5EFE6" y="24">Raw Single-Origin Cacao (70%), Medjool Dates, Himalayan Pink Salt.</text>
+      </g>
+
+      <!-- FSSAI & Barcode -->
+      <g transform="translate(30, 185)">
+        <text class="font-sans" font-size="8" font-weight="700" fill="#FFFFFF">fssai</text>
+        <text class="font-sans" font-size="6" fill="#C99454" y="12">Lic. No. 11523998000412</text>
+        <text class="font-sans" font-size="5.5" fill="#AAA" y="22">Mfd by Mofeaz Functional Foods LLP</text>
+      </g>
+
+      <g transform="translate(140, 180)">
+        <rect width="14" height="14" fill="none" stroke="#00B050" stroke-width="1.2"/>
+        <circle cx="7" cy="7" r="4" fill="#00B050"/>
+      </g>
+
+      <g transform="translate(220, 175)">
+        <rect width="140" height="42" fill="#FFFFFF" rx="2"/>
+        <text class="font-sans" font-size="7" fill="#000000" x="70" y="34" text-anchor="middle" letter-spacing="2">8 908021 543149</text>
+      </g>
+    </g>
+
+    <!-- ============================================== -->
+    <!-- TECHNICAL DIELINE LINES (CUT & CREASE)        -->
+    <!-- ============================================== -->
+    <!-- Outer perimeter Cut Line -->
+    <path d="M 380 40 L 780 40 L 780 330 L 770 440 L 390 440 L 380 330 Z" class="cut-line"/>
+    <path d="M 380 460 L 120 460 L 120 750 L 380 750" class="cut-line"/>
+    <path d="M 780 460 L 1040 460 L 1040 750 L 780 750" class="cut-line"/>
+    <path d="M 380 750 L 380 880 L 780 880 L 780 750" class="cut-line"/>
+
+    <!-- Crease / Score Lines -->
+    <line x1="380" y1="40" x2="380" y2="460" class="crease-line"/>
+    <line x1="780" y1="40" x2="780" y2="460" class="crease-line"/>
+    <line x1="380" y1="330" x2="780" y2="330" class="crease-line"/>
+    <line x1="380" y1="460" x2="780" y2="460" class="crease-line"/>
+    <line x1="380" y1="750" x2="780" y2="750" class="crease-line"/>
+    <line x1="380" y1="460" x2="380" y2="750" class="crease-line"/>
+    <line x1="780" y1="460" x2="780" y2="750" class="crease-line"/>
+  </g>
+</svg>
