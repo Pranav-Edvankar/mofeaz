@@ -69,7 +69,7 @@ body {
   line-height: 1.6;
   background-color: var(--color-canvas);
   color: var(--color-espresso);
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
 }
 
@@ -2507,69 +2507,122 @@ button {
 
 @media (max-width: 768px) {
   .section-reviews {
-    height: 100vh;
-    height: 100dvh;
-    min-height: 0;
-    max-height: 100dvh;
-    overflow: visible;
-    position: relative;
-    padding: 0;
+    height: auto !important;
+    min-height: 520px !important;
+    max-height: none !important;
+    padding: 24px 0 28px 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
     touch-action: pan-y !important;
   }
-  .section-reviews.is-dragging,
-  .section-reviews.is-dragging * {
-    cursor: grabbing !important;
-    user-select: none !important;
-    -webkit-user-select: none !important;
-  }
   .reviews-scroll-track {
-    height: 100% !important;
-    min-height: 100% !important;
-    position: relative;
-    width: 100%;
-    overflow: visible;
+    height: 480px !important;
+    min-height: 480px !important;
+    position: relative !important;
+    width: 100% !important;
+    overflow: hidden !important;
   }
   .reviews-sticky-stage {
     position: relative !important;
     top: auto !important;
     left: auto !important;
-    width: 100%;
-    height: 100% !important;
-    min-height: 100% !important;
-    overflow: visible;
+    width: 100% !important;
+    height: 480px !important;
+    min-height: 480px !important;
+    overflow: hidden !important;
     touch-action: pan-y !important;
+  }
+  .reviews-diagonal-stream {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    perspective: 900px !important;
+    -webkit-perspective: 900px !important;
+    transform-style: preserve-3d !important;
+    overflow: visible !important;
+    touch-action: pan-y !important;
+  }
+  .reviews-diagonal-origin {
+    position: absolute !important;
+    top: 285px !important;
+    left: 50% !important;
+    width: 0 !important;
+    height: 0 !important;
+    transform-style: preserve-3d !important;
+    pointer-events: auto !important;
   }
   .review-diagonal-card .card-video,
   .review-diagonal-card .card-poster,
   .review-diagonal-card .card-scrim {
     pointer-events: none;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+  .review-diagonal-card .card-inner {
+    border-radius: 16px !important;
+    overflow: hidden !important;
   }
   .reviews-story-ticker {
-    display: flex;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    pointer-events: auto;
+  }
+  .ticker-counter {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    transition: all 0.25s ease;
+  }
+  .reviews-story-ticker.is-paused .ticker-counter {
+    color: #FFFFFF !important;
+    background: rgba(199, 114, 83, 0.9) !important;
+    padding: 2px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(199, 114, 83, 0.4);
   }
   .reviews-stage-header {
-    top: 20px;
-    left: 16px;
-    right: 16px;
+    position: absolute !important;
+    top: 14px !important;
+    left: 16px !important;
+    right: 16px !important;
+    z-index: 40;
+    text-align: center;
   }
   .stage-header-title {
-    font-size: clamp(1.45rem, 5.6vw, 2.0rem) !important;
+    font-size: clamp(1.4rem, 5.2vw, 1.85rem) !important;
     text-align: center;
-    line-height: 1.25;
+    line-height: 1.22;
   }
   .review-diagonal-card {
-    width: 250px;
-    height: 410px;
-    top: -205px;
-    left: -125px;
-    border-radius: 0 !important;
+    position: absolute !important;
+    width: 220px !important;
+    height: 350px !important;
+    top: -175px !important;
+    left: -110px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.42), 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+    transform-style: preserve-3d !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    will-change: transform, opacity !important;
+    cursor: pointer !important;
     touch-action: pan-y !important;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease;
-    will-change: transform, opacity;
-    cursor: grab;
   }
   .review-diagonal-card.is-active-focal {
-    cursor: grab;
+    border: 1.5px solid var(--color-terracotta, #C99454) !important;
+    box-shadow: 0 20px 50px rgba(18, 15, 13, 0.65), 0 0 24px rgba(201, 148, 84, 0.3) !important;
+    cursor: pointer !important;
+  }
+  .review-diagonal-card.is-holding-pause {
+    box-shadow: 0 24px 60px rgba(18, 15, 13, 0.8), 0 0 32px rgba(201, 148, 84, 0.45) !important;
+  }
+  .reviews-completion-pill {
+    display: none !important;
   }
   .reviews-live-hud,
   .reviews-stage-progress {
@@ -2616,40 +2669,29 @@ button {
    ========================================================================== */
 .section-moon-cycle {
   position: relative;
-  height: 100vh;
-  height: 100dvh;
-  min-height: 560px;
-  max-height: 100dvh;
+  height: 320vh;
   background-color: #000000 !important;
   color: #FFFFFF;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden !important;
+  overflow: visible;
   padding: 0;
   margin: 0;
-  cursor: grab;
-}
-
-.section-moon-cycle.is-dragging,
-.section-moon-cycle.is-dragging * {
-  cursor: grabbing !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
 }
 
 .moon-scroll-track {
   position: relative;
   width: 100%;
-  height: 100% !important;
-  min-height: 100% !important;
+  height: 100%;
+  overflow: visible;
 }
 
 .moon-sticky-viewport {
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
+  position: sticky;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100% !important;
-  min-height: 100% !important;
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -2659,7 +2701,6 @@ button {
   background: #000000 !important;
   box-sizing: border-box;
   user-select: none;
-  cursor: grab;
 }
 
 /* Minimalist Top Bar (White / Silver on Pitch Black) */
@@ -2965,41 +3006,37 @@ button {
 
 @media (max-width: 768px) {
   .section-moon-cycle {
-    height: 100vh;
-    height: 100dvh;
-    min-height: 0;
-    max-height: 100dvh;
-    overflow: visible;
-    position: relative;
-    padding: 0;
-    touch-action: pan-y !important;
-  }
-  .section-moon-cycle.is-dragging,
-  .section-moon-cycle.is-dragging * {
-    cursor: grabbing !important;
-    user-select: none !important;
-    -webkit-user-select: none !important;
+    height: 250vh;
+    min-height: 250vh;
+    max-height: none;
+    overflow: visible !important;
+    position: relative !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
   .moon-scroll-track {
     height: 100% !important;
     min-height: 100% !important;
-    position: relative;
-    width: 100%;
-    overflow: visible;
+    position: relative !important;
+    width: 100% !important;
+    overflow: visible !important;
   }
   .moon-sticky-viewport {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100%;
-    height: 100% !important;
-    min-height: 100% !important;
-    overflow: hidden;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    overflow: hidden !important;
     padding: 16px 14px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #000000 !important;
     touch-action: pan-y !important;
   }
   .moon-mobile-ticker {
@@ -3009,28 +3046,32 @@ button {
 
 @media (max-width: 640px) {
   .section-moon-cycle {
-    height: 100vh;
-    height: 100dvh;
-    min-height: 0;
-    max-height: 100dvh;
-    overflow: visible;
-    padding: 0;
-    touch-action: pan-y !important;
+    height: 250vh;
+    min-height: 250vh;
+    max-height: none;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
   .moon-scroll-track {
     height: 100% !important;
     min-height: 100% !important;
-    overflow: visible;
+    overflow: visible !important;
   }
   .moon-sticky-viewport {
-    position: relative !important;
-    height: 100% !important;
-    min-height: 100% !important;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
     padding: 16px 14px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #000000 !important;
     touch-action: pan-y !important;
   }
   .moon-stage-canvas {
@@ -4381,11 +4422,17 @@ body.cursor-in-founder .custom-cursor {
     --header-height: 64px;
   }
   
-  /* Core mobile container & scroll safety */
-  html, body {
-    overflow-x: hidden;
+  /* Core mobile container & scroll safety - preserve position: sticky */
+  html {
+    overflow-x: clip;
     width: 100%;
     max-width: 100%;
+  }
+  body {
+    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
   }
 
   /* 1. Header & Navigation */
@@ -4794,25 +4841,29 @@ body.cursor-in-founder .custom-cursor {
     padding: 12px 14px;
   }
   .section-reviews {
-    height: 100vh;
-    height: 100dvh;
-    min-height: 0;
-    max-height: 100dvh;
-    overflow: visible;
-    padding: 0;
+    height: auto !important;
+    min-height: 500px !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    padding: 20px 0 24px 0 !important;
+    position: relative !important;
     touch-action: pan-y !important;
   }
   .reviews-scroll-track {
-    height: 100% !important;
-    min-height: 100% !important;
-    overflow: visible;
+    height: 460px !important;
+    min-height: 460px !important;
+    overflow: hidden !important;
+    position: relative !important;
   }
   .reviews-sticky-stage {
     position: relative !important;
-    height: 100% !important;
-    min-height: 100% !important;
-    overflow: visible;
+    height: 460px !important;
+    min-height: 460px !important;
+    overflow: hidden !important;
     touch-action: pan-y !important;
+  }
+  .reviews-diagonal-origin {
+    top: 270px !important;
   }
   .stage-header-title {
     font-size: clamp(1.35rem, 5.2vw, 1.85rem) !important;
@@ -4820,31 +4871,54 @@ body.cursor-in-founder .custom-cursor {
     line-height: 1.25;
   }
   .review-diagonal-card {
-    width: 240px;
-    height: 395px;
-    top: -198px;
-    left: -120px;
-    border-radius: 0 !important;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease;
+    position: absolute !important;
+    width: 205px !important;
+    height: 335px !important;
+    top: -167px !important;
+    left: -102px !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    transform-style: preserve-3d !important;
+    touch-action: pan-y !important;
+  }
+  .review-diagonal-card .card-inner,
+  .review-diagonal-card .card-poster,
+  .review-diagonal-card .card-video,
+  .review-diagonal-card .card-scrim {
+    border-radius: 14px !important;
+    overflow: hidden !important;
   }
 
   @media (max-height: 680px) {
     .reviews-stage-header {
-      top: 14px;
+      top: 10px !important;
     }
     .stage-header-title {
       font-size: 1.25rem !important;
     }
+    .reviews-scroll-track,
+    .reviews-sticky-stage {
+      height: 430px !important;
+      min-height: 430px !important;
+    }
+    .reviews-diagonal-origin {
+      top: 250px !important;
+    }
     .review-diagonal-card {
-      width: 215px;
-      height: 355px;
-      top: -177px;
-      left: -108px;
+      width: 195px !important;
+      height: 315px !important;
+      top: -157px !important;
+      left: -97px !important;
+      border-radius: 12px !important;
+    }
+    .review-diagonal-card .card-inner,
+    .review-diagonal-card .card-poster,
+    .review-diagonal-card .card-video,
+    .review-diagonal-card .card-scrim {
+      border-radius: 12px !important;
     }
     .reviews-completion-pill {
-      bottom: 12px;
-      padding: 6px 14px;
-      font-size: 0.62rem;
+      display: none !important;
     }
   }
 
