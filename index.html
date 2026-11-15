@@ -560,6 +560,7 @@
             </div>
           </div>
 
+
         </div>
 
       </div>
@@ -603,16 +604,18 @@
 
           <!-- Minimalist Stage Header -->
           <div class="reviews-stage-header">
-            <div class="stage-header-meta">
-              <span class="section-subtitle">AUTHENTIC COMMUNITY // 100% REAL WOMEN</span>
-              <button class="reviews-audio-toggle-btn" id="reviewsAudioToggle" type="button" aria-label="Toggle voice audio" data-cursor-text="AUDIO">
-                <span class="audio-wave-icon">
-                  <span></span><span></span><span></span><span></span>
-                </span>
-                <span class="audio-label" id="audioToggleLabel">Sound: Muted</span>
-              </button>
-            </div>
             <h2 class="stage-header-title">Loved by 4,200+ Women Across India</h2>
+            <!-- Minimalist Mobile Story Progress Ticker -->
+            <div class="reviews-story-ticker" id="reviewsStoryTicker">
+              <div class="ticker-pips">
+                <button class="ticker-pip active" data-index="0" type="button" aria-label="Story 1"></button>
+                <button class="ticker-pip" data-index="1" type="button" aria-label="Story 2"></button>
+                <button class="ticker-pip" data-index="2" type="button" aria-label="Story 3"></button>
+                <button class="ticker-pip" data-index="3" type="button" aria-label="Story 4"></button>
+                <button class="ticker-pip" data-index="4" type="button" aria-label="Story 5"></button>
+              </div>
+              <span class="ticker-counter" id="reviewsStoryCounter">STORY 01 // 05</span>
+            </div>
           </div>
 
           
@@ -744,41 +747,11 @@
             </div>
           </div>
 
-          <!-- Dynamic Live Editorial HUD (Bottom Left) -->
-          <div class="reviews-live-hud" id="reviewsLiveHud">
-            <div class="hud-top-row">
-              <span class="hud-step-count" id="hudStepCount">STORY 01 // 05</span>
-              <span class="hud-benefit-tag" id="hudBenefitTag">Cycle Regularity</span>
-            </div>
-            <h3 class="hud-reviewer-title" id="hudReviewerTitle">
-              Meenakshi K. <span class="hud-city">Bengaluru</span>
-            </h3>
-            <blockquote class="hud-quote" id="hudQuote">
-              “Taking 1 bar daily brought my cycle back to an exact 28-day rhythm without morning mess.”
-            </blockquote>
-            <div class="hud-product-pill" id="hudProductPill">
-              <span class="hud-product-name" id="hudProductName">28-Day Complete Cycle Kit</span>
-              <span class="hud-product-price" id="hudProductPrice">₹1,999</span>
-              <button class="hud-product-cta" id="hudProductAddBtn" type="button">Add to Bag</button>
-            </div>
-          </div>
-
-          <!-- Stage Progress Stepper & Scroll Cue (Bottom Right) -->
-          <div class="reviews-stage-progress">
-            <div class="progress-bar-rail">
-              <div class="progress-bar-fill" id="reviewsProgressFill"></div>
-            </div>
-            <div class="progress-pips" id="reviewsProgressPips">
-              <button class="pip active" data-target="0" type="button" aria-label="Go to story 1">1</button>
-              <button class="pip" data-target="1" type="button" aria-label="Go to story 2">2</button>
-              <button class="pip" data-target="2" type="button" aria-label="Go to story 3">3</button>
-              <button class="pip" data-target="3" type="button" aria-label="Go to story 4">4</button>
-              <button class="pip" data-target="4" type="button" aria-label="Go to story 5">5</button>
-            </div>
-            <div class="scroll-instruction-cue">
-              <span class="cue-arrow-down">&darr;</span>
-              <span class="cue-text">Scroll to glide along diagonal stream</span>
-            </div>
+          <!-- Dynamic Mobile Completion Pill -->
+          <div class="reviews-completion-pill" id="reviewsCompletionPill" role="status" aria-live="polite">
+            <span class="completion-pill-check">✓</span>
+            <span class="completion-pill-text">All 5 Stories Explored • Scroll Down for Philosophy</span>
+            <span class="completion-pill-arrow">&darr;</span>
           </div>
 
         </div>
@@ -849,17 +822,12 @@
       <div class="moon-scroll-track" id="moonScrollTrack">
         <div class="moon-sticky-viewport" id="moonStickyViewport">
           
-          <!-- Minimalist Editorial Top Bar (Pitch Black Space Theme) -->
-          <div class="moon-minimal-topbar">
-            <span class="topbar-logo">m.</span>
-            <div class="topbar-center">
-              <span class="topbar-sub">MOFEAZ &bull; CLINICAL CYCLE MAP</span>
-              <span class="topbar-day-pill" id="moonCycleDayCounter">DAY 01 OF 28 &bull; NEW MOON</span>
+          <!-- Minimalist Mobile Cycle Progress Ticker -->
+          <div class="moon-mobile-ticker" id="moonMobileTicker">
+            <div class="moon-ticker-rail">
+              <div class="moon-ticker-fill" id="moonTickerFill"></div>
             </div>
-            <div class="topbar-nav">
-              <span>EST. 2026</span>
-              <span>CHRONOBIOLOGY</span>
-            </div>
+            <span class="moon-ticker-counter" id="moonMobileCounter">DAY 01 OF 28 &bull; NEW MOON</span>
           </div>
 
           <!-- Pure Full-Screen Pitch-Black Stage: Centered Bright Moon & Animated Typography -->
@@ -887,18 +855,16 @@
 
           </div>
 
-          <!-- Minimalist Space Footer -->
-          <footer class="moon-minimal-footer">
-            <span class="footer-meta">DAILYMINIMAL &bull; NO. 322</span>
-            <span class="footer-scroll-hint">SCROLL TO CYCLE THROUGH LUNAR PHASES &darr;</span>
-            <span class="footer-meta">&copy; MOFEAZ CHRONOBIOLOGY</span>
-          </footer>
+          <!-- Dynamic Mobile Completion Pill -->
+          <div class="moon-completion-pill" id="moonCompletionPill" role="status" aria-live="polite">
+            <span class="moon-completion-check">✓</span>
+            <span class="moon-completion-text">28-Day Moon Cycle Complete &bull; Scroll Down for FAQ</span>
+            <span class="moon-completion-arrow">&darr;</span>
+          </div>
 
         </div>
       </div>
     </section>
-
-
 
     <!-- ======================================================== -->
     <!-- 10. FREQUENTLY ASKED QUESTIONS                           -->
@@ -966,6 +932,7 @@
               </p>
             </div>
           </div>
+
 
         </div>
       </div>

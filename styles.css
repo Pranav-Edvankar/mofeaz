@@ -1388,26 +1388,27 @@ button {
 /* 2. Sticky Stage Header (Minimalist Editorial Top Bar) */
 .reviews-stage-header {
   position: absolute;
-  top: 36px;
-  left: 48px;
-  right: 48px;
+  top: 40px;
+  left: 36px;
+  right: 36px;
   z-index: 20;
-  pointer-events: auto;
+  pointer-events: none;
+  text-align: center;
 }
 
 .stage-header-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
+  display: none;
 }
 
 .stage-header-title {
   font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+  font-size: clamp(2.3rem, 4.2vw, 3.5rem);
   font-weight: 300;
   color: var(--color-espresso);
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 auto;
+  text-align: center;
 }
 
 /* Audio Voice Toggle Button: Crisp, Sharp Rectangular Aesthetic (Zero Pills) */
@@ -1475,6 +1476,101 @@ button {
 @keyframes waveBar {
   0% { height: 4px; }
   100% { height: 14px; }
+}
+
+/* Reviews Story Ticker for Mobile (Header Sub-bar) */
+.reviews-story-ticker {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  pointer-events: auto;
+}
+
+.ticker-pips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ticker-pip {
+  width: 18px;
+  height: 3px;
+  background: rgba(35, 28, 24, 0.22);
+  border: none;
+  border-radius: 2px;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.ticker-pip.active {
+  width: 28px;
+  background: var(--color-terracotta);
+}
+
+.ticker-counter {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+  font-weight: 600;
+}
+
+/* Dynamic Mobile Completion Pill */
+.reviews-completion-pill {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(18, 15, 13, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(199, 114, 83, 0.45);
+  box-shadow: 0 8px 24px rgba(18, 15, 13, 0.25);
+  border-radius: 24px;
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  z-index: 25;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.reviews-completion-pill.is-complete {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.completion-pill-check {
+  color: #4BB543;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.completion-pill-arrow {
+  color: var(--color-terracotta);
+  font-size: 0.85rem;
+  animation: completionArrowBounce 1.4s infinite ease-in-out;
+}
+
+@keyframes completionArrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
 }
 
 /* ==========================================================================
@@ -2410,32 +2506,67 @@ button {
 }
 
 @media (max-width: 768px) {
-  .review-diagonal-card {
-    width: 250px;
-    height: 435px;
-    top: -217px;
-    left: -125px;
-    border-radius: 0 !important;
+  .section-reviews {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 560px;
+    max-height: 100dvh;
+    overflow: hidden !important;
+    position: relative;
+    padding: 0;
+    cursor: grab;
   }
-  .stage-header-title {
-    font-size: 1.6rem;
+  .section-reviews.is-dragging,
+  .section-reviews.is-dragging * {
+    cursor: grabbing !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
   }
-  .reviews-live-hud {
-    max-width: 320px;
-    padding: 14px 16px;
-    bottom: 20px;
+  .reviews-scroll-track {
+    height: 100% !important;
+    min-height: 100% !important;
+    position: relative;
+    width: 100%;
+  }
+  .reviews-sticky-stage {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100%;
+    height: 100% !important;
+    min-height: 100% !important;
+    overflow: hidden;
+    touch-action: none;
+  }
+  .reviews-story-ticker {
+    display: flex;
+  }
+  .reviews-stage-header {
+    top: 20px;
     left: 16px;
-    border-radius: 0 !important;
-  }
-  .hud-quote {
-    display: none;
-  }
-  .reviews-stage-progress {
-    bottom: 20px;
     right: 16px;
   }
-  .progress-bar-rail {
-    width: 90px;
+  .stage-header-title {
+    font-size: clamp(1.45rem, 5.6vw, 2.0rem) !important;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .review-diagonal-card {
+    width: 250px;
+    height: 410px;
+    top: -205px;
+    left: -125px;
+    border-radius: 0 !important;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease;
+    will-change: transform, opacity;
+    cursor: grab;
+  }
+  .review-diagonal-card.is-active-focal {
+    cursor: grab;
+  }
+  .reviews-live-hud,
+  .reviews-stage-progress {
+    display: none !important;
   }
   .review-video-modal {
     width: 95vw;
@@ -2478,31 +2609,50 @@ button {
    ========================================================================== */
 .section-moon-cycle {
   position: relative;
-  height: 350vh;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 560px;
+  max-height: 100dvh;
   background-color: #000000 !important;
   color: #FFFFFF;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden !important;
+  padding: 0;
+  margin: 0;
+  cursor: grab;
+}
+
+.section-moon-cycle.is-dragging,
+.section-moon-cycle.is-dragging * {
+  cursor: grabbing !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
 }
 
 .moon-scroll-track {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100% !important;
+  min-height: 100% !important;
 }
 
 .moon-sticky-viewport {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
   width: 100%;
+  height: 100% !important;
+  min-height: 100% !important;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 32px 48px;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
   background: #000000 !important;
   box-sizing: border-box;
   user-select: none;
+  cursor: grab;
 }
 
 /* Minimalist Top Bar (White / Silver on Pitch Black) */
@@ -2703,6 +2853,95 @@ button {
   animation: pulseHint 2s infinite ease-in-out;
 }
 
+/* Moon Mobile Cycle Progress Ticker */
+.moon-mobile-ticker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.moon-ticker-rail {
+  width: 140px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.moon-ticker-fill {
+  height: 100%;
+  width: 4%;
+  background: #FFFFFF;
+  border-radius: 2px;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+.moon-ticker-counter {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Moon Completion Pill on Mobile */
+.moon-completion-pill {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(18, 15, 13, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  z-index: 25;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.moon-completion-pill.is-complete {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.moon-completion-check {
+  color: #4BB543;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.moon-completion-arrow {
+  color: #FFFFFF;
+  font-size: 0.85rem;
+  animation: completionArrowBounce 1.4s infinite ease-in-out;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .editorial-float-word {
@@ -2717,31 +2956,72 @@ button {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .section-moon-cycle {
-    height: 250vh;
-  }
-  .moon-sticky-viewport {
-    position: sticky;
-    top: 0;
     height: 100vh;
     height: 100dvh;
+    min-height: 560px;
+    max-height: 100dvh;
+    overflow: hidden !important;
+    position: relative;
+    padding: 0;
+    cursor: grab;
+  }
+  .section-moon-cycle.is-dragging,
+  .section-moon-cycle.is-dragging * {
+    cursor: grabbing !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+  }
+  .moon-scroll-track {
+    height: 100% !important;
+    min-height: 100% !important;
+    position: relative;
+    width: 100%;
+  }
+  .moon-sticky-viewport {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100%;
+    height: 100% !important;
+    min-height: 100% !important;
     overflow: hidden;
     padding: 16px 14px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    touch-action: none;
+    cursor: grab;
   }
-  .moon-minimal-topbar {
-    padding-bottom: 8px;
+  .moon-mobile-ticker {
+    display: flex;
   }
-  .topbar-day-pill {
-    font-size: 0.6rem;
-    padding: 4px 8px;
-    letter-spacing: 0.08em;
+}
+
+@media (max-width: 640px) {
+  .section-moon-cycle {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 540px;
+    max-height: 100dvh;
+    overflow: hidden !important;
+    padding: 0;
   }
-  .topbar-meta-right {
-    font-size: 0.6rem;
+  .moon-scroll-track {
+    height: 100% !important;
+    min-height: 100% !important;
+  }
+  .moon-sticky-viewport {
+    position: relative !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .moon-stage-canvas {
     position: relative;
@@ -3084,61 +3364,67 @@ body.cursor-in-founder .custom-cursor {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .section-founder {
-    height: auto;
-    min-height: 85vh;
-    min-height: 85dvh;
-    padding: 56px 16px;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 560px;
+    padding: 0;
     cursor: default;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    touch-action: pan-y;
   }
   .founder-fullscreen-stage {
     position: relative;
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 24px 0;
+    padding: 24px 16px;
+    overflow: hidden;
   }
   .founder-fullscreen-stage .stage-corner-tag {
-    font-size: 0.55rem;
+    font-size: 0.58rem;
     letter-spacing: 0.12em;
+    z-index: 5;
   }
-  .founder-fullscreen-stage .stage-corner-tag.top-left { top: 6px; left: 6px; }
-  .founder-fullscreen-stage .stage-corner-tag.top-right { top: 6px; right: 6px; }
-  .founder-fullscreen-stage .stage-corner-tag.bottom-left { bottom: 6px; left: 6px; }
-  .founder-fullscreen-stage .stage-corner-tag.bottom-right { bottom: 6px; right: 6px; }
+  .founder-fullscreen-stage .stage-corner-tag.top-left { top: 16px; left: 16px; }
+  .founder-fullscreen-stage .stage-corner-tag.top-right { top: 16px; right: 16px; }
+  .founder-fullscreen-stage .stage-corner-tag.bottom-left { bottom: 16px; left: 16px; }
+  .founder-fullscreen-stage .stage-corner-tag.bottom-right { bottom: 16px; right: 16px; }
   
   .founder-typo-canvas {
     position: relative;
     width: 100%;
-    transform: none !important;
-    margin-bottom: 20px;
+    max-width: 90vw;
+    z-index: 1;
+    pointer-events: none;
+    margin: 0 auto;
   }
   .founder-typo-canvas .typo-line {
-    font-size: clamp(1.2rem, 4.8vw, 1.75rem);
+    font-size: clamp(1.4rem, 5.8vw, 2.2rem);
     letter-spacing: -0.01em;
-    line-height: 1.15;
+    line-height: 1.18;
   }
   .founder-typo-canvas .typo-line.line-center-small {
-    font-size: clamp(0.68rem, 2.5vw, 0.82rem);
+    font-size: clamp(0.72rem, 2.8vw, 0.88rem);
     letter-spacing: 0.15em;
   }
   .founder-cursor-image {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    width: clamp(170px, 48vw, 210px);
-    margin: 14px auto 0 auto;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: clamp(185px, 48vw, 225px);
+    aspect-ratio: 3 / 4;
+    border: 1.5px solid var(--color-espresso);
+    box-shadow: 0 20px 50px rgba(35, 28, 24, 0.28);
     pointer-events: auto;
-    box-shadow: 0 16px 40px rgba(35, 28, 24, 0.22);
+    touch-action: none;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    will-change: transform, left, top, opacity;
   }
 }
 
@@ -4257,9 +4543,9 @@ body.cursor-in-founder .custom-cursor {
     box-sizing: border-box;
   }
 
-  /* Bento Card Mobile Architecture */
+  /* Bento Card Mobile Architecture (Clean & Minimalist) */
   .bento-card {
-    min-height: 295px;
+    min-height: 270px;
     background-color: var(--color-canvas);
     display: flex;
     flex-direction: column;
@@ -4270,7 +4556,7 @@ body.cursor-in-founder .custom-cursor {
     box-sizing: border-box;
   }
   .bento-card-header {
-    padding: 12px 10px 0 10px !important;
+    padding: 14px 12px 0 12px !important;
     z-index: 3;
     display: flex;
     flex-direction: column;
@@ -4279,30 +4565,38 @@ body.cursor-in-founder .custom-cursor {
     width: 100%;
     box-sizing: border-box;
   }
-  .bento-card-cat {
-    font-size: 0.50rem !important;
-    letter-spacing: 0.10em !important;
-    line-height: 1.25 !important;
-    margin-bottom: 2px !important;
+  /* Remove category pills and badges on mobile for clean, uncluttered layout */
+  .bento-card-cat,
+  .save-pill,
+  .bento-card-badge,
+  .bento-editorial-header .bento-card-cat {
+    display: none !important;
   }
   .bento-card-title {
-    font-size: 0.84rem !important;
+    font-size: 0.88rem !important;
     line-height: 1.22 !important;
     letter-spacing: 0.02em !important;
     margin-bottom: 3px !important;
     word-break: break-word;
+    color: var(--color-espresso) !important;
   }
   .bento-card-pricing {
-    display: flex;
-    align-items: baseline;
-    gap: 5px !important;
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 6px !important;
+    margin-top: 3px !important;
   }
+  /* Large, visible, bold price on mobile */
   .price-val {
-    font-size: 0.82rem !important;
-    font-weight: 600 !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: var(--color-espresso) !important;
+    letter-spacing: -0.01em !important;
+    line-height: 1 !important;
   }
   .price-strikethrough {
-    font-size: 0.68rem !important;
+    font-size: 0.74rem !important;
+    color: var(--color-taupe) !important;
   }
   .bento-card-media {
     padding: 6px 8px 10px 8px !important;
@@ -4315,59 +4609,68 @@ body.cursor-in-founder .custom-cursor {
   }
   .bento-card-img.fit-mockup {
     max-height: 115px !important;
-    max-width: 88% !important;
+    max-width: 86% !important;
     width: auto !important;
     height: auto !important;
     margin: auto !important;
   }
 
-  /* Touch-friendly, always-visible actions on mobile bento cards */
+  /* Minimalist circular '+' symbol button floating at bottom-right */
   .bento-card-actions {
-    position: relative !important;
-    inset: auto !important;
-    opacity: 1 !important;
-    transform: none !important;
-    padding: 0 10px 12px 10px !important;
-    margin-top: auto !important;
+    position: absolute !important;
+    bottom: 12px !important;
+    right: 12px !important;
+    left: auto !important;
+    top: auto !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
     display: flex !important;
     align-items: center !important;
-    gap: 5px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    z-index: 4;
+    justify-content: flex-end !important;
+    z-index: 5 !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
+  /* Remove spec button completely on mobile */
+  .btn-quick-view {
+    display: none !important;
+  }
+  /* Keep only the plus symbol, remove text */
   .btn-add-ritual {
-    flex: 1 !important;
-    min-width: 0 !important;
-    padding: 8px 6px !important;
-    font-size: 0.58rem !important;
-    letter-spacing: 0.06em !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    flex: 0 0 36px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
     justify-content: center !important;
-    gap: 4px !important;
-    border-radius: 3px !important;
+    background-color: var(--color-espresso) !important;
+    color: #FAF7F2 !important;
+    border: 1px solid var(--color-espresso) !important;
+    box-shadow: 0 4px 12px rgba(35, 28, 24, 0.16) !important;
+    cursor: pointer !important;
+    transition: transform 0.18s ease, background-color 0.18s ease !important;
   }
   .btn-add-ritual span {
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+    display: none !important;
+  }
+  .btn-add-ritual:active {
+    transform: scale(0.88) !important;
   }
   .btn-add-ritual i,
   .btn-add-ritual svg {
-    width: 11px !important;
-    height: 11px !important;
+    width: 16px !important;
+    height: 16px !important;
+    display: block !important;
     flex-shrink: 0 !important;
-  }
-  .btn-quick-view {
-    padding: 8px 7px !important;
-    font-size: 0.58rem !important;
-    letter-spacing: 0.06em !important;
-    flex-shrink: 0 !important;
-    border-radius: 3px !important;
   }
 
   /* Wide & Feature Cards in Mobile Bento */
   .bento-card-editorial-wide {
-    min-height: 240px !important;
+    min-height: 230px !important;
     background-color: #2D231E !important;
   }
   .bento-card-editorial-wide .bento-card-header,
@@ -4375,20 +4678,17 @@ body.cursor-in-founder .custom-cursor {
   .bento-row-three-col [data-product-id="prod-coffee-duo"] .bento-card-header {
     padding: 16px 14px 0 14px !important;
   }
-  .bento-card-editorial-wide .bento-card-cat {
-    color: var(--color-amber) !important;
-    font-size: 0.54rem !important;
-  }
   .bento-card-editorial-wide .bento-card-title,
   .bento-card-portrait-kit .bento-card-title,
   .bento-row-three-col [data-product-id="prod-coffee-duo"] .bento-card-title {
-    font-size: 1.12rem !important;
+    font-size: 1.15rem !important;
   }
   .bento-card-editorial-wide .bento-card-title {
     color: #FAF7F2 !important;
   }
   .bento-card-editorial-wide .price-val {
     color: #FAF7F2 !important;
+    font-size: 1.35rem !important;
   }
   .bento-card-editorial-wide .bento-card-media,
   .bento-row-three-col [data-product-id="prod-coffee-duo"] .bento-card-media {
@@ -4399,26 +4699,16 @@ body.cursor-in-founder .custom-cursor {
   .bento-row-three-col [data-product-id="prod-coffee-duo"] .bento-card-img.fit-mockup {
     max-height: 120px !important;
   }
-  .bento-card-editorial-wide .bento-card-actions,
-  .bento-card-portrait-kit .bento-card-actions,
-  .bento-row-three-col [data-product-id="prod-coffee-duo"] .bento-card-actions {
-    padding: 0 14px 14px 14px !important;
-  }
   .bento-card-editorial-wide .btn-add-ritual {
     background-color: var(--color-terracotta) !important;
     border-color: var(--color-terracotta) !important;
     color: #FFFFFF !important;
   }
-  .bento-card-editorial-wide .btn-quick-view {
-    background-color: rgba(255, 255, 255, 0.12) !important;
-    border-color: rgba(255, 255, 255, 0.25) !important;
-    color: #FAF7F2 !important;
-  }
   .bento-card-portrait-kit {
-    min-height: 310px !important;
+    min-height: 295px !important;
   }
   .bento-card-portrait-kit .bento-card-img.fit-mockup {
-    max-height: 145px !important;
+    max-height: 140px !important;
   }
   .bento-card-tall-smoke {
     min-height: 340px !important;
@@ -4493,12 +4783,55 @@ body.cursor-in-founder .custom-cursor {
     bottom: 14px !important;
     padding: 12px 14px;
   }
+  .section-reviews {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 540px;
+    max-height: 100dvh;
+    overflow: hidden !important;
+    padding: 0;
+  }
+  .reviews-scroll-track {
+    height: 100% !important;
+    min-height: 100% !important;
+  }
+  .reviews-sticky-stage {
+    position: relative !important;
+    height: 100% !important;
+    min-height: 100% !important;
+  }
   .stage-header-title {
-    font-size: clamp(1.2rem, 4.6vw, 1.45rem);
+    font-size: clamp(1.35rem, 5.2vw, 1.85rem) !important;
+    text-align: center;
+    line-height: 1.25;
   }
   .review-diagonal-card {
-    width: clamp(200px, 60vw, 230px);
-    height: clamp(350px, 90vw, 390px);
+    width: 240px;
+    height: 395px;
+    top: -198px;
+    left: -120px;
+    border-radius: 0 !important;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease;
+  }
+
+  @media (max-height: 680px) {
+    .reviews-stage-header {
+      top: 14px;
+    }
+    .stage-header-title {
+      font-size: 1.25rem !important;
+    }
+    .review-diagonal-card {
+      width: 215px;
+      height: 355px;
+      top: -177px;
+      left: -108px;
+    }
+    .reviews-completion-pill {
+      bottom: 12px;
+      padding: 6px 14px;
+      font-size: 0.62rem;
+    }
   }
 
   /* 6. FAQ Section */
@@ -4519,61 +4852,67 @@ body.cursor-in-founder .custom-cursor {
 
   /* 7. Founder Section */
   .section-founder {
-    height: auto;
-    min-height: 85vh;
-    min-height: 85dvh;
-    padding: 56px 16px;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 540px;
+    padding: 0;
     cursor: default;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    touch-action: pan-y;
   }
   .founder-fullscreen-stage {
     position: relative;
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 24px 0;
+    padding: 20px 14px;
+    overflow: hidden;
   }
   .founder-fullscreen-stage .stage-corner-tag {
-    font-size: 0.55rem;
-    letter-spacing: 0.12em;
+    font-size: 0.52rem;
+    letter-spacing: 0.10em;
+    z-index: 5;
   }
-  .founder-fullscreen-stage .stage-corner-tag.top-left { top: 6px; left: 6px; }
-  .founder-fullscreen-stage .stage-corner-tag.top-right { top: 6px; right: 6px; }
-  .founder-fullscreen-stage .stage-corner-tag.bottom-left { bottom: 6px; left: 6px; }
-  .founder-fullscreen-stage .stage-corner-tag.bottom-right { bottom: 6px; right: 6px; }
+  .founder-fullscreen-stage .stage-corner-tag.top-left { top: 12px; left: 12px; }
+  .founder-fullscreen-stage .stage-corner-tag.top-right { top: 12px; right: 12px; }
+  .founder-fullscreen-stage .stage-corner-tag.bottom-left { bottom: 12px; left: 12px; }
+  .founder-fullscreen-stage .stage-corner-tag.bottom-right { bottom: 12px; right: 12px; }
   
   .founder-typo-canvas {
     position: relative;
     width: 100%;
-    transform: none !important;
-    margin-bottom: 20px;
+    max-width: 92vw;
+    z-index: 1;
+    pointer-events: none;
+    margin: 0 auto;
   }
   .founder-typo-canvas .typo-line {
-    font-size: clamp(1.2rem, 4.8vw, 1.75rem);
+    font-size: clamp(1.35rem, 5.5vw, 1.95rem);
     letter-spacing: -0.01em;
-    line-height: 1.15;
+    line-height: 1.18;
   }
   .founder-typo-canvas .typo-line.line-center-small {
-    font-size: clamp(0.68rem, 2.5vw, 0.82rem);
-    letter-spacing: 0.15em;
+    font-size: clamp(0.68rem, 2.6vw, 0.82rem);
+    letter-spacing: 0.14em;
   }
   .founder-cursor-image {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    width: clamp(170px, 48vw, 210px);
-    margin: 14px auto 0 auto;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: clamp(175px, 46vw, 215px);
+    aspect-ratio: 3 / 4;
+    border: 1.5px solid var(--color-espresso);
+    box-shadow: 0 18px 45px rgba(35, 28, 24, 0.28);
     pointer-events: auto;
-    box-shadow: 0 16px 40px rgba(35, 28, 24, 0.22);
+    touch-action: none;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    will-change: transform, left, top, opacity;
   }
 
   /* 8. Newsletter Section */
@@ -4677,25 +5016,24 @@ body.cursor-in-founder .custom-cursor {
   }
   /* Compact mobile bento refinements for iPhone SE / FE <= 375px */
   .bento-card {
-    min-height: 275px !important;
+    min-height: 255px !important;
   }
   .bento-card-header {
     padding: 10px 8px 0 8px !important;
   }
   .bento-card-cat {
-    font-size: 0.46rem !important;
-    letter-spacing: 0.08em !important;
+    display: none !important;
   }
   .bento-card-title {
-    font-size: 0.78rem !important;
+    font-size: 0.82rem !important;
     line-height: 1.18 !important;
     margin-bottom: 2px !important;
   }
   .price-val {
-    font-size: 0.78rem !important;
+    font-size: 1.15rem !important;
   }
   .price-strikethrough {
-    font-size: 0.64rem !important;
+    font-size: 0.68rem !important;
   }
   .bento-card-media {
     padding: 4px 6px 8px 6px !important;
@@ -4705,31 +5043,38 @@ body.cursor-in-founder .custom-cursor {
     max-height: 100px !important;
   }
   .bento-card-actions {
-    padding: 0 8px 10px 8px !important;
-    gap: 4px !important;
-  }
-  .btn-add-ritual {
-    padding: 7px 4px !important;
-    font-size: 0.52rem !important;
-    letter-spacing: 0.04em !important;
-    gap: 3px !important;
+    bottom: 10px !important;
+    right: 10px !important;
   }
   .btn-quick-view {
-    padding: 7px 5px !important;
-    font-size: 0.52rem !important;
+    display: none !important;
+  }
+  .btn-add-ritual {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    flex: 0 0 32px !important;
+    padding: 0 !important;
+  }
+  .btn-add-ritual i,
+  .btn-add-ritual svg {
+    width: 14px !important;
+    height: 14px !important;
   }
   .bento-card-editorial-wide,
   .bento-row-three-col [data-product-id="prod-coffee-duo"] {
-    min-height: 220px !important;
+    min-height: 215px !important;
   }
   .bento-card-portrait-kit {
-    min-height: 280px !important;
+    min-height: 275px !important;
   }
   .bento-card-portrait-kit .bento-card-img.fit-mockup {
-    max-height: 125px !important;
+    max-height: 120px !important;
   }
   .stage-header-title {
-    font-size: 1.15rem;
+    font-size: clamp(1.65rem, 6.2vw, 2.2rem) !important;
+    text-align: center;
+    line-height: 1.2;
   }
   .hud-user-name {
     font-size: 0.72rem;
@@ -5352,9 +5697,14 @@ body.cursor-in-founder .custom-cursor {
   box-shadow: -4px 6px 20px rgba(35, 28, 24, 0.22), -1px 2px 6px rgba(35, 28, 24, 0.10);
   cursor: pointer;
   text-decoration: none;
-  transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1), 
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              width 0.35s ease,
+              height 0.35s ease,
+              padding 0.35s ease,
+              border-radius 0.35s ease,
               background-color 0.22s ease, 
-              box-shadow 0.26s ease;
+              box-shadow 0.26s ease,
+              opacity 0.3s ease;
   user-select: none;
   -webkit-user-select: none;
   outline: none;
@@ -5370,6 +5720,62 @@ body.cursor-in-founder .custom-cursor {
   background-color: var(--color-espresso, #231C18);
   border-color: rgba(255, 255, 255, 0.3);
   transform: translateX(-2px);
+}
+
+/* Shrunk Icon-Only State */
+.whatsapp-sticky-tab.icon-only {
+  padding: 11px 9px 11px 11px;
+  border-radius: 22px 0 0 22px;
+  gap: 0;
+  width: 44px;
+  height: 44px;
+}
+
+.whatsapp-sticky-tab.icon-only .whatsapp-tab-text {
+  opacity: 0;
+  max-height: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, max-height 0.35s ease;
+}
+
+/* Retracted / Tucked into Screen Edge (Only a slight curved part peeks out) */
+.whatsapp-sticky-tab.retracted {
+  transform: translateX(24px);
+  opacity: 0.94;
+  box-shadow: -2px 3px 12px rgba(35, 28, 24, 0.16);
+}
+
+.whatsapp-sticky-tab.retracted:hover,
+.whatsapp-sticky-tab.retracted:focus-visible,
+.whatsapp-sticky-tab.revealed,
+.whatsapp-sticky-tab.active {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  box-shadow: -6px 8px 24px rgba(35, 28, 24, 0.32) !important;
+}
+
+/* Gentle Nudge Animation to entice curious visitors */
+@keyframes whatsappTabNudge {
+  0%, 100% {
+    transform: translateX(24px);
+  }
+  32% {
+    transform: translateX(6px);
+  }
+  50% {
+    transform: translateX(12px);
+  }
+  70% {
+    transform: translateX(8px);
+  }
+}
+
+.whatsapp-sticky-tab.retracted.nudge {
+  animation: whatsappTabNudge 1.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .whatsapp-tab-icon {
@@ -5399,9 +5805,21 @@ body.cursor-in-founder .custom-cursor {
   color: #FFFFFF;
   white-space: nowrap;
   line-height: 1;
+  transition: opacity 0.35s ease, max-height 0.35s ease;
 }
 
-/* Subtle online pulse indicator */
+/* Subtle online pulse indicator with breathing glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 4px rgba(37, 211, 102, 0.7);
+  }
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 0 10px rgba(37, 211, 102, 1);
+  }
+}
+
 .whatsapp-tab-pulse {
   position: absolute;
   top: 7px;
@@ -5412,6 +5830,7 @@ body.cursor-in-founder .custom-cursor {
   border: 1.5px solid #FFFFFF;
   border-radius: 50%;
   box-shadow: 0 0 6px rgba(37, 211, 102, 0.8);
+  animation: pulseGlow 2.5s infinite ease-in-out;
 }
 
 /* 2. Floating Concierge Popup Card */
@@ -5678,6 +6097,32 @@ body.cursor-in-founder .custom-cursor {
   .whatsapp-sticky-tab {
     bottom: 75px;
     padding: 12px 7px 14px 8px;
+  }
+  .whatsapp-sticky-tab.icon-only {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 10px 8px 10px 10px !important;
+    border-radius: 20px 0 0 20px !important;
+  }
+  .whatsapp-sticky-tab.retracted {
+    transform: translateX(22px);
+  }
+  @keyframes whatsappTabNudgeMobile {
+    0%, 100% {
+      transform: translateX(22px);
+    }
+    30% {
+      transform: translateX(4px);
+    }
+    50% {
+      transform: translateX(10px);
+    }
+    70% {
+      transform: translateX(6px);
+    }
+  }
+  .whatsapp-sticky-tab.retracted.nudge {
+    animation: whatsappTabNudgeMobile 1.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .whatsapp-tab-text {
     font-size: 0.62rem;

@@ -1643,7 +1643,15 @@ function initVideoReviews() {
   if (!scrollTrack || cards.length === 0) return;
 
   const N = cards.length; // 5 cards
+  const sectionReviews = document.getElementById('reviews') || (scrollTrack ? scrollTrack.closest('.section-reviews') : null);
+  const storyTicker = document.getElementById('reviewsStoryTicker');
+  const storyCounter = document.getElementById('reviewsStoryCounter');
+  const tickerPips = Array.from(document.querySelectorAll('.ticker-pip'));
+  const completionPill = document.getElementById('reviewsCompletionPill');
+
   let activeIndex = 0;
+  let mobileActiveIdx = 0;
+  let isWheelThrottled = false;
   let isAudioMuted = true;
   let currentReelModalIdx = 0;
   let isTicking = false;
@@ -1658,9 +1666,317 @@ function initVideoReviews() {
     }
   });
 
-  // Calculate card position along diagonal vector matching pin.it/THpXwdmzm
+  // ========================================================================
+  // DISCRETE MOBILE CARD CAROUSEL (Vertical Gesture Lock)
+  // Ensures all 5 customer stories are viewed before allowing vertical scroll
+  // ========================================================================
+  function goToMobileCard(targetIdx) {
+    if (targetIdx < 0 || targetIdx >= N) return;
+    mobileActiveIdx = targetIdx;
+
+    // Lock Lenis smooth scroll on mobile while cycling through videos
+    if (sectionReviews) {
+      if (mobileActiveIdx < N - 1) {
+        sectionReviews.setAttribute('data-lenis-prevent', 'true');
+      } else {
+        sectionReviews.removeAttribute('data-lenis-prevent');
+      }
+    }
+
+    cards.forEach((card, i) => {
+      const delta = i - mobileActiveIdx;
+      const video = card.querySelector('.card-video');
+
+      if (delta === 0) {
+        // Focal Card (Center of viewport)
+        card.style.transform = 'translate3d(0, 0, 0) scale(1) rotate(0deg)';
+        card.style.opacity = '1';
+        card.style.zIndex = '30';
+        card.style.pointerEvents = 'auto';
+        card.classList.add('is-active-focal');
+        if (video) {
+          video.muted = isAudioMuted;
+          if (video.paused && (!modal || !modal.classList.contains('active'))) {
+            const p = video.play();
+            if (p) p.catch(() => {});
+          }
+        }
+      } else if (delta < 0) {
+        // Past Cards (Moved up and out)
+        card.style.transform = 'translate3d(0, -118%, -60px) scale(0.85) rotate(-3deg)';
+        card.style.opacity = '0';
+        card.style.zIndex = '10';
+        card.style.pointerEvents = 'none';
+        card.classList.remove('is-active-focal');
+        if (video && !video.paused) {
+          video.pause();
+        }
+      } else {
+        // Future Cards (Waiting below)
+        card.style.transform = 'translate3d(0, 118%, -60px) scale(0.85) rotate(3deg)';
+        card.style.opacity = '0';
+        card.style.zIndex = '10';
+        card.style.pointerEvents = 'none';
+        card.classList.remove('is-active-focal');
+        if (video && !video.paused) {
+          video.pause();
+        }
+      }
+    });
+
+    // Subtle parallax typography drift on mobile
+    if (parallaxBg) {
+      const row1 = parallaxBg.querySelector('.row-1');
+      const row2 = parallaxBg.querySelector('.row-2');
+      const p = mobileActiveIdx / (N - 1);
+      if (row1) row1.style.transform = `translate3d(${(-p * 180).toFixed(1)}px, 0, 0)`;
+      if (row2) row2.style.transform = `translate3d(${(p * 180).toFixed(1)}px, 0, 0)`;
+    }
+
+    // Update ticker pips & counter
+    tickerPips.forEach((pip, idx) => {
+      pip.classList.toggle('active', idx === mobileActiveIdx);
+    });
+    if (storyCounter) {
+      storyCounter.textContent = `STORY 0${mobileActiveIdx + 1} // 0${N}`;
+    }
+
+    // Completion pill: reveal when final card (Story 5) is reached
+    if (completionPill) {
+      if (mobileActiveIdx === N - 1) {
+        completionPill.classList.add('is-complete');
+      } else {
+        completionPill.classList.remove('is-complete');
+      }
+    }
+  }
+
+  // Ticker Pip click support on mobile
+  tickerPips.forEach((pip) => {
+    pip.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const targetIdx = parseInt(pip.getAttribute('data-index'), 10);
+      if (!isNaN(targetIdx)) {
+        goToMobileCard(targetIdx);
+      }
+    });
+  });
+
+  // Tap on completion pill smoothly glides to philosophy section
+  if (completionPill) {
+    completionPill.addEventListener('click', () => {
+      const philosophySec = document.getElementById('philosophy');
+      if (philosophySec) {
+        philosophySec.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  // ========================================================================
+  // MOBILE GESTURE-BASED SCROLL INTERCEPTION & LOCK (Touch & Mouse Support)
+  // Strict requirement: User MUST view all videos before moving to next section
+  // Supports: Touch Swipes, Mouse Click-and-Drag, and Mouse Wheel / Trackpad
+  // ========================================================================
+  let gestureStartY = 0;
+  let gestureStartX = 0;
+  let isInteracting = false;
+  let isMouseMode = false;
+  let hasDragged = false;
+  let wheelAccumulator = 0;
+
+  function isReviewsInActiveView() {
+    if (!sectionReviews) return false;
+    const rect = sectionReviews.getBoundingClientRect();
+    // Stage is aligned or occupying majority of the mobile viewport
+    return rect.top <= 65 && rect.bottom >= window.innerHeight * 0.4;
+  }
+
+  if (sectionReviews) {
+    // 1. TOUCH SWIPES (Mobile Phones & Tablets)
+    sectionReviews.addEventListener('touchstart', (e) => {
+      if (window.innerWidth > 768) return;
+      if (e.touches && e.touches.length) {
+        gestureStartY = e.touches[0].clientY;
+        gestureStartX = e.touches[0].clientX;
+        isInteracting = true;
+        isMouseMode = false;
+        hasDragged = false;
+      }
+    }, { passive: true });
+
+    sectionReviews.addEventListener('touchmove', (e) => {
+      if (window.innerWidth > 768 || !isInteracting || isMouseMode) return;
+      if (!e.touches || !e.touches.length) return;
+
+      const currentY = e.touches[0].clientY;
+      const currentX = e.touches[0].clientX;
+      const diffY = currentY - gestureStartY;
+      const diffX = currentX - gestureStartX;
+
+      if (Math.abs(diffY) > 8 || Math.abs(diffX) > 8) {
+        hasDragged = true;
+      }
+
+      if (isReviewsInActiveView() && Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
+        if (diffY < -8) {
+          // Swiping UP (scrolling down towards #philosophy)
+          if (mobileActiveIdx < N - 1) {
+            e.preventDefault();
+          }
+        } else if (diffY > 8) {
+          // Swiping DOWN (scrolling up towards #bento)
+          if (mobileActiveIdx > 0) {
+            e.preventDefault();
+          }
+        }
+      }
+    }, { passive: false });
+
+    sectionReviews.addEventListener('touchend', (e) => {
+      if (window.innerWidth > 768 || !isInteracting || isMouseMode) return;
+      isInteracting = false;
+      if (!e.changedTouches || !e.changedTouches.length) return;
+
+      const endY = e.changedTouches[0].clientY;
+      const endX = e.changedTouches[0].clientX;
+      const diffY = endY - gestureStartY;
+      const diffX = endX - gestureStartX;
+
+      if (isReviewsInActiveView() && Math.abs(diffY) > 30 && Math.abs(diffY) > Math.abs(diffX)) {
+        if (diffY < -30) {
+          if (mobileActiveIdx < N - 1) {
+            goToMobileCard(mobileActiveIdx + 1);
+          }
+        } else if (diffY > 30) {
+          if (mobileActiveIdx > 0) {
+            goToMobileCard(mobileActiveIdx - 1);
+          }
+        }
+      }
+      setTimeout(() => { hasDragged = false; }, 80);
+    }, { passive: true });
+
+    // 2. MOUSE CLICK-AND-DRAG GESTURE (For testing in mobile device emulator / mouse on mobile)
+    sectionReviews.addEventListener('mousedown', (e) => {
+      if (window.innerWidth > 768) return;
+      if (e.button !== 0) return; // Primary left click only
+
+      isInteracting = true;
+      isMouseMode = true;
+      hasDragged = false;
+      gestureStartY = e.clientY;
+      gestureStartX = e.clientX;
+      sectionReviews.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (window.innerWidth > 768 || !isInteracting || !isMouseMode) return;
+
+      const diffY = e.clientY - gestureStartY;
+      const diffX = e.clientX - gestureStartX;
+
+      if (Math.abs(diffY) > 8 || Math.abs(diffX) > 8) {
+        hasDragged = true;
+      }
+
+      if (isReviewsInActiveView() && Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
+        if (diffY < -8) {
+          // Dragging UP (scrolling down towards #philosophy)
+          if (mobileActiveIdx < N - 1) {
+            e.preventDefault();
+          }
+        } else if (diffY > 8) {
+          // Dragging DOWN (scrolling up towards #bento)
+          if (mobileActiveIdx > 0) {
+            e.preventDefault();
+          }
+        }
+      }
+    }, { passive: false });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isInteracting || !isMouseMode) return;
+      isInteracting = false;
+      isMouseMode = false;
+      sectionReviews.classList.remove('is-dragging');
+
+      if (window.innerWidth > 768) return;
+
+      const diffY = e.clientY - gestureStartY;
+      const diffX = e.clientX - gestureStartX;
+
+      if (isReviewsInActiveView() && Math.abs(diffY) > 28 && Math.abs(diffY) > Math.abs(diffX)) {
+        if (diffY < -28) {
+          // Mouse dragged UP -> advance to next card
+          if (mobileActiveIdx < N - 1) {
+            goToMobileCard(mobileActiveIdx + 1);
+          }
+        } else if (diffY > 28) {
+          // Mouse dragged DOWN -> go back to previous card
+          if (mobileActiveIdx > 0) {
+            goToMobileCard(mobileActiveIdx - 1);
+          }
+        }
+      }
+      setTimeout(() => { hasDragged = false; }, 80);
+    });
+
+    // 3. MOUSE WHEEL / TRACKPAD SCROLL GESTURE
+    function handleMobileWheel(e) {
+      if (window.innerWidth > 768) return;
+      if (!isReviewsInActiveView()) return;
+
+      if (e.deltaY > 0) {
+        // Rolling wheel DOWN (wants to see next video or scroll to #philosophy)
+        if (mobileActiveIdx < N - 1) {
+          e.preventDefault();
+          e.stopPropagation();
+          wheelAccumulator += Math.abs(e.deltaY);
+
+          if (!isWheelThrottled && wheelAccumulator >= 16) {
+            isWheelThrottled = true;
+            wheelAccumulator = 0;
+            goToMobileCard(mobileActiveIdx + 1);
+            setTimeout(() => {
+              isWheelThrottled = false;
+              wheelAccumulator = 0;
+            }, 380);
+          }
+        }
+        // If mobileActiveIdx === N - 1, NO preventDefault -> smoothly scrolls down into #philosophy!
+      } else if (e.deltaY < 0) {
+        // Rolling wheel UP (wants to see previous video or scroll back up)
+        if (mobileActiveIdx > 0) {
+          e.preventDefault();
+          e.stopPropagation();
+          wheelAccumulator += Math.abs(e.deltaY);
+
+          if (!isWheelThrottled && wheelAccumulator >= 16) {
+            isWheelThrottled = true;
+            wheelAccumulator = 0;
+            goToMobileCard(mobileActiveIdx - 1);
+            setTimeout(() => {
+              isWheelThrottled = false;
+              wheelAccumulator = 0;
+            }, 380);
+          }
+        }
+        // If mobileActiveIdx === 0, NO preventDefault -> smoothly scrolls back up to previous section!
+      }
+    }
+
+    sectionReviews.addEventListener('wheel', handleMobileWheel, { passive: false });
+    window.addEventListener('wheel', (e) => {
+      if (window.innerWidth <= 768 && isReviewsInActiveView()) {
+        handleMobileWheel(e);
+      }
+    }, { passive: false });
+  }
+
+  // Calculate card position along diagonal vector matching pin.it/THpXwdmzm (Desktop Only)
   // Trajectory: bottom-right to top-left (~34 deg)
   function updateDiagonalStage() {
+    if (window.innerWidth <= 768) return; // Handled via discrete mobile gesture locking
     const rect = scrollTrack.getBoundingClientRect();
     const trackH = scrollTrack.offsetHeight - window.innerHeight;
     const scrolled = Math.max(0, Math.min(trackH, -rect.top));
@@ -1673,8 +1989,11 @@ function initVideoReviews() {
     // Viewport-aware step vectors
     const isMobile = window.innerWidth <= 768;
     const isTablet = window.innerWidth <= 1024 && !isMobile;
-    const stepX = isMobile ? 220 : (isTablet ? 320 : 390);
-    const stepY = isMobile ? 240 : (isTablet ? 250 : 265);
+    
+    // On mobile screens, cards travel directly through center (stepX = 0)
+    // so no video is flung off to the side, and all 5 scroll into view sequentially
+    const stepX = isMobile ? 0 : (isTablet ? 320 : 390);
+    const stepY = isMobile ? Math.min(window.innerHeight * 0.76, 450) : (isTablet ? 250 : 265);
 
     // 1. Update diagonal video cards
     cards.forEach((card, i) => {
@@ -1685,19 +2004,28 @@ function initVideoReviews() {
       // Coordinate on diagonal trajectory
       const x = delta * stepX;
       const y = delta * stepY;
-      const zTranslate = -dist * 60; // 3D depth perspective
+      const zTranslate = -dist * (isMobile ? 35 : 60);
 
       // Organic dynamic rotation: 0deg when focal, slight organic tilt when away
-      const rot = Math.max(-8, Math.min(8, delta * 5.5));
+      const rot = isMobile 
+        ? Math.max(-4, Math.min(4, delta * 3)) 
+        : Math.max(-8, Math.min(8, delta * 5.5));
 
       // Scaling and opacity
-      const scale = Math.max(0.84, 1.14 - dist * 0.28);
-      const opacity = Math.max(0.18, 1.0 - Math.pow(dist / 2.4, 1.6));
+      const scale = isMobile 
+        ? Math.max(0.85, 1.05 - dist * 0.22)
+        : Math.max(0.84, 1.14 - dist * 0.28);
+        
+      const opacity = isMobile
+        ? Math.max(0, 1.0 - Math.pow(dist, 1.4))
+        : Math.max(0.18, 1.0 - Math.pow(dist / 2.4, 1.6));
+        
       const zIndex = Math.round(50 - dist * 10);
 
       card.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, ${zTranslate.toFixed(1)}px) rotate(${rot.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
       card.style.opacity = opacity.toFixed(3);
       card.style.zIndex = zIndex;
+      card.style.pointerEvents = dist < 0.6 ? 'auto' : 'none';
 
       // Active state classes and video playback
       if (i === newActiveIdx) {
@@ -1772,8 +2100,21 @@ function initVideoReviews() {
   // Initial HUD setup
   updateLiveHud(0);
 
-  // Scroll listener with requestAnimationFrame throttling
+  // Viewport resize and init handler
+  function handleResizeOrInit() {
+    if (window.innerWidth <= 768) {
+      goToMobileCard(mobileActiveIdx);
+    } else {
+      cards.forEach(card => {
+        card.style.transition = '';
+      });
+      updateDiagonalStage();
+    }
+  }
+
+  // Scroll listener with requestAnimationFrame throttling (Desktop only)
   function onScroll() {
+    if (window.innerWidth <= 768) return;
     if (!isTicking) {
       requestAnimationFrame(() => {
         updateDiagonalStage();
@@ -1784,9 +2125,12 @@ function initVideoReviews() {
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('resize', handleResizeOrInit, { passive: true });
+  if (typeof lenis !== 'undefined' && lenis) {
+    lenis.on('scroll', onScroll);
+  }
   // Trigger initial placement
-  updateDiagonalStage();
+  handleResizeOrInit();
 
   // Audio Toggle Button
   if (audioToggle) {
@@ -1816,7 +2160,7 @@ function initVideoReviews() {
     });
   }
 
-  // Pip Navigation: Click pip to smoothly glide to that card's scroll position
+  // Pip Navigation: Click pip to smoothly glide to that card's scroll position (Desktop)
   pips.forEach((pip, targetIdx) => {
     pip.addEventListener('click', () => {
       const trackH = scrollTrack.offsetHeight - window.innerHeight;
@@ -1827,10 +2171,24 @@ function initVideoReviews() {
   });
 
   // Card Clicks:
-  // - If clicking an inactive card, smoothly glide it to center.
-  // - If clicking active card, open full detailed reel modal.
+  // - On mobile: click inactive card to view it, click active card to open full reel modal.
+  // - On desktop: click inactive card to scroll to it, click active card to open full reel modal.
   cards.forEach((card, idx) => {
     card.addEventListener('click', (e) => {
+      // If user was dragging via touch or mouse, suppress click
+      if (hasDragged) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      if (window.innerWidth <= 768) {
+        if (idx !== mobileActiveIdx) {
+          goToMobileCard(idx);
+        } else {
+          openReelModal(idx);
+        }
+        return;
+      }
       if (idx !== activeIndex) {
         const trackH = scrollTrack.offsetHeight - window.innerHeight;
         const targetProgress = idx / (N - 1);
@@ -1844,6 +2202,11 @@ function initVideoReviews() {
     const playBtn = card.querySelector('.card-play-btn');
     if (playBtn) {
       playBtn.addEventListener('click', (e) => {
+        if (hasDragged) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
         e.stopPropagation();
         openReelModal(idx);
       });
@@ -1970,7 +2333,8 @@ function initVideoReviews() {
 
 // ==========================================================================
 // 14. FOUNDER STAGE IMAGE CURSOR INTERACTION (Reference: pin.it/5IluAuAKC)
-// Ultra-smooth boundary transitions, continuous lerp physics, and scroll awareness
+// Ultra-smooth boundary transitions, continuous lerp physics, and phone gestures
+// Supports desktop cursor tracking, mobile touch drag/pan, and gyroscope tilt
 // ==========================================================================
 function initFounderParallax() {
   const section = document.getElementById('founder');
@@ -1989,10 +2353,29 @@ function initFounderParallax() {
   let lastMouseX = 0, lastMouseY = 0;
   let velX = 0, velY = 0;
 
+  // Phone gesture & sensor states
+  let isTouching = false;
+  let lastTouchX = 0, lastTouchY = 0;
+  let gyroOffsetX = 0, gyroOffsetY = 0;
+  let gyroRotX = 0, gyroRotY = 0, gyroRotZ = 0;
+
   // Track global client coordinates for scroll calculations
   window.addEventListener('mousemove', function(e) {
     lastClientX = e.clientX;
     lastClientY = e.clientY;
+  }, { passive: true });
+
+  // Mobile Device Orientation / Gyroscope tilt interaction
+  window.addEventListener('deviceorientation', function(e) {
+    if (e.gamma !== null && e.beta !== null) {
+      const gamma = Math.max(-30, Math.min(30, e.gamma || 0));
+      const beta = Math.max(-25, Math.min(25, (e.beta || 45) - 45));
+      gyroOffsetX = (gamma / 30) * 35;
+      gyroOffsetY = (beta / 25) * 28;
+      gyroRotY = (gamma / 30) * 12;
+      gyroRotX = (-beta / 25) * 10;
+      gyroRotZ = (gamma / 30) * 5;
+    }
   }, { passive: true });
 
   // Helper to calculate bounded coordinates within text arena
@@ -2008,8 +2391,9 @@ function initFounderParallax() {
     const textMaxY = typoRect.bottom - secRect.top;
 
     // Generous buffer slightly outside the text part
-    const paddingX = 75;
-    const paddingY = 50;
+    const isMobile = window.innerWidth <= 768;
+    const paddingX = isMobile ? 40 : 75;
+    const paddingY = isMobile ? 35 : 50;
 
     const boundMinX = textMinX - paddingX;
     const boundMaxX = textMaxX + paddingX;
@@ -2049,7 +2433,6 @@ function initFounderParallax() {
     targetX = bounded.x;
     targetY = bounded.y;
 
-    // If entering fresh from dormant state, start position at cursor entrance
     if (currentOpacity < 0.08) {
       currentX = bounded.x;
       currentY = bounded.y;
@@ -2096,10 +2479,88 @@ function initFounderParallax() {
     document.body.classList.remove('cursor-in-founder');
   }
 
+  // Mobile Touch Gestures (drag/pan across founder section)
+  function onTouchStart(e) {
+    if (!e.touches || e.touches.length === 0) return;
+    isTouching = true;
+    isInside = true;
+    targetOpacity = 1;
+    targetScale = 1.06;
+
+    const touch = e.touches[0];
+    const secRect = section.getBoundingClientRect();
+    const tx = touch.clientX - secRect.left;
+    const ty = touch.clientY - secRect.top;
+
+    lastTouchX = tx;
+    lastTouchY = ty;
+    velX = 0;
+    velY = 0;
+
+    const bounded = computeBoundedTarget(tx, ty);
+    targetX = bounded.x;
+    targetY = bounded.y;
+
+    if (currentOpacity < 0.08) {
+      currentX = bounded.x;
+      currentY = bounded.y;
+    }
+  }
+
+  function onTouchMove(e) {
+    if (!isTouching || !e.touches || e.touches.length === 0) return;
+    const touch = e.touches[0];
+    const secRect = section.getBoundingClientRect();
+    const tx = touch.clientX - secRect.left;
+    const ty = touch.clientY - secRect.top;
+
+    velX = tx - lastTouchX;
+    velY = ty - lastTouchY;
+    lastTouchX = tx;
+    lastTouchY = ty;
+
+    const bounded = computeBoundedTarget(tx, ty);
+    targetX = bounded.x;
+    targetY = bounded.y;
+
+    targetRotZ = Math.max(-12, Math.min(12, velX * 0.45));
+    targetRotY = Math.max(-14, Math.min(14, velX * 0.55));
+    targetRotX = Math.max(-12, Math.min(12, -velY * 0.45));
+  }
+
+  function onTouchEnd() {
+    isTouching = false;
+    targetScale = 1.0;
+    targetRotZ = 0;
+    targetRotX = 0;
+    targetRotY = 0;
+  }
+
   // Scroll awareness: gracefully transition when scrolling in or out of the section
   function onScrollCheck() {
-    if (lastClientX === null || lastClientY === null) return;
     const secRect = section.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      const inView = secRect.top < vh * 0.75 && secRect.bottom > vh * 0.25;
+      if (inView) {
+        if (!isInside) {
+          isInside = true;
+          targetOpacity = 1;
+          targetScale = 1.0;
+        }
+      } else {
+        if (isInside && !isTouching) {
+          isInside = false;
+          targetOpacity = 0;
+          targetScale = 0.88;
+        }
+      }
+      return;
+    }
+
+    if (lastClientX === null || lastClientY === null) return;
     const insideNow = (
       lastClientX >= secRect.left &&
       lastClientX <= secRect.right &&
@@ -2134,20 +2595,33 @@ function initFounderParallax() {
   section.addEventListener('mouseenter', onMouseEnter);
   section.addEventListener('mousemove', onMouseMove, { passive: true });
   section.addEventListener('mouseleave', onMouseLeave);
+  section.addEventListener('touchstart', onTouchStart, { passive: true });
+  section.addEventListener('touchmove', onTouchMove, { passive: true });
+  section.addEventListener('touchend', onTouchEnd, { passive: true });
+  section.addEventListener('touchcancel', onTouchEnd, { passive: true });
   window.addEventListener('scroll', onScrollCheck, { passive: true });
 
   // 60fps render loop with continuous smooth easing
   function updateImageCursor() {
-    // On mobile screens (<= 768px), founder card is statically positioned in center by CSS
-    if (window.innerWidth <= 768) {
-      imageCursor.style.visibility = 'visible';
-      imageCursor.style.opacity = '1';
-      imageCursor.style.left = '';
-      imageCursor.style.top = '';
-      imageCursor.style.transform = '';
-      if (typoCanvas) typoCanvas.style.transform = '';
-      requestAnimationFrame(updateImageCursor);
-      return;
+    const isMobile = window.innerWidth <= 768;
+
+    // On mobile, when visible and not actively touching, provide organic ambient floating
+    if (isMobile && isInside && !isTouching) {
+      const secRect = section.getBoundingClientRect();
+      const typoRect = typoCanvas ? typoCanvas.getBoundingClientRect() : secRect;
+      const textCenterX = (typoRect.left - secRect.left + typoRect.right - secRect.left) / 2;
+      const textCenterY = (typoRect.top - secRect.top + typoRect.bottom - secRect.top) / 2;
+
+      const now = performance.now();
+      const idleFloatX = Math.sin(now * 0.0016) * 16 + gyroOffsetX;
+      const idleFloatY = Math.cos(now * 0.0020) * 12 + gyroOffsetY;
+      const idleRotZ = Math.sin(now * 0.0014) * 2.5 + gyroRotZ;
+
+      targetX = textCenterX + idleFloatX;
+      targetY = textCenterY + idleFloatY;
+      targetRotX = gyroRotX;
+      targetRotY = gyroRotY;
+      targetRotZ = idleRotZ;
     }
 
     // 1. Smoothly interpolate opacity & scale
@@ -2165,13 +2639,13 @@ function initFounderParallax() {
     }
 
     // 2. Smoothly interpolate position & 3D rotation
-    const ease = 0.12;
+    const ease = isMobile ? 0.14 : 0.12;
     currentX += (targetX - currentX) * ease;
     currentY += (targetY - currentY) * ease;
 
     const bounded = computeBoundedTarget(currentX, currentY);
 
-    if (isInside) {
+    if (isInside && !isMobile) {
       // Toggle custom cursor: active when within text arena
       if (Math.abs(bounded.rawDx) > 18 || Math.abs(bounded.rawDy) > 18) {
         document.body.classList.remove('cursor-in-founder');
@@ -2203,8 +2677,8 @@ function initFounderParallax() {
 
     // Subtle counter-parallax on centered behind text
     if (typoCanvas) {
-      const textShiftX = isInside ? (-bounded.normX * 12).toFixed(1) : 0;
-      const textShiftY = isInside ? (-bounded.normY * 8).toFixed(1) : 0;
+      const textShiftX = isInside ? (-bounded.normX * (isMobile ? 6 : 12)).toFixed(1) : 0;
+      const textShiftY = isInside ? (-bounded.normY * (isMobile ? 4 : 8)).toFixed(1) : 0;
       typoCanvas.style.transform = `translate3d(${textShiftX}px, ${textShiftY}px, 0)`;
     }
 
@@ -2303,6 +2777,264 @@ function initFounderParallax() {
     let isTransitioning = false;
     let targetProgress = 0;
     let smoothProgress = 0;
+
+    // Mobile gesture & mouse interaction state
+    const mobileTicker = document.getElementById('moonMobileTicker');
+    const tickerFill = document.getElementById('moonTickerFill');
+    const mobileCounter = document.getElementById('moonMobileCounter');
+    const completionPill = document.getElementById('moonCompletionPill');
+
+    let mobileMoonProgress = 0.0;
+    let isInteracting = false;
+    let isMouseMode = false;
+    let gestureStartY = 0;
+    let gestureStartX = 0;
+    let hasDragged = false;
+    let wheelAccumulator = 0;
+    let isWheelThrottled = false;
+
+    function isMoonInActiveView() {
+      if (!section) return false;
+      const rect = section.getBoundingClientRect();
+      return rect.top <= 65 && rect.bottom >= window.innerHeight * 0.4;
+    }
+
+    function updateMobileMoonProgress(newProg) {
+      mobileMoonProgress = Math.max(0, Math.min(1.0, newProg));
+
+      // Lock Lenis smooth scroll while moon cycle is incomplete
+      if (section) {
+        if (mobileMoonProgress < 0.98) {
+          section.setAttribute('data-lenis-prevent', 'true');
+        } else {
+          section.removeAttribute('data-lenis-prevent');
+        }
+      }
+
+      // Update ticker fill
+      if (tickerFill) {
+        tickerFill.style.width = `${Math.max(4, mobileMoonProgress * 100)}%`;
+      }
+
+      // Update day counter
+      const currentDay = Math.min(28, Math.max(1, Math.round(1 + mobileMoonProgress * 27)));
+      const padDay = currentDay < 10 ? `0${currentDay}` : currentDay;
+      let phaseLabel = 'NEW MOON';
+      if (mobileMoonProgress < 0.20) phaseLabel = 'NEW MOON';
+      else if (mobileMoonProgress < 0.48) phaseLabel = 'WAXING MOON';
+      else if (mobileMoonProgress < 0.58) phaseLabel = 'FULL MOON';
+      else if (mobileMoonProgress < 0.98) phaseLabel = 'WANING MOON';
+      else phaseLabel = 'FULL CYCLE';
+
+      if (mobileCounter) {
+        mobileCounter.textContent = `DAY ${padDay} OF 28 • ${phaseLabel}`;
+      }
+
+      // Reveal completion pill when full cycle reached
+      if (completionPill) {
+        if (mobileMoonProgress >= 0.98) {
+          completionPill.classList.add('is-complete');
+        } else {
+          completionPill.classList.remove('is-complete');
+        }
+      }
+    }
+
+    // Set initial Lenis lock until full 28-day cycle is finished
+    if (section) {
+      section.setAttribute('data-lenis-prevent', 'true');
+    }
+
+    // Completion pill click: smooth scroll to next section (#faq)
+    if (completionPill) {
+      completionPill.addEventListener('click', () => {
+        const faqSec = document.getElementById('faq');
+        if (faqSec) {
+          faqSec.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+
+    // 1. TOUCH SWIPES (Mobile Phones, Tablets & Touch Screens)
+    section.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length) {
+        gestureStartY = e.touches[0].clientY;
+        gestureStartX = e.touches[0].clientX;
+        isInteracting = true;
+        isMouseMode = false;
+        hasDragged = false;
+      }
+    }, { passive: true });
+
+    section.addEventListener('touchmove', (e) => {
+      if (!isInteracting || isMouseMode) return;
+      if (!e.touches || !e.touches.length) return;
+
+      const currentY = e.touches[0].clientY;
+      const currentX = e.touches[0].clientX;
+      const diffY = currentY - gestureStartY;
+      const diffX = currentX - gestureStartX;
+
+      if (Math.abs(diffY) > 8 || Math.abs(diffX) > 8) {
+        hasDragged = true;
+      }
+
+      if (isMoonInActiveView() && Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
+        if (diffY < -8) {
+          // Swiping UP (wants to advance moon or scroll down towards #faq)
+          if (mobileMoonProgress < 0.98) {
+            e.preventDefault();
+          }
+        } else if (diffY > 8) {
+          // Swiping DOWN (wants to reverse moon or scroll up towards #philosophy)
+          if (mobileMoonProgress > 0.05) {
+            e.preventDefault();
+          }
+        }
+      }
+    }, { passive: false });
+
+    section.addEventListener('touchend', (e) => {
+      if (!isInteracting || isMouseMode) return;
+      isInteracting = false;
+      if (!e.changedTouches || !e.changedTouches.length) return;
+
+      const endY = e.changedTouches[0].clientY;
+      const endX = e.changedTouches[0].clientX;
+      const diffY = endY - gestureStartY;
+      const diffX = endX - gestureStartX;
+
+      if (isMoonInActiveView() && Math.abs(diffY) > 28 && Math.abs(diffY) > Math.abs(diffX)) {
+        if (diffY < -28) {
+          // Swipe UP: advance by 0.25 (one clinical phase per swipe)
+          if (mobileMoonProgress < 0.98) {
+            updateMobileMoonProgress(mobileMoonProgress + 0.25);
+          }
+        } else if (diffY > 28) {
+          // Swipe DOWN: retreat by 0.25
+          if (mobileMoonProgress > 0.05) {
+            updateMobileMoonProgress(mobileMoonProgress - 0.25);
+          }
+        }
+      }
+      setTimeout(() => { hasDragged = false; }, 80);
+    }, { passive: true });
+
+    // 2. MOUSE CLICK-AND-DRAG GESTURE (For testing in mobile device emulator / mouse on mobile & desktop)
+    section.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return; // Left mouse button only
+
+      isInteracting = true;
+      isMouseMode = true;
+      hasDragged = false;
+      gestureStartY = e.clientY;
+      gestureStartX = e.clientX;
+      section.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isInteracting || !isMouseMode) return;
+
+      const diffY = e.clientY - gestureStartY;
+      const diffX = e.clientX - gestureStartX;
+
+      if (Math.abs(diffY) > 8 || Math.abs(diffX) > 8) {
+        hasDragged = true;
+      }
+
+      if (isMoonInActiveView() && Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
+        if (diffY < -8) {
+          if (mobileMoonProgress < 0.98) {
+            e.preventDefault();
+          }
+        } else if (diffY > 8) {
+          if (mobileMoonProgress > 0.05) {
+            e.preventDefault();
+          }
+        }
+      }
+    }, { passive: false });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isInteracting || !isMouseMode) return;
+      isInteracting = false;
+      isMouseMode = false;
+      section.classList.remove('is-dragging');
+
+      const diffY = e.clientY - gestureStartY;
+      const diffX = e.clientX - gestureStartX;
+
+      if (isMoonInActiveView() && Math.abs(diffY) > 26 && Math.abs(diffY) > Math.abs(diffX)) {
+        if (diffY < -26) {
+          if (mobileMoonProgress < 0.98) {
+            updateMobileMoonProgress(mobileMoonProgress + 0.25);
+          }
+        } else if (diffY > 26) {
+          if (mobileMoonProgress > 0.05) {
+            updateMobileMoonProgress(mobileMoonProgress - 0.25);
+          }
+        }
+      }
+      setTimeout(() => { hasDragged = false; }, 80);
+    });
+
+    // 3. MOUSE WHEEL / TRACKPAD SCROLL GESTURE
+    function handleMoonWheel(e) {
+      if (!isMoonInActiveView()) return;
+
+      if (e.deltaY > 0) {
+        // Rolling wheel DOWN
+        if (mobileMoonProgress < 0.98) {
+          e.preventDefault();
+          e.stopPropagation();
+          wheelAccumulator += Math.abs(e.deltaY);
+
+          if (!isWheelThrottled && wheelAccumulator >= 16) {
+            isWheelThrottled = true;
+            wheelAccumulator = 0;
+            updateMobileMoonProgress(mobileMoonProgress + 0.25);
+            setTimeout(() => {
+              isWheelThrottled = false;
+              wheelAccumulator = 0;
+            }, 380);
+          }
+        }
+        // If mobileMoonProgress >= 0.98, NO preventDefault -> smoothly scrolls down into #faq!
+      } else if (e.deltaY < 0) {
+        // Rolling wheel UP
+        if (mobileMoonProgress > 0.05) {
+          e.preventDefault();
+          e.stopPropagation();
+          wheelAccumulator += Math.abs(e.deltaY);
+
+          if (!isWheelThrottled && wheelAccumulator >= 16) {
+            isWheelThrottled = true;
+            wheelAccumulator = 0;
+            updateMobileMoonProgress(mobileMoonProgress - 0.25);
+            setTimeout(() => {
+              isWheelThrottled = false;
+              wheelAccumulator = 0;
+            }, 380);
+          }
+        }
+        // If mobileMoonProgress <= 0.05, NO preventDefault -> smoothly scrolls back up to #philosophy!
+      }
+    }
+
+    section.addEventListener('wheel', handleMoonWheel, { passive: false });
+    window.addEventListener('wheel', (e) => {
+      if (isMoonInActiveView()) {
+        handleMoonWheel(e);
+      }
+    }, { passive: false });
+
+    window.addEventListener('resize', () => {
+      if (mobileMoonProgress < 0.98 && section) {
+        section.setAttribute('data-lenis-prevent', 'true');
+      } else if (section) {
+        section.removeAttribute('data-lenis-prevent');
+      }
+    }, { passive: true });
 
     // 3D perspective mouse tilt
     let mouseX = 0, mouseY = 0;
@@ -2425,13 +3157,13 @@ function initFounderParallax() {
       const vh = window.innerHeight || 800;
 
       if (rect.bottom > 0 && rect.top < vh) {
-        const maxScroll = track.offsetHeight - vh;
-        if (maxScroll > 0) {
-          targetProgress = Math.max(0, Math.min(1, -rect.top / maxScroll));
-        }
+        targetProgress = mobileMoonProgress;
 
-        // Fluid 60fps continuous easing
-        smoothProgress += (targetProgress - smoothProgress) * 0.12;
+        // Responsive 60fps continuous easing - stays synchronized with gestures/wheel
+        smoothProgress += (targetProgress - smoothProgress) * 0.24;
+        if (Math.abs(targetProgress - smoothProgress) < 0.002) {
+          smoothProgress = targetProgress;
+        }
 
         // Current Cycle Day (1 to 28)
         const currentDay = Math.min(28, Math.max(1, Math.round(1 + smoothProgress * 27)));
@@ -2495,6 +3227,8 @@ function initFounderParallax() {
 
   // ==========================================================================
   // 17. STICKY VERTICAL WHATSAPP CONTACT TAB & CONCIERGE POPUP
+  // Features: Full-text intro -> auto-fade text -> shrink to icon -> retract to edge
+  // Curious user interaction: drag/swipe left or tap to reveal popup with nudge animation
   // ==========================================================================
   function initWhatsAppWidget() {
     const tab = document.getElementById('whatsappStickyTab');
@@ -2505,9 +3239,14 @@ function initFounderParallax() {
 
     if (!tab || !popup) return;
 
+    let autoShrinkTimer = null;
+    let nudgeInterval = null;
+
     function openPopup() {
       popup.classList.add('open');
       tab.classList.add('active');
+      tab.classList.remove('retracted');
+      tab.classList.remove('nudge');
       tab.setAttribute('aria-expanded', 'true');
     }
 
@@ -2515,21 +3254,107 @@ function initFounderParallax() {
       popup.classList.remove('open');
       tab.classList.remove('active');
       tab.setAttribute('aria-expanded', 'false');
+      // After closing, keep tab tucked into edge to keep screen 100% visible
+      setTimeout(retractTab, 300);
     }
 
-    function togglePopup(e) {
+    function shrinkToIcon() {
+      if (popup.classList.contains('open')) return;
+      tab.classList.add('icon-only');
+    }
+
+    function retractTab() {
+      if (popup.classList.contains('open')) return;
+      tab.classList.add('icon-only');
+      tab.classList.add('retracted');
+    }
+
+    function revealTab() {
+      tab.classList.remove('retracted');
+      tab.classList.remove('nudge');
+    }
+
+    // Phase 1: At the start, user sees text & icon to know what it means
+    // Phase 2: After 3.5s, fade the text, shrink the tab to icon only, and tuck into screen edge
+    autoShrinkTimer = setTimeout(() => {
+      if (!popup.classList.contains('open')) {
+        shrinkToIcon();
+        setTimeout(retractTab, 400);
+      }
+    }, 3500);
+
+    // Periodic gentle nudge animation every 11 seconds to invite curious visitors
+    nudgeInterval = setInterval(() => {
+      if (tab.classList.contains('retracted') && !popup.classList.contains('open')) {
+        tab.classList.add('nudge');
+        setTimeout(() => {
+          tab.classList.remove('nudge');
+        }, 1600);
+      }
+    }, 11000);
+
+    // Desktop hover reveal
+    tab.addEventListener('mouseenter', () => {
+      if (!popup.classList.contains('open')) {
+        revealTab();
+      }
+    });
+
+    tab.addEventListener('mouseleave', () => {
+      if (!popup.classList.contains('open') && tab.classList.contains('icon-only')) {
+        setTimeout(() => {
+          if (!popup.classList.contains('open') && !tab.matches(':hover')) {
+            retractTab();
+          }
+        }, 1200);
+      }
+    });
+
+    // Tap / Click handling: if retracted or closed, reveals and opens popup
+    tab.addEventListener('click', function(e) {
       if (e) {
         e.preventDefault();
         e.stopPropagation();
       }
+      clearTimeout(autoShrinkTimer);
       if (popup.classList.contains('open')) {
         closePopup();
       } else {
         openPopup();
       }
-    }
+    });
 
-    tab.addEventListener('click', togglePopup);
+    // Touch drag / swipe-left gesture support (drag from edge to reveal popup)
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isSwiping = false;
+
+    tab.addEventListener('touchstart', function(e) {
+      if (e.touches && e.touches.length) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        isSwiping = false;
+      }
+    }, { passive: true });
+
+    tab.addEventListener('touchmove', function(e) {
+      if (e.touches && e.touches.length) {
+        const deltaX = e.touches[0].clientX - touchStartX;
+        const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+        // Swiping left towards the screen content
+        if (deltaX < -10 && deltaY < 35) {
+          isSwiping = true;
+          revealTab();
+        }
+      }
+    }, { passive: true });
+
+    tab.addEventListener('touchend', function() {
+      if (isSwiping) {
+        openPopup();
+        isSwiping = false;
+      }
+    });
 
     if (closeBtn) {
       closeBtn.addEventListener('click', function(e) {
