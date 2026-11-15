@@ -1667,19 +1667,31 @@ function initVideoReviews() {
   });
 
   // ========================================================================
-  // DISCRETE MOBILE CARD CAROUSEL (Vertical Gesture Lock)
-  // Ensures all 5 customer stories are viewed before allowing vertical scroll
   // ========================================================================
+  // DISCRETE MOBILE CARD CAROUSEL
+  // User scrolls through all 5 video reviews.
+  // Once all 5 are explored (or while on Video 5 going down / Video 1 going up):
+  // NATURAL PAGE SCROLLING IS TURNED ON for the product review section,
+  // allowing the user to naturally and effortlessly scroll down or up!
+  // ========================================================================
+  let hasExploredAllReviews = false;
+
   function goToMobileCard(targetIdx) {
     if (targetIdx < 0 || targetIdx >= N) return;
     mobileActiveIdx = targetIdx;
 
-    // Lock Lenis smooth scroll on mobile while cycling through videos
+    if (mobileActiveIdx === N - 1) {
+      hasExploredAllReviews = true;
+    }
+
+    // Lock Lenis smooth scroll on mobile while cycling through videos.
+    // Once all videos are explored, unlock completely so the user can naturally scroll.
     if (sectionReviews) {
-      if (mobileActiveIdx < N - 1) {
+      if (!hasExploredAllReviews) {
         sectionReviews.setAttribute('data-lenis-prevent', 'true');
       } else {
         sectionReviews.removeAttribute('data-lenis-prevent');
+        sectionReviews.classList.add('reviews-unlocked');
       }
     }
 
@@ -1762,123 +1774,27 @@ function initVideoReviews() {
     });
   });
 
-  // Helper for buttery-smooth unnoticeable section transitions on mobile
-  let isGliding = false;
-
-  function glideToPhilosophy() {
-    if (isGliding) return;
-    isGliding = true;
-
-    const philosophySec = document.getElementById('philosophy');
-    if (!philosophySec) {
-      isGliding = false;
-      return;
-    }
-
-    if (sectionReviews) {
-      sectionReviews.removeAttribute('data-lenis-prevent');
-    }
-
-    // Pause all card videos to prevent background audio leak or GPU stutter
-    cards.forEach((card) => {
-      const v = card.querySelector('.card-video');
-      if (v && !v.paused) v.pause();
-    });
-
-    // Seamless kinetic motion: smoothly elevate active card up as the page flows into philosophy
-    const activeCard = cards[mobileActiveIdx];
-    if (activeCard) {
-      activeCard.style.transition = 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease';
-      activeCard.style.transform = 'translate3d(0, -32%, -35px) scale(0.93)';
-      activeCard.style.opacity = '0.35';
-    }
-
-    const resetCardState = () => {
-      if (activeCard) {
-        activeCard.style.transform = 'translate3d(0, 0, 0) scale(1) rotate(0deg)';
-        activeCard.style.opacity = '1';
-      }
-      setTimeout(() => {
-        isGliding = false;
-      }, 150);
-    };
-
-    if (lenis) {
-      lenis.scrollTo(philosophySec, {
-        offset: 0,
-        duration: 1.15,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        lock: false,
-        onComplete: resetCardState
-      });
-    } else {
-      philosophySec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(resetCardState, 900);
-    }
-  }
-
-  function glideToBento() {
-    if (isGliding) return;
-    isGliding = true;
-
-    const bentoSec = document.getElementById('bentoGrid');
-    if (!bentoSec) {
-      isGliding = false;
-      return;
-    }
-
-    if (sectionReviews) {
-      sectionReviews.removeAttribute('data-lenis-prevent');
-    }
-
-    cards.forEach((card) => {
-      const v = card.querySelector('.card-video');
-      if (v && !v.paused) v.pause();
-    });
-
-    const activeCard = cards[0];
-    if (activeCard) {
-      activeCard.style.transition = 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease';
-      activeCard.style.transform = 'translate3d(0, 32%, -35px) scale(0.93)';
-      activeCard.style.opacity = '0.35';
-    }
-
-    const resetCardState = () => {
-      if (activeCard) {
-        activeCard.style.transform = 'translate3d(0, 0, 0) scale(1) rotate(0deg)';
-        activeCard.style.opacity = '1';
-      }
-      setTimeout(() => {
-        isGliding = false;
-      }, 150);
-    };
-
-    if (lenis) {
-      lenis.scrollTo(bentoSec, {
-        offset: 0,
-        duration: 1.15,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        lock: false,
-        onComplete: resetCardState
-      });
-    } else {
-      bentoSec.scrollIntoView({ behavior: 'smooth', block: 'end' });
-      setTimeout(resetCardState, 900);
-    }
-  }
-
-  // Tap on completion pill smoothly glides to philosophy section
+  // Tap on completion pill smoothly scrolls to philosophy section
   if (completionPill) {
     completionPill.addEventListener('click', (e) => {
       e.stopPropagation();
-      glideToPhilosophy();
+      const philosophySec = document.getElementById('philosophy');
+      if (philosophySec) {
+        if (lenis) {
+          lenis.scrollTo(philosophySec, { duration: 1.1, lock: false });
+        } else {
+          philosophySec.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     });
   }
 
   // ========================================================================
-  // MOBILE GESTURE-BASED SCROLL INTERCEPTION & LOCK (Touch & Mouse Support)
-  // Strict requirement: User MUST view all videos before moving to next section.
-  // When all 5 are completed, scrolling smoothly glides into the next section.
+  // MOBILE GESTURE-BASED SCROLL INTERCEPTION
+  // - While cycling through stories 1 to 4: swipes advance to the next story.
+  // - On Story 1: swiping DOWN allows natural page scrolling UP to bento grid.
+  // - On Story 5 (or once all are explored): NATURAL PAGE SCROLLING IS TURNED ON!
+  //   Swiping or scrolling down/up directly moves the page down/up with native physics.
   // ========================================================================
   let gestureStartY = 0;
   let gestureStartX = 0;
@@ -1888,17 +1804,16 @@ function initVideoReviews() {
   let wheelAccumulator = 0;
 
   function isReviewsInActiveView() {
-    if (isGliding || !sectionReviews) return false;
+    if (!sectionReviews) return false;
     const rect = sectionReviews.getBoundingClientRect();
     const vh = window.innerHeight || 667;
-    // Stage is aligned or occupying majority of the mobile viewport
-    return rect.top >= -vh * 0.25 && rect.top <= 65 && rect.bottom >= vh * 0.45;
+    return rect.top < vh * 0.75 && rect.bottom > vh * 0.25;
   }
 
   if (sectionReviews) {
     // 1. TOUCH SWIPES (Mobile Phones & Tablets - iPhone SE & all mobile viewports)
     sectionReviews.addEventListener('touchstart', (e) => {
-      if (window.innerWidth > 768 || isGliding) return;
+      if (window.innerWidth > 768) return;
       if (e.touches && e.touches.length) {
         gestureStartY = e.touches[0].clientY;
         gestureStartX = e.touches[0].clientX;
@@ -1909,7 +1824,7 @@ function initVideoReviews() {
     }, { passive: true });
 
     sectionReviews.addEventListener('touchmove', (e) => {
-      if (window.innerWidth > 768 || !isInteracting || isMouseMode || isGliding) return;
+      if (window.innerWidth > 768 || !isInteracting || isMouseMode) return;
       if (!e.touches || !e.touches.length) return;
 
       const currentY = e.touches[0].clientY;
@@ -1921,16 +1836,44 @@ function initVideoReviews() {
         hasDragged = true;
       }
 
+      // If all videos have been explored, or currently on the last video (Story 5):
+      // NATURAL SCROLLING IS TURNED ON! Do NOT prevent default!
+      if (hasExploredAllReviews || mobileActiveIdx === N - 1) {
+        if (sectionReviews) {
+          sectionReviews.removeAttribute('data-lenis-prevent');
+        }
+        return; // Allow native page scroll to freely roll down to #philosophy or up to #bentoGrid!
+      }
+
       if (isReviewsInActiveView() && Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
-        // Prevent default browser rubber-banding/jitter while active in the review stage
-        e.preventDefault();
+        if (diffY < -8) {
+          // Swiping UP: advance video while incomplete
+          if (mobileActiveIdx < N - 1) {
+            e.preventDefault();
+          }
+        } else if (diffY > 8) {
+          // Swiping DOWN: retreat video, or allow natural page scroll up if on first video
+          if (mobileActiveIdx > 0) {
+            e.preventDefault();
+          } else {
+            // On Story 1 swiping down -> turn on natural scroll up to #bentoGrid!
+            if (sectionReviews) {
+              sectionReviews.removeAttribute('data-lenis-prevent');
+            }
+          }
+        }
       }
     }, { passive: false });
 
     sectionReviews.addEventListener('touchend', (e) => {
-      if (window.innerWidth > 768 || !isInteracting || isMouseMode || isGliding) return;
+      if (window.innerWidth > 768 || !isInteracting || isMouseMode) return;
       isInteracting = false;
       if (!e.changedTouches || !e.changedTouches.length) return;
+
+      if (hasExploredAllReviews || mobileActiveIdx === N - 1) {
+        setTimeout(() => { hasDragged = false; }, 80);
+        return;
+      }
 
       const endY = e.changedTouches[0].clientY;
       const endX = e.changedTouches[0].clientX;
@@ -1939,28 +1882,22 @@ function initVideoReviews() {
 
       if (isReviewsInActiveView() && Math.abs(diffY) > 20 && Math.abs(diffY) > Math.abs(diffX)) {
         if (diffY < -20) {
-          // Swiping UP (scrolling down): advance video, or glide to philosophy if all 5 completed
           if (mobileActiveIdx < N - 1) {
             goToMobileCard(mobileActiveIdx + 1);
-          } else {
-            glideToPhilosophy();
           }
         } else if (diffY > 20) {
-          // Swiping DOWN (scrolling up): retreat video, or glide back to bento if on story 1
           if (mobileActiveIdx > 0) {
             goToMobileCard(mobileActiveIdx - 1);
-          } else {
-            glideToBento();
           }
         }
       }
       setTimeout(() => { hasDragged = false; }, 80);
     }, { passive: true });
 
-    // 2. MOUSE CLICK-AND-DRAG GESTURE (For testing in mobile device emulator / mouse on mobile)
+    // 2. MOUSE CLICK-AND-DRAG GESTURE
     sectionReviews.addEventListener('mousedown', (e) => {
-      if (window.innerWidth > 768 || isGliding) return;
-      if (e.button !== 0) return; // Primary left click only
+      if (window.innerWidth > 768 || hasExploredAllReviews || mobileActiveIdx === N - 1) return;
+      if (e.button !== 0) return;
 
       isInteracting = true;
       isMouseMode = true;
@@ -1971,7 +1908,7 @@ function initVideoReviews() {
     });
 
     window.addEventListener('mousemove', (e) => {
-      if (window.innerWidth > 768 || !isInteracting || !isMouseMode || isGliding) return;
+      if (window.innerWidth > 768 || !isInteracting || !isMouseMode || hasExploredAllReviews || mobileActiveIdx === N - 1) return;
 
       const diffY = e.clientY - gestureStartY;
       const diffX = e.clientX - gestureStartX;
@@ -1981,7 +1918,11 @@ function initVideoReviews() {
       }
 
       if (isReviewsInActiveView() && Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
-        e.preventDefault();
+        if (diffY < -8 && mobileActiveIdx < N - 1) {
+          e.preventDefault();
+        } else if (diffY > 8 && mobileActiveIdx > 0) {
+          e.preventDefault();
+        }
       }
     }, { passive: false });
 
@@ -1991,26 +1932,16 @@ function initVideoReviews() {
       isMouseMode = false;
       sectionReviews.classList.remove('is-dragging');
 
-      if (window.innerWidth > 768 || isGliding) return;
+      if (window.innerWidth > 768 || hasExploredAllReviews || mobileActiveIdx === N - 1) return;
 
       const diffY = e.clientY - gestureStartY;
       const diffX = e.clientX - gestureStartX;
 
       if (isReviewsInActiveView() && Math.abs(diffY) > 20 && Math.abs(diffY) > Math.abs(diffX)) {
-        if (diffY < -20) {
-          // Mouse dragged UP -> advance to next card or glide to philosophy
-          if (mobileActiveIdx < N - 1) {
-            goToMobileCard(mobileActiveIdx + 1);
-          } else {
-            glideToPhilosophy();
-          }
-        } else if (diffY > 20) {
-          // Mouse dragged DOWN -> retreat card or glide to bento
-          if (mobileActiveIdx > 0) {
-            goToMobileCard(mobileActiveIdx - 1);
-          } else {
-            glideToBento();
-          }
+        if (diffY < -20 && mobileActiveIdx < N - 1) {
+          goToMobileCard(mobileActiveIdx + 1);
+        } else if (diffY > 20 && mobileActiveIdx > 0) {
+          goToMobileCard(mobileActiveIdx - 1);
         }
       }
       setTimeout(() => { hasDragged = false; }, 80);
@@ -2018,11 +1949,18 @@ function initVideoReviews() {
 
     // 3. MOUSE WHEEL / TRACKPAD SCROLL GESTURE
     function handleMobileWheel(e) {
-      if (window.innerWidth > 768 || isGliding) return;
+      if (window.innerWidth > 768) return;
       if (!isReviewsInActiveView()) return;
 
+      if (hasExploredAllReviews || mobileActiveIdx === N - 1) {
+        if (sectionReviews) {
+          sectionReviews.removeAttribute('data-lenis-prevent');
+        }
+        return; // Natural wheel scrolling is ON!
+      }
+
       if (e.deltaY > 0) {
-        // Rolling wheel DOWN (wants to see next video or scroll to #philosophy)
+        // Rolling wheel DOWN (wants to see next video)
         if (mobileActiveIdx < N - 1) {
           e.preventDefault();
           e.stopPropagation();
@@ -2037,20 +1975,9 @@ function initVideoReviews() {
               wheelAccumulator = 0;
             }, 380);
           }
-        } else {
-          // All 5 completed -> smoothly glide into #philosophy
-          e.preventDefault();
-          e.stopPropagation();
-          if (!isWheelThrottled) {
-            isWheelThrottled = true;
-            glideToPhilosophy();
-            setTimeout(() => {
-              isWheelThrottled = false;
-            }, 800);
-          }
         }
       } else if (e.deltaY < 0) {
-        // Rolling wheel UP (wants to see previous video or scroll back to bento)
+        // Rolling wheel UP (wants to see previous video or scroll back up)
         if (mobileActiveIdx > 0) {
           e.preventDefault();
           e.stopPropagation();
@@ -2066,14 +1993,9 @@ function initVideoReviews() {
             }, 380);
           }
         } else {
-          e.preventDefault();
-          e.stopPropagation();
-          if (!isWheelThrottled) {
-            isWheelThrottled = true;
-            glideToBento();
-            setTimeout(() => {
-              isWheelThrottled = false;
-            }, 800);
+          // mobileActiveIdx === 0: Allow natural wheel scroll back up to #bentoGrid
+          if (sectionReviews) {
+            sectionReviews.removeAttribute('data-lenis-prevent');
           }
         }
       }
@@ -2899,6 +2821,7 @@ function initFounderParallax() {
     const completionPill = document.getElementById('moonCompletionPill');
 
     let mobileMoonProgress = 0.0;
+    let hasExploredAllMoon = false;
     let isInteracting = false;
     let isMouseMode = false;
     let gestureStartY = 0;
@@ -2907,92 +2830,27 @@ function initFounderParallax() {
     let wheelAccumulator = 0;
     let isWheelThrottled = false;
 
-    let isGlidingMoon = false;
-
     function isMoonInActiveView() {
-      if (isGlidingMoon || !section) return false;
+      if (!section) return false;
       const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight || 800;
-      return rect.top >= -vh * 0.25 && rect.top <= 65 && rect.bottom >= vh * 0.45;
-    }
-
-    function glideToFAQ() {
-      if (isGlidingMoon) return;
-      isGlidingMoon = true;
-
-      const faqSec = document.getElementById('faq');
-      if (!faqSec) {
-        isGlidingMoon = false;
-        return;
-      }
-
-      if (section) {
-        section.removeAttribute('data-lenis-prevent');
-      }
-
-      const resetMoon = () => {
-        setTimeout(() => {
-          isGlidingMoon = false;
-        }, 150);
-      };
-
-      if (lenis) {
-        lenis.scrollTo(faqSec, {
-          offset: 0,
-          duration: 1.15,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          lock: false,
-          onComplete: resetMoon
-        });
-      } else {
-        faqSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(resetMoon, 900);
-      }
-    }
-
-    function glideToPhilosophyFromMoon() {
-      if (isGlidingMoon) return;
-      isGlidingMoon = true;
-
-      const philSec = document.getElementById('philosophy');
-      if (!philSec) {
-        isGlidingMoon = false;
-        return;
-      }
-
-      if (section) {
-        section.removeAttribute('data-lenis-prevent');
-      }
-
-      const resetMoon = () => {
-        setTimeout(() => {
-          isGlidingMoon = false;
-        }, 150);
-      };
-
-      if (lenis) {
-        lenis.scrollTo(philSec, {
-          offset: 0,
-          duration: 1.15,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          lock: false,
-          onComplete: resetMoon
-        });
-      } else {
-        philSec.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        setTimeout(resetMoon, 900);
-      }
+      const vh = window.innerHeight || 667;
+      return rect.top < vh * 0.75 && rect.bottom > vh * 0.25;
     }
 
     function updateMobileMoonProgress(newProg) {
       mobileMoonProgress = Math.max(0, Math.min(1.0, newProg));
 
-      // Lock Lenis smooth scroll while moon cycle is incomplete
+      if (mobileMoonProgress >= 0.98) {
+        hasExploredAllMoon = true;
+      }
+
+      // Lock Lenis smooth scroll while moon cycle is incomplete; unlock completely when explored
       if (section) {
-        if (mobileMoonProgress < 0.98) {
+        if (!hasExploredAllMoon && mobileMoonProgress < 0.98) {
           section.setAttribute('data-lenis-prevent', 'true');
         } else {
           section.removeAttribute('data-lenis-prevent');
+          section.classList.add('moon-unlocked');
         }
       }
 
@@ -3026,7 +2884,7 @@ function initFounderParallax() {
     }
 
     // Set initial Lenis lock until full 28-day cycle is finished
-    if (section) {
+    if (section && !hasExploredAllMoon) {
       section.setAttribute('data-lenis-prevent', 'true');
     }
 
@@ -3034,13 +2892,20 @@ function initFounderParallax() {
     if (completionPill) {
       completionPill.addEventListener('click', (e) => {
         e.stopPropagation();
-        glideToFAQ();
+        const faqSec = document.getElementById('faq');
+        if (faqSec) {
+          if (lenis) {
+            lenis.scrollTo(faqSec, { duration: 1.1, lock: false });
+          } else {
+            faqSec.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
       });
     }
 
     // 1. TOUCH SWIPES (Mobile Phones, Tablets & Touch Screens)
     section.addEventListener('touchstart', (e) => {
-      if (isGlidingMoon) return;
+      if (window.innerWidth > 768) return;
       if (e.touches && e.touches.length) {
         gestureStartY = e.touches[0].clientY;
         gestureStartX = e.touches[0].clientX;
@@ -3051,7 +2916,7 @@ function initFounderParallax() {
     }, { passive: true });
 
     section.addEventListener('touchmove', (e) => {
-      if (!isInteracting || isMouseMode || isGlidingMoon) return;
+      if (window.innerWidth > 768 || !isInteracting || isMouseMode) return;
       if (!e.touches || !e.touches.length) return;
 
       const currentY = e.touches[0].clientY;
@@ -3063,15 +2928,44 @@ function initFounderParallax() {
         hasDragged = true;
       }
 
+      // If full 28-day cycle has been explored, or currently on Day 28:
+      // NATURAL SCROLLING IS TURNED ON! Do NOT prevent default!
+      if (hasExploredAllMoon || mobileMoonProgress >= 0.98) {
+        if (section) {
+          section.removeAttribute('data-lenis-prevent');
+        }
+        return; // Allow native page scroll to freely roll down to #faq or up to #philosophy!
+      }
+
       if (isMoonInActiveView() && Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
-        e.preventDefault();
+        if (diffY < -8) {
+          // Swiping UP: advance moon cycle while incomplete
+          if (mobileMoonProgress < 0.98) {
+            e.preventDefault();
+          }
+        } else if (diffY > 8) {
+          // Swiping DOWN: retreat moon cycle, or allow natural page scroll up if on Day 1
+          if (mobileMoonProgress > 0.05) {
+            e.preventDefault();
+          } else {
+            // On Day 1 swiping down -> turn on natural scroll up to #philosophy!
+            if (section) {
+              section.removeAttribute('data-lenis-prevent');
+            }
+          }
+        }
       }
     }, { passive: false });
 
     section.addEventListener('touchend', (e) => {
-      if (!isInteracting || isMouseMode || isGlidingMoon) return;
+      if (window.innerWidth > 768 || !isInteracting || isMouseMode) return;
       isInteracting = false;
       if (!e.changedTouches || !e.changedTouches.length) return;
+
+      if (hasExploredAllMoon || mobileMoonProgress >= 0.98) {
+        setTimeout(() => { hasDragged = false; }, 80);
+        return;
+      }
 
       const endY = e.changedTouches[0].clientY;
       const endX = e.changedTouches[0].clientX;
@@ -3080,18 +2974,14 @@ function initFounderParallax() {
 
       if (isMoonInActiveView() && Math.abs(diffY) > 20 && Math.abs(diffY) > Math.abs(diffX)) {
         if (diffY < -20) {
-          // Swipe UP: advance by 0.25 (one clinical phase per swipe) or glide to FAQ
+          // Swipe UP: advance by 0.25 (one clinical phase per swipe)
           if (mobileMoonProgress < 0.98) {
             updateMobileMoonProgress(mobileMoonProgress + 0.25);
-          } else {
-            glideToFAQ();
           }
         } else if (diffY > 20) {
-          // Swipe DOWN: retreat by 0.25 or glide back to philosophy
+          // Swipe DOWN: retreat by 0.25
           if (mobileMoonProgress > 0.05) {
             updateMobileMoonProgress(mobileMoonProgress - 0.25);
-          } else {
-            glideToPhilosophyFromMoon();
           }
         }
       }
@@ -3100,7 +2990,7 @@ function initFounderParallax() {
 
     // 2. MOUSE CLICK-AND-DRAG GESTURE (For testing in mobile device emulator / mouse on mobile & desktop)
     section.addEventListener('mousedown', (e) => {
-      if (isGlidingMoon) return;
+      if (window.innerWidth > 768 || hasExploredAllMoon || mobileMoonProgress >= 0.98) return;
       if (e.button !== 0) return; // Left mouse button only
 
       isInteracting = true;
@@ -3112,7 +3002,7 @@ function initFounderParallax() {
     });
 
     window.addEventListener('mousemove', (e) => {
-      if (!isInteracting || !isMouseMode || isGlidingMoon) return;
+      if (window.innerWidth > 768 || !isInteracting || !isMouseMode || hasExploredAllMoon || mobileMoonProgress >= 0.98) return;
 
       const diffY = e.clientY - gestureStartY;
       const diffX = e.clientX - gestureStartX;
@@ -3122,7 +3012,11 @@ function initFounderParallax() {
       }
 
       if (isMoonInActiveView() && Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 8) {
-        e.preventDefault();
+        if (diffY < -8 && mobileMoonProgress < 0.98) {
+          e.preventDefault();
+        } else if (diffY > 8 && mobileMoonProgress > 0.05) {
+          e.preventDefault();
+        }
       }
     }, { passive: false });
 
@@ -3132,24 +3026,16 @@ function initFounderParallax() {
       isMouseMode = false;
       section.classList.remove('is-dragging');
 
-      if (isGlidingMoon) return;
+      if (window.innerWidth > 768 || hasExploredAllMoon || mobileMoonProgress >= 0.98) return;
 
       const diffY = e.clientY - gestureStartY;
       const diffX = e.clientX - gestureStartX;
 
       if (isMoonInActiveView() && Math.abs(diffY) > 20 && Math.abs(diffY) > Math.abs(diffX)) {
-        if (diffY < -20) {
-          if (mobileMoonProgress < 0.98) {
-            updateMobileMoonProgress(mobileMoonProgress + 0.25);
-          } else {
-            glideToFAQ();
-          }
-        } else if (diffY > 20) {
-          if (mobileMoonProgress > 0.05) {
-            updateMobileMoonProgress(mobileMoonProgress - 0.25);
-          } else {
-            glideToPhilosophyFromMoon();
-          }
+        if (diffY < -20 && mobileMoonProgress < 0.98) {
+          updateMobileMoonProgress(mobileMoonProgress + 0.25);
+        } else if (diffY > 20 && mobileMoonProgress > 0.05) {
+          updateMobileMoonProgress(mobileMoonProgress - 0.25);
         }
       }
       setTimeout(() => { hasDragged = false; }, 80);
@@ -3157,7 +3043,15 @@ function initFounderParallax() {
 
     // 3. MOUSE WHEEL / TRACKPAD SCROLL GESTURE
     function handleMoonWheel(e) {
-      if (isGlidingMoon || !isMoonInActiveView()) return;
+      if (window.innerWidth > 768) return;
+      if (!isMoonInActiveView()) return;
+
+      if (hasExploredAllMoon || mobileMoonProgress >= 0.98) {
+        if (section) {
+          section.removeAttribute('data-lenis-prevent');
+        }
+        return; // Natural wheel scrolling is ON!
+      }
 
       if (e.deltaY > 0) {
         // Rolling wheel DOWN
@@ -3174,17 +3068,6 @@ function initFounderParallax() {
               isWheelThrottled = false;
               wheelAccumulator = 0;
             }, 380);
-          }
-        } else {
-          // Cycle completed -> smoothly glide into FAQ
-          e.preventDefault();
-          e.stopPropagation();
-          if (!isWheelThrottled) {
-            isWheelThrottled = true;
-            glideToFAQ();
-            setTimeout(() => {
-              isWheelThrottled = false;
-            }, 800);
           }
         }
       } else if (e.deltaY < 0) {
@@ -3204,14 +3087,9 @@ function initFounderParallax() {
             }, 380);
           }
         } else {
-          e.preventDefault();
-          e.stopPropagation();
-          if (!isWheelThrottled) {
-            isWheelThrottled = true;
-            glideToPhilosophyFromMoon();
-            setTimeout(() => {
-              isWheelThrottled = false;
-            }, 800);
+          // At start of cycle rolling up -> allow natural wheel scroll back up to #philosophy!
+          if (section) {
+            section.removeAttribute('data-lenis-prevent');
           }
         }
       }

@@ -2511,10 +2511,10 @@ button {
     height: 100dvh;
     min-height: 0;
     max-height: 100dvh;
-    overflow: hidden !important;
+    overflow: visible;
     position: relative;
     padding: 0;
-    cursor: grab;
+    touch-action: pan-y !important;
   }
   .section-reviews.is-dragging,
   .section-reviews.is-dragging * {
@@ -2527,6 +2527,7 @@ button {
     min-height: 100% !important;
     position: relative;
     width: 100%;
+    overflow: visible;
   }
   .reviews-sticky-stage {
     position: relative !important;
@@ -2535,8 +2536,13 @@ button {
     width: 100%;
     height: 100% !important;
     min-height: 100% !important;
-    overflow: hidden;
-    touch-action: none;
+    overflow: visible;
+    touch-action: pan-y !important;
+  }
+  .review-diagonal-card .card-video,
+  .review-diagonal-card .card-poster,
+  .review-diagonal-card .card-scrim {
+    pointer-events: none;
   }
   .reviews-story-ticker {
     display: flex;
@@ -2557,6 +2563,7 @@ button {
     top: -205px;
     left: -125px;
     border-radius: 0 !important;
+    touch-action: pan-y !important;
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease;
     will-change: transform, opacity;
     cursor: grab;
@@ -2962,10 +2969,10 @@ button {
     height: 100dvh;
     min-height: 0;
     max-height: 100dvh;
-    overflow: hidden !important;
+    overflow: visible;
     position: relative;
     padding: 0;
-    cursor: grab;
+    touch-action: pan-y !important;
   }
   .section-moon-cycle.is-dragging,
   .section-moon-cycle.is-dragging * {
@@ -2978,6 +2985,7 @@ button {
     min-height: 100% !important;
     position: relative;
     width: 100%;
+    overflow: visible;
   }
   .moon-sticky-viewport {
     position: relative !important;
@@ -2992,8 +3000,7 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    touch-action: none;
-    cursor: grab;
+    touch-action: pan-y !important;
   }
   .moon-mobile-ticker {
     display: flex;
@@ -3006,12 +3013,14 @@ button {
     height: 100dvh;
     min-height: 0;
     max-height: 100dvh;
-    overflow: hidden !important;
+    overflow: visible;
     padding: 0;
+    touch-action: pan-y !important;
   }
   .moon-scroll-track {
     height: 100% !important;
     min-height: 100% !important;
+    overflow: visible;
   }
   .moon-sticky-viewport {
     position: relative !important;
@@ -3022,6 +3031,7 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    touch-action: pan-y !important;
   }
   .moon-stage-canvas {
     position: relative;
@@ -4788,17 +4798,21 @@ body.cursor-in-founder .custom-cursor {
     height: 100dvh;
     min-height: 0;
     max-height: 100dvh;
-    overflow: hidden !important;
+    overflow: visible;
     padding: 0;
+    touch-action: pan-y !important;
   }
   .reviews-scroll-track {
     height: 100% !important;
     min-height: 100% !important;
+    overflow: visible;
   }
   .reviews-sticky-stage {
     position: relative !important;
     height: 100% !important;
     min-height: 100% !important;
+    overflow: visible;
+    touch-action: pan-y !important;
   }
   .stage-header-title {
     font-size: clamp(1.35rem, 5.2vw, 1.85rem) !important;
