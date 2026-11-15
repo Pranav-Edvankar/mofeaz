@@ -2509,7 +2509,7 @@ button {
   .section-reviews {
     height: 100vh;
     height: 100dvh;
-    min-height: 560px;
+    min-height: 0;
     max-height: 100dvh;
     overflow: hidden !important;
     position: relative;
@@ -2960,7 +2960,7 @@ button {
   .section-moon-cycle {
     height: 100vh;
     height: 100dvh;
-    min-height: 560px;
+    min-height: 0;
     max-height: 100dvh;
     overflow: hidden !important;
     position: relative;
@@ -3004,7 +3004,7 @@ button {
   .section-moon-cycle {
     height: 100vh;
     height: 100dvh;
-    min-height: 540px;
+    min-height: 0;
     max-height: 100dvh;
     overflow: hidden !important;
     padding: 0;
@@ -4786,7 +4786,7 @@ body.cursor-in-founder .custom-cursor {
   .section-reviews {
     height: 100vh;
     height: 100dvh;
-    min-height: 540px;
+    min-height: 0;
     max-height: 100dvh;
     overflow: hidden !important;
     padding: 0;
